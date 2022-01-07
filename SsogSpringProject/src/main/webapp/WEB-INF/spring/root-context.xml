@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+  xsi:schemaLocation="
+  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
+  	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- DB연결에 필요한 API설정(HikariCP-DBCP) -->
+	
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/> 
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@project-db-stu.ddns.net:1524:xe"/>
+		<property name="username" value="ssog"/>
+		<property name="password" value="apfhd"/>
+	</bean>
+	
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+	<!-- SqlSessionFactoryBean API -->
+	<!-- SqlSessionFactoryBean객체는 객체가 생성될 때 Mapper interface를 찾는다.(*) -->
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
+	    <property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- Mapper들을 메모리에 올리는 작업 -->
+	<mybatis:scan base-package="kr.ssog.mapper"/>
+	
+</beans>
+
