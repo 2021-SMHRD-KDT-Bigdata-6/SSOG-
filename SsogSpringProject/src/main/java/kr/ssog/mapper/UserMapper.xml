@@ -4,16 +4,16 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.ssog.mapper.UserMapper">
       <!-- 로그인,회원가입, 회원정보수정 -->
-    <select id="login" resultType="kr.ssog.domain.User" parameterType="int">
+    <select id="login" resultType="kr.ssog.domain.t_member" parameterType="java.util.HashMap">
     <!-- select는 묶어주는 정보가 필요함! -> resultType, 1개만 받아줄때는 파라미터타입 생략가능parameterType="int"-->
 	    select * from t_member where mb_id=#{mb_id} and mb_pwd=#{mb_pwd}
     </select>
 	
-    <insert id="join" parameterType="kr.ssog.domain.User">
-	    insert into t_member values(#{mb_id},#{mb_nick},#{mb_pwd},#{mb_name},#{mb_phone},#{mb_addr},#{mb_gender},#{mb_joindate},#{admin_yn})
+    <insert id="join" parameterType="kr.ssog.domain.t_member">
+	    insert into t_member values(#{mb_id},#{mb_pwd},#{mb_name},#{mb_phone},#{mb_addr},#{mb_gender},sysdate,'n')
     </insert>
 
-    <update id="memberUpdate" parameterType="kr.ssog.domain.User">
+    <update id="memberUpdate" parameterType="kr.ssog.domain.t_member">
         update t_member set mb_nick=#{mb_nick}, mb_pwd=#{mb_pwd}, mb_name=#{mb_name}, mb_phone=#{mb_phone}, mb_addr=#{mb_addr}, mb_gender=#{mb_gender}
     </update>
     

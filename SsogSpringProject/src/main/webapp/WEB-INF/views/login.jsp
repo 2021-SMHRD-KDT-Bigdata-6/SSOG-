@@ -65,20 +65,20 @@
     	<div class="container">
     		<div class="row justify-content-center">
           <div class="col-xl-10 ftco-animate">
-						<form action="LoginService" method="post" class="billing-form">
+						<form action="login.do" method="post" class="billing-form">
 							<h3 class="mb-4 billing-heading align">물가의 고수</h3>
 	          	<div class="row align-items-end">
 	          		<div class="col-md-6 auto">
 	                <div class="form-group">
-	                	<label for="firstname">아이디</label>
-	                  <input name="id" type="text" class="form-control" placeholder="아이디를 입력해주세요.">
+	                	<label for="mb_id">아이디</label>
+	                  <input name="mb_id" type="text" class="form-control" placeholder="아이디를 입력해주세요.">
 	                </div>
 	              </div>
 				<div class="w-100"></div>
 		            <div class="col-md-6 auto">
 		            	<div class="form-group">
-	                	<label for="streetaddress">비밀번호</label>
-	                  <input name="pw" type="password" class="form-control" placeholder="비밀번호를 입력해주세요.">
+	                	<label for="mb_pwd">비밀번호</label>
+	                  <input name="mb_pwd" type="password" class="form-control" placeholder="비밀번호를 입력해주세요.">
 	                </div>
 		            </div>
 		            

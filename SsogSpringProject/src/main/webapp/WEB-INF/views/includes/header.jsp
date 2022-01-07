@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +29,16 @@
 			    		</p>
 		        </div>
 		        <div class="reg">
-		        	<p class="mb-0"><a href="join.do" class="mr-2">회원가입</a> <a href="login.do">로그인</a></p>
+		        	<p class="mb-0">
+		        		<c:if test="${empty users}">
+			        		<a href="joinGo" class="mr-2">회원가입</a>
+				        	<a href="login">로그인</a>
+			        	 </c:if>
+			        	<c:if test="${!empty users}">
+			        		<a href="#" class="mr-2">${users.mb_id}님</a> 
+			        		<a href="logout.do">로그아웃</a>
+			        	</c:if>
+		        	</p>
 		        </div>
 					</div>
 				</div>

@@ -1,10 +1,10 @@
 package kr.ssog.mapper;
 
-import kr.ssog.domain.User;
+import kr.ssog.domain.t_member;
 
 public interface UserMapper {
 
-	public User login(User vo);
-    public void join(User vo);
-    public void memberUpdate(User vo);
+	public t_member login(t_member vo);
+    public void join(t_member vo);
+    public void memberUpdate(t_member vo);
 }

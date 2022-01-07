@@ -3,10 +3,10 @@ package kr.ssog.domain;
 import lombok.Data;
 
 @Data
-public class User {
+public class t_member {
 
 	private String mb_id;
-	private String mb_nick; // 추가??
+	//private String mb_nick; // 추가??
 	private String mb_pwd;
 	private String mb_name;
 	private String mb_phone;

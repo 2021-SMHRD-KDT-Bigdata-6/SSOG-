@@ -77,49 +77,49 @@
     	<div class="container">
     		<div class="row justify-content-center">
           <div class="col-xl-10 ftco-animate">
-						<form action="JoinService" method="post" class="billing-form">
-							<!-- <h3 class="mb-4 billing-heading align">물가의 고수</h3> -->
+			<form action="join.do" method="post" class="billing-form">
+				<!-- <h3 class="mb-4 billing-heading align">물가의 고수</h3> -->
 	          	<div class="row align-items-end">
 	          		<div class="col-md-6 auto">
 	                <div class="form-group">
-	                	<label for="firstname">아이디</label><input id="btnSt" type="button" value="중복체크" onclick="IdCheck()">
-	                  <input name='id' id="idCheck" type="text" class="form-control" placeholder="아이디를 입력해주세요.">
+	                	<label for="mb_id">아이디</label><input id="btnSt" type="button" value="중복체크" onclick="IdCheck()">
+	                  <input name='mb_id' id="idCheck" type="text" class="form-control" placeholder="아이디를 입력해주세요.">
 	                </div>
 	              </div>
 				<div class="w-100"></div>
 		            <div class="col-md-6 auto">
 		            	<div class="form-group">
-	                	<label for="streetaddress">비밀번호</label>
-	                  <input name='pw' type="password" class="form-control" placeholder="비밀번호를 입력해주세요.">
+	                	<label for="mb_pwd">비밀번호</label>
+	                  <input name='mb_pwd' type="password" class="form-control" placeholder="비밀번호를 입력해주세요.">
 	                </div>
 		            </div>
 				<div class="w-100"></div>
 		            <div class="col-md-6 auto">
 		            	<div class="form-group">
-	                	<label for="streetaddress">이름</label>
-	                  <input name='name' type="text" class="form-control" placeholder="">
+	                	<label for="mb_name">이름</label>
+	                  <input name='mb_name' type="text" class="form-control" placeholder="">
 	                </div>
 		            </div>
 				<div class="w-100"></div>
 		            <div class="col-md-6 auto">
 		            	<div class="form-group">
-	                	<label for="streetaddress">연락처</label>
-	                  <input name='phone' type="text" class="form-control" placeholder="숫자만 입력해주세요.">
+	                	<label for="mb_phone">연락처</label>
+	                  <input name='mb_phone' type="text" class="form-control" placeholder="숫자만 입력해주세요.">
 	                </div>
 		            </div>
 				<div class="w-100"></div>
 		            <div class="col-md-6 auto">
 		            	<div class="form-group">
-	                	<label for="streetaddress">주소</label>
-	                  <input name='addr' type="text" class="form-control" placeholder="">
+	                	<label for="mb_addr">주소</label>
+	                  <input name='mb_addr' type="text" class="form-control" placeholder="">
 	                </div>
 		            </div>
 				<div class="w-100"></div>
 		            <div class="col-md-6 auto">
 		            	<div class="form-group genderM2">
-	                	<label for="streetaddress">성별</label>
-		                  <span class='genderM'><input type="radio" name='gender' value="1">남자</span>
-		                  <span><input type="radio" name='gender' value="2">여자</span>
+	                	<label for="mb_gender">성별</label>
+		                  <span class='genderM'><input type="radio" name='mb_gender' value="1">남자</span>
+		                  <span><input type="radio" name='mb_gender' value="2">여자</span>
 	                </div>
 		            </div>
 		            
@@ -163,7 +163,7 @@
   <script src="resources/js/google-map.js"></script>
   <script src="resources/js/main.js"></script>
 
-  <script>
+  <%--<script>
 				function IdCheck(){
 					//var input = document.getElementById('input_e');
 					//alert(input.value)
@@ -175,7 +175,7 @@
 					$.ajax({
 						type : "post",	//데이터 전송방식
 						data : {id : input},		//서버로 전송할 데이터
-						url : "idCheckService",	//서버경로
+						url : "join.do",	//서버경로
 						dataType : "text",	//응답받을 데이터 타입(JSON)
 						success : function(data){
 							if(data=="true"){ 	//있는 아이디
@@ -194,7 +194,7 @@
 				}
 			
 			
-	</script>
+	</script> --%>
 			
   </body>
 </html>
