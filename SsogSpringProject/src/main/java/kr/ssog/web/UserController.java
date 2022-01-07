@@ -81,6 +81,7 @@ public class UserController {
 	}
 	@PostMapping("/join")
 	public String join(t_member vo) {
+		service.join(vo);
 		return "redirect:/";
 	}
 	@PostMapping("/memberUpdate.do")
