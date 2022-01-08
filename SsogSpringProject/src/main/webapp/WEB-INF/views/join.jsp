@@ -82,8 +82,8 @@
 	          	<div class="row align-items-end">
 	          		<div class="col-md-6 auto">
 	                <div class="form-group">
-	                	<label for="mb_id">아이디</label><input id="btnSt" type="button" value="중복체크" onclick="IdCheck()">
-	                  <input name='mb_id' id="idCheck" type="text" class="form-control" placeholder="아이디를 입력해주세요.">
+	                	<label for="mb_id">아이디</label><input id="btnSt" type="button" value="중복체크" onclick="idCheck()">
+	                  <input name='mb_id' id="inputId" type="text" class="form-control" placeholder="아이디를 입력해주세요.">
 	                </div>
 	              </div>
 				<div class="w-100"></div>
@@ -163,22 +163,15 @@
   <script src="resources/js/google-map.js"></script>
   <script src="resources/js/main.js"></script>
 
-  <%--<script>
-				function IdCheck(){
-					//var input = document.getElementById('input_e');
-					//alert(input.value)
-					//vlaue : input태그에 적어진 값 
-					//innerHTML : 태그 사이에 있는 html 문서 <p><span>b</span>a</p>
-					//innerText : 태그 사이에 있는 text
-					var input = $('#idCheck').val()
-					
+  <script>
+				function idCheck(){
 					$.ajax({
-						type : "post",	//데이터 전송방식
-						data : {id : input},		//서버로 전송할 데이터
-						url : "join.do",	//서버경로
-						dataType : "text",	//응답받을 데이터 타입(JSON)
+						type : "post",	
+						data : {mb_id : $('#inputId').val()},
+						url : "idCheck",	//서버경로
+						dataType : "json",	//응답받을 데이터 타입(JSON)
 						success : function(data){
-							if(data=="true"){ 	//있는 아이디
+							if(data==1){ 	//있는 아이디
 								alert('사용이 불가능한 아이디 입니다')
 								
 							}else{	//없는 아이디
@@ -194,7 +187,7 @@
 				}
 			
 			
-	</script> --%>
+	</script> 
 			
   </body>
 </html>

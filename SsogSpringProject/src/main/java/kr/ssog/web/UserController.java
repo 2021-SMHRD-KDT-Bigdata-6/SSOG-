@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ssog.domain.t_member;
 import kr.ssog.service.UserService;
@@ -83,6 +84,13 @@ public class UserController {
 	public String join(t_member vo) {
 		service.join(vo);
 		return "redirect:/";
+	}
+	// 아이디중복체크
+	@ResponseBody
+	@PostMapping("/idCheck")
+	public int idCheck(t_member vo){
+		int result = service.idCheck(vo);
+		return result;
 	}
 	@PostMapping("/memberUpdate.do")
 	public String memberUpdate(t_member vo) {

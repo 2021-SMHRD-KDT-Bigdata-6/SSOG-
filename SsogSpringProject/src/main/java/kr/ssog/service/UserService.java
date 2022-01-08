@@ -21,4 +21,9 @@ public class UserService {
     public void memberUpdate(t_member vo){
     	mapper.memberUpdate(vo);
     }
+    // 아이디중복체크
+    public int idCheck(t_member vo) {
+    	int result = mapper.idCheck(vo);
+    	return result;
+    }
 }
