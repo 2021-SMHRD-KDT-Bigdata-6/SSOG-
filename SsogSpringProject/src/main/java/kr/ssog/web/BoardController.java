@@ -6,12 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-<<<<<<< HEAD
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.ssog.domain.test;
-=======
->>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-6/SSOG-.git
 import kr.ssog.service.BoardService;
 
 @Controller
@@ -39,7 +36,6 @@ public class BoardController {
 	public String b_writeBoard(){
 		return "b_writeBoard";
 	}
-<<<<<<< HEAD
 	// 게시판 업로드(boardInsert)
 	@PostMapping("/boardUpload")
 	public String boardUpload(test board, MultipartFile file) throws Exception{
@@ -53,8 +49,4 @@ public class BoardController {
 		}
 		return categori;
 	}
-=======
-	
-	
->>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-6/SSOG-.git
 }
