@@ -37,18 +37,36 @@
     .h2{
     	margin-bottom: 16px !important;
     }
-  
-    </style>
     
+    </style>
   </head>
   <body>
-
- 	
- 	
- 	
-<div>
-	<%@include file="header.jsp" %>
-</div>
+  
+  <!-- <div th:fragment = "header"></div>
+  <div th:fragment = "header" th:replace = "views/includes/header :: header"></div>  -->
+  
+	<div data-include-path="header"></div>
+    <script>
+ 
+        window.addEventListener('load', function() {
+            var allElements = document.getElementsByTagName('*');
+            Array.prototype.forEach.call(allElements, function(el) {
+                var includePath = el.dataset.includePath;
+                if (includePath) {
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200) {
+                            el.outerHTML = this.responseText;
+                        }
+                    };
+                    xhttp.open('GET', includePath, true);
+                    xhttp.send();
+                }
+            });
+        });
+ 
+    </script>
+    
     <!-- END nav -->
     
     <div class="hero-wrap" style="background-image: url('resources/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
@@ -238,9 +256,29 @@
       </div>
     </section>
     
-<div>
-	<%@include file="footer.jsp" %>
-</div>
+	<div data-include-path="footer"></div>
+	
+    <script>
+ 
+        window.addEventListener('load', function() {
+            var allElements = document.getElementsByTagName('*');
+            Array.prototype.forEach.call(allElements, function(el) {
+                var includePath = el.dataset.includePath;
+                if (includePath) {
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200) {
+                            el.outerHTML = this.responseText;
+                        }
+                    };
+                    xhttp.open('GET', includePath, true);
+                    xhttp.send();
+                }
+            });
+        });
+ 
+    </script>
+
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
