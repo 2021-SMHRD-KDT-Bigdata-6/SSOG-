@@ -8,11 +8,11 @@
     </select>
     
     
-    <select id = "sellerPriceTop10" resultType = "kr.ssog.domain.Price" parameterType = "String">
+    <select id = "sellerQualityTop10" resultType = "kr.ssog.domain.Price" parameterType = "String">
         select * from (select * from Price where ingreName = #{ingre_name} and priceDate = SYSDATE order by priceQuality desc) where rownum <![CDATA[ < ]]> 11 
     </select>
     
-	<select id = "sellerQualityRandom5" resultType = "kr.ssog.domain.Price" parameterType = "String">
+	<select id = "sellerQualityNullRandom5" resultType = "kr.ssog.domain.Price" parameterType = "String">
 	    select * from Price where fdQualityIndx is null 
 	</select>
 
