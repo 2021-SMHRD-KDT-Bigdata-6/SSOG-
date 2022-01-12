@@ -3,8 +3,21 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.ssog.mapper.IngredientMapper">
-	
+	<select id = "ingreTopPrice100" resultType = "String">
+	    select * from (select * from ingredient order by ingrePriceInd desc) where rownum <![CDATA[ < ]]>101
+	</select>
 
+	<select id = "ingreTopQuality100" resultType = "String">
+	    select * from (select * from ingredient order by ingreQualityInd desc) where rownum <![CDATA[ < ]]>01
+	</select>
+	
+	<select id = "ingreSeason" resultType = "String">
+	    select ingredi from ingredient where ingreSeasonInd is not null
+	</select>
+	
+	<select id = "ingreTop100" resultType = "String">
+	    select * from (select ingreName from ingredient order by ingreIndex desc) where rownum <![CDATA[ < ]]>101
+	</select>
 
 
 </mapper>
