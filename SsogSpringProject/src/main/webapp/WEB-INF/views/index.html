@@ -42,30 +42,7 @@
   </head>
   <body>
   
-  <!-- <div th:fragment = "header"></div>
-  <div th:fragment = "header" th:replace = "views/includes/header :: header"></div>  -->
-  
-	<div data-include-path="header"></div>
-    <script>
- 
-        window.addEventListener('load', function() {
-            var allElements = document.getElementsByTagName('*');
-            Array.prototype.forEach.call(allElements, function(el) {
-                var includePath = el.dataset.includePath;
-                if (includePath) {
-                    var xhttp = new XMLHttpRequest();
-                    xhttp.onreadystatechange = function () {
-                        if (this.readyState == 4 && this.status == 200) {
-                            el.outerHTML = this.responseText;
-                        }
-                    };
-                    xhttp.open('GET', includePath, true);
-                    xhttp.send();
-                }
-            });
-        });
- 
-    </script>
+	<th:block th:include="includes/header :: header"></th:block>
     
     <!-- END nav -->
     
@@ -256,28 +233,7 @@
       </div>
     </section>
     
-	<div data-include-path="footer"></div>
-	
-    <script>
- 
-        window.addEventListener('load', function() {
-            var allElements = document.getElementsByTagName('*');
-            Array.prototype.forEach.call(allElements, function(el) {
-                var includePath = el.dataset.includePath;
-                if (includePath) {
-                    var xhttp = new XMLHttpRequest();
-                    xhttp.onreadystatechange = function () {
-                        if (this.readyState == 4 && this.status == 200) {
-                            el.outerHTML = this.responseText;
-                        }
-                    };
-                    xhttp.open('GET', includePath, true);
-                    xhttp.send();
-                }
-            });
-        });
- 
-    </script>
+	<th:block th:include="includes/footer :: footer"></th:block>
 
 
   <!-- loader -->
