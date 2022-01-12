@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ssog.mapper.FoodRecipeMapper">
+    <select id = "getRecipes"  resultType="kr.ssog.domain.FoodRecipe">
+        select * from foodrecipe where fdName = #{food_name} order by recipeOrder
+    </select>
+    
+</mapper>
