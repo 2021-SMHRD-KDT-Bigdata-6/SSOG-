@@ -2,8 +2,11 @@ package kr.ssog.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
+import kr.ssog.domain.test;
 import kr.ssog.service.BoardService;
 
 @Controller
@@ -31,5 +34,17 @@ public class BoardController {
 	public String b_writeBoard(){
 		return "b_writeBoard";
 	}
-	
+	// 게시판 업로드(boardInsert)
+	@PostMapping("/boardUpload")
+	public String boardUpload(test board, MultipartFile file) throws Exception{
+		String categori = "";
+		service.boardInsert(board, file);
+		// 카테고리선택
+		if(board.getBoardCate().equals("HappyCook")) {
+			categori = "b_happyCook";
+		}else if(board.getBoardCate().equals("PoisonCook")) {
+			categori = "b_poisonCook";
+		}
+		return categori;
+	}
 }

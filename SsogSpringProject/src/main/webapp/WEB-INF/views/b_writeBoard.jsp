@@ -94,24 +94,25 @@
 								<div class="col-md-7">
 									<div class="contact-wrap w-100 p-md-5 p-4">
 										<h3 class="mb-4">게시글 작성</h3>
-										<form action="WriterBoardService" method="POST" enctype="multipart/form-data" id="contactForm" name="contactForm" class="contactForm">
+										<form action="boardUpload" method="POST" enctype="multipart/form-data" id="contactForm" name="contactForm" class="contactForm">
 											<div class="row">
 												<div class="col-md-6">
 													<div class="form-group">
-													<%--if(vo==null){ %>
-														<label class="label" for="name">작성자</label>
-														<span style="margin-left:20px;"></span>
-													<%}else{ %>
-														<label class="label" for="name">작성자</label>
-														<span name="writer" style="margin-left:20px;"><%=vo.getMb_id() %></span>
-													<%} --%>
-														<label class="label" for="name">작성자</label>
-														<span style="margin-left:20px;"></span>
+													<c:if test="${empty users}">
+														<label class="label" for="writer">작성자</label>
+														<input type="text" class="form-control" name="writer" id="subject" value=${users.mb_id}>
+													</c:if>
+													<c:if test="${!empty users}">
+														<label class="label" for="writer">작성자</label>
+														<%-- <span name="writer" style="margin-left:20px;">${users.mb_id}</span>--%>
+														<input type="text" class="form-control" name="writer" id="subject" value=${users.mb_id}>
+													</c:if>
+														
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label class="label" for="name">카테고리</label>
+														<label class="label" for="boardCate">카테고리</label>
 														<select name="boardCate">
 															<option name="boardCate">HappyCook</option>
 															<option name="boardCate">PoisonCook</option>
@@ -120,17 +121,17 @@
 												</div>
 												<div class="col-md-12">
 													<div class="form-group">
-														<label class="label" for="subject">제목</label>
+														<label class="label" for="title">제목</label>
 														<input type="text" class="form-control" name="title" id="subject" placeholder="제목">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<div class="form-group">
-														<label class="label" for="#">내용</label>
+														<label class="label" for="content">내용</label>
 														<div class="filebox">
 														    <input class="upload-name" value="첨부파일" placeholder="첨부파일">
 														    <label for="file">파일찾기</label> 
-														    <input name="fileName" type="file" id="file">
+														    <input name="file" type="file" id="file">
 														</div>
 														<textarea name="content" class="form-control" id="message" cols="30" rows="10" placeholder="내용작성"></textarea>
 													</div>
@@ -176,12 +177,12 @@
   <script src="resources/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="resources/js/google-map.js"></script>
   <script src="resources/js/main.js"></script>
-  <script>
+  <%--<script>
 	  $("#file").on('change',function(){
 		  var fileName = $("#file").val();
 		  $(".upload-name").val(fileName);
 		});
-  </script>
+  </script> --%>
     
   </body>
 </html>
