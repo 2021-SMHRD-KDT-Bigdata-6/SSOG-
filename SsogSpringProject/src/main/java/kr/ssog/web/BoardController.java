@@ -1,11 +1,10 @@
 package kr.ssog.web;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import kr.ssog.domain.Board;
 import kr.ssog.service.BoardService;
 
 @Controller
@@ -33,5 +32,6 @@ public class BoardController {
 	public String b_writeBoard(){
 		return "b_writeBoard";
 	}
+	
 	
 }
