@@ -47,5 +47,4 @@
 	<context:component-scan base-package="kr.ssog.service" />
 	
 	
-	
 </beans:beans>

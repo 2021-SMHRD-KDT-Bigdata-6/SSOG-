@@ -17,11 +17,20 @@ public class UserController {
 	@Autowired
 	UserService service;
 	
-	@RequestMapping("/")
-	public String main() { 
-		return "index";
+	@RequestMapping("header")
+	public String header() { 
+		return "includes/header";
 	}
 	
+	@RequestMapping("footer")
+	public String footer() { 
+		return "includes/footer";
+	}
+	
+	@RequestMapping("/")
+	public String root() {
+		return "redirect:index";
+	}
 	@RequestMapping("/index")
 	public String index() {
 		return "index";
