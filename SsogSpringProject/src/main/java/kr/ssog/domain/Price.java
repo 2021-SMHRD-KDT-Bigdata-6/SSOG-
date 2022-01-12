@@ -8,7 +8,7 @@ public class Price {
 	private String ingreName;		//재료이름
 	private int price;				//가격
 	private String priceQuantity;	//재료용량
-	private String priceQuality;	//재료부가정보
+	private double priceQuality;	//재료부가정보
 	private String priceDate;		//등록날짜
 	private String priceSeller;		//판매자
 	private String priceSite;		//사이트
