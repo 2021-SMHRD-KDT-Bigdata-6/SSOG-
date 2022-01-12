@@ -5,24 +5,36 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import kr.ssog.domain.Price;
+import kr.ssog.mapper.IngredientMapper;
 import kr.ssog.mapper.PriceMapper;
 
 public class IngredientService {
 	@Autowired
 	PriceMapper priceMapper;
+	IngredientMapper ingredientMapper;
 	
 	
 	//식재료 이미지 가녀오기 : 판매처에서 랜덤으로 가져오기
 	public String getImgUrl(String ingre_name) {
 		return priceMapper.getImgUrl(ingre_name);
 	}
+	// 식재료 top100 위 출력
+	public List<String> ingreTop100(){
+		return ingredientMapper.ingreTop100();
+	}
 	
-	
-	//가격지수 Top 5위 식재료 정보추출
-	
-	//품질지수 Top 5위 식재료 정보추출
-	
-	//제철식재료 5위 정보추출
+	//가격지수 Top 100위 식재료 정보추출
+	public List<String> ingreTopPrice100(){
+		return ingredientMapper.ingreTopPrice100();
+	}
+	//품질지수 Top 100위 식재료 정보추출
+	public List<String> ingreTopQuality100(){
+		return ingredientMapper.ingreTopQuality100();
+	}
+	//제철식재료 정보추출
+	public List<String> ingreSeason(){
+		return ingredientMapper.ingreSeason();
+	}
 	
 	//판매처 상위 10개 가격정보
 	public List<Price> sellerPriceTop10(String ingre_name){

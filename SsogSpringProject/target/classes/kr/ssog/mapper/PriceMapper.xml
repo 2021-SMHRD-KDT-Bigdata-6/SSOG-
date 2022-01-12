@@ -4,12 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.ssog.mapper.PriceMapper">
     <select id = "sellerPriceTop10" resultType = "kr.ssog.domain.Price" parameterType = "String">
-        select * from (select * from Price where ingreName = #{ingre_name} and priceDate = SYSDATE order by price) where rownum <11 
+        select * from (select * from Price where ingreName = #{ingre_name} and priceDate = SYSDATE order by price) where rownum <![CDATA[ < ]]> 11 
     </select>
     
     
     <select id = "sellerPriceTop10" resultType = "kr.ssog.domain.Price" parameterType = "String">
-        select * from (select * from Price where ingreName = #{ingre_name} and priceDate = SYSDATE order by priceQuality desc) where rownum <11 
+        select * from (select * from Price where ingreName = #{ingre_name} and priceDate = SYSDATE order by priceQuality desc) where rownum <![CDATA[ < ]]> 11 
     </select>
     
 	<select id = "sellerQualityRandom5" resultType = "kr.ssog.domain.Price" parameterType = "String">
