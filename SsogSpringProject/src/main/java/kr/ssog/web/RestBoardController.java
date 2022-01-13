@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import kr.ssog.domain.test;
+import kr.ssog.domain.Board;
 import kr.ssog.service.BoardService;
 
 @RestController // @ResponseBody -> JSON : ajax통신
@@ -17,8 +17,8 @@ public class RestBoardController {
 	BoardService service;
 	
 	@GetMapping("/boardAjaxList.do")
-	public @ResponseBody List<test> boardAjaxList() {
-		List<test> list = service.boardList();
+	public @ResponseBody List<Board> boardAjaxList() {
+		List<Board> list = service.boardList("BoardCate");
 		// list -> [{ },{ },{ }] (json) -> API(Gson api)
 		//String json="[{ },{ },{ }]";
 		return list; // @@ResponseBody : 객체를 -> JSON으로 변환(API)시켜서 응답을 해라
@@ -39,8 +39,8 @@ public class RestBoardController {
 	}
 	
 	@GetMapping("/boardAjaxContent.do")
-	public test boardAjaxContent(int idx) {
-		test board = service.boardContent(idx);
+	public Board boardAjaxContent(int idx) {
+		Board board = service.boardContent(idx);
 		return board;
 	}
 	

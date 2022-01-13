@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.ssog.domain.test;
+import kr.ssog.domain.Board;
 import kr.ssog.mapper.BoardMapper;
 
 @Service 
@@ -17,12 +17,12 @@ public class BoardService {
 	@Autowired
 	BoardMapper mapper;
 	
-	public List<test> boardList(){
-		List<test> list=mapper.boardList();
+	public List<Board> boardList(String boardCate){
+		List<Board> list=mapper.boardList(boardCate);
 		return list;
 	}
 	// 게시글 업로드
-		public void boardInsert(test board, MultipartFile file) throws Exception {
+		public void boardInsert(Board board, MultipartFile file) throws Exception {
 
 			// 파일 저장 경로
 			String projectPath = "C:\\Users\\smhrd\\git\\SSOGSpringProject\\SsogSpringProject\\src\\main\\resources\\static\\files";
@@ -36,13 +36,13 @@ public class BoardService {
 
 			file.transferTo(saveFile);
 
-			board.setFilename(fileName);
-			board.setFilepath("/files/" + fileName);
+			board.setFileName(fileName);
+			//board.setFilepath("/files/" + fileName);
 
 			mapper.boardInsert(board);
 		}
-	public test boardContent(int idx) {
-		test vo=mapper.boardContent(idx);
+	public Board boardContent(int idx) {
+		Board vo=mapper.boardContent(idx);
 		mapper.boardCount(idx); //조회수 증가
 		return vo;
 	}
@@ -51,7 +51,7 @@ public class BoardService {
 		mapper.boardDelete(idx);
 	}; 
 	
-	public void boardUpdate(test vo) {
+	public void boardUpdate(Board vo) {
 		mapper.boardUpdate(vo);
 	}
 	

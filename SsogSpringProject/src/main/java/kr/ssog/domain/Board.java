@@ -10,9 +10,10 @@ public class Board {
 	private String title;
 	private String writer;
 	private String fileName;
+	private String filePath;
 	private String content;
 	private String w_day;
-	private int count;
+	//private int count;
 	
 	
 }
