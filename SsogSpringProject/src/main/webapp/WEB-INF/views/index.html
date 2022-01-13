@@ -79,11 +79,13 @@
                 	th:속성명="${변수}" : 속성값을 변수값으로 변경
                 	
                 	 -->
-               <div class="col-md-3 d-flex" th:each="test:${list}">
+             
+               <div class="col-md-3 d-flex" th:block th:each="num: ${#numbers.sequence(1,4)}">
                   <div class="product ftco-animate">
                    	
+                  
                      <div class="img d-flex align-items-center justify-content">
-                     	<img th:src="${test.img}" style="width:255px; height: 350px;">
+                     	<img src="resources/images/prod-2.jpg" style="width:255px; height: 350px;">
                      		<div class="desc">
                      			<p class="meta-prod d-flex" style="text-align:center;" >
                     				<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
@@ -94,14 +96,12 @@
                      </div>
                      		<div class="text text-center">
                         		<span class="seller">Best Seller</span>
-                        		<span class="category" th:text="${test.cate}">category</span>
-                        		<h2 th:text="${test.name}"></h2>
+                        		<span class="category">category</span>
+                        		<h2>name1</h2>
                      		</div>
                   	</div>
               	 </div>
-              
-					
-					
+            </th:block>
 					</div>
 				</div>
 			

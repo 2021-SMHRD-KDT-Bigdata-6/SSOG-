@@ -28,14 +28,14 @@
 		        </div>
 		        <div class="reg">
 		        	<p class="mb-0">
-		        		<c:if test="${empty users}">
+		        		<th:block th:if="${session.users==null}">
 			        		<a href="joinGo" class="mr-2">회원가입</a>
 				        	<a href="login">로그인</a>
-			        	 </c:if>
-			        	<c:if test="${!empty users}">
-			        		<a href="#" class="mr-2">${users.mb_id}님</a> 
+			        	</th:block>
+			        	<th:block th:if="${session.users!=null}">
+			        		<a href="#" class="mr-2" th:text="${session.users.mb_id}"></a> 
 			        		<a href="logout.do">로그아웃</a>
-			        	</c:if>
+			        	</th:block>
 		        	</p>
 		        </div>
 					</div>
