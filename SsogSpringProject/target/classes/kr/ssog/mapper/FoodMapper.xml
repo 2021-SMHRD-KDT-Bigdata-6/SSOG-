@@ -9,16 +9,16 @@
     
     
     <select id = "Top200" resultType = "String">
-        select * from (select fdName from food order by fdIndex desc) where rownum <![CDATA[ < ]]> 201
+        select * from (select fdName from food where fdDate =SYSDATE order by fdIndex desc) where rownum <![CDATA[ < ]]> 201
     </select>
     
     
     <select id = "Top100Price" resultType ="String">
-        select * from (select fdName from food order by fdPriceInd desc) where rownum <![CDATA[ < ]]>101
+        select * from (select fdName from food where fdDate =SYSDATE order by fdPriceInd desc) where rownum <![CDATA[ < ]]>101
     </select>
     
     <select id = "Top100Quality" resultType ="String">
-        select * from (select fdName from food order by fdQualityInd desc) where rownum <![CDATA[ < ]]>101
+        select * from (select fdName from food where fdDate =SYSDATE order by fdQualityInd desc) where rownum <![CDATA[ < ]]> 101
     </select>
     
     
