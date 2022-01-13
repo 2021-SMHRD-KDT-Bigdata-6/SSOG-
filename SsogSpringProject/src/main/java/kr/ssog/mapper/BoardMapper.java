@@ -17,7 +17,7 @@ public interface BoardMapper {
 		public void boardInsert(Board board); // SQL -> insert ~ 쿼리
 		
 		// 게시글 상세내용 보여주기
-		public Board boardContent(int idx); // SQL -> select ~ where ~
+		public Board boardContent(int num); // SQL -> select ~ where ~
 		
 		// 게시글 삭제
 		@Delete("delete from board where idx=#{idx}") // --> BoardMapper.xml을 거치지 않고 바로 실행

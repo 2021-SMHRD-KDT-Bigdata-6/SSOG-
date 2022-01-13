@@ -25,7 +25,7 @@ public class BoardService {
 		public void boardInsert(Board board, MultipartFile file) throws Exception {
 
 			// 파일 저장 경로
-			String projectPath = "C:\\Users\\smhrd\\git\\SSOGSpringProject\\SsogSpringProject\\src\\main\\resources\\static\\files";
+			String projectPath = "C:\\Users\\smhrd\\git\\SSOGSpringProject\\SsogSpringProject\\src\\main\\webapp\\resources\\files";
 
 			// 파일이름 랜덤생성(파일이름 겹칠 경우 대비)
 			UUID uuid = UUID.randomUUID();
@@ -37,14 +37,14 @@ public class BoardService {
 			file.transferTo(saveFile);
 
 			board.setFileName(fileName);
-			//board.setFilepath("/files/" + fileName);
+			board.setFilePath("resources/files/" + fileName);
 
 			mapper.boardInsert(board);
 		}
-	public Board boardContent(int idx) {
-		Board vo=mapper.boardContent(idx);
-		mapper.boardCount(idx); //조회수 증가
-		return vo;
+	public Board boardContent(int num) {
+		Board board=mapper.boardContent(num);
+		//mapper.boardCount(num); //조회수 증가
+		return board;
 	}
 	
 	public void boardDelete(int idx) {
