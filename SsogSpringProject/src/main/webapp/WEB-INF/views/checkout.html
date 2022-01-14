@@ -23,10 +23,8 @@
     </style>
   </head>
   <body>
-	<div>
-    	<%@include file="includes/header.jsp" %>
-    </div>
-    <!-- END nav -->
+<th:block th:include="includes/header :: header"></th:block>
+<!-- END nav -->
     
     <section class="hero-wrap hero-wrap-2" style="background-image: url('resources/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
@@ -155,9 +153,7 @@
     	</div>
     </section>
 
-	<div class="footM">
-	    <%@include file="includes/footer.jsp" %>
-	</div>
+<th:block th:include="includes/footer :: footer"></th:block>
     
   
 
