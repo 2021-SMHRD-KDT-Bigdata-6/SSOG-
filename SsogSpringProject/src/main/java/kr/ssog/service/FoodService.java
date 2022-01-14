@@ -10,6 +10,7 @@ import kr.ssog.domain.FoodRecipe;
 import kr.ssog.mapper.FoodIngredientMapper;
 import kr.ssog.mapper.FoodMapper;
 import kr.ssog.mapper.FoodRecipeMapper;
+import kr.ssog.mapper.NutritionMapper;
 
 @Service 
 public class FoodService {
@@ -20,7 +21,8 @@ public class FoodService {
 	FoodMapper foodMapper;
 	@Autowired
 	FoodIngredientMapper foodIngredientMapper;
-	
+	@Autowired
+	NutritionMapper nutritionMapper;
 	
 	
 	
@@ -82,15 +84,26 @@ public class FoodService {
 	}
 	
 	//음식카테고리 --> 속해있는 음식
-	public ArrayList<String> getFoodCategori(String categori) {
-		return new ArrayList<String>();
+	public List<String> getFoodCategori(String categori) {
+		return foodMapper.getFoodCategori(categori);
 	}
 	
 	//속해있는 음식 --> 카테고리
 	public String showCategori(String food_name) {
-		return "";
+		return foodMapper.showCategori(food_name);
 	}
 	
+	
+	
+	// 해당음식 데이터(영양정보) 가져오기
+	public void getFoodNutrition(String food_name) {
+		List<String> mainIngredient=foodIngredientMapper.getMainIngre(food_name);
+		int length = mainIngredient.size();
+		for (int i =0; i<length; i++) {
+			nutritionMapper.getInfoNutrition(mainIngredient.get(i));
+		}
+		nutritionMapper.getInfoNutrition(ingre_name)
+	}
 	
 	
 	
