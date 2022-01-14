@@ -102,7 +102,7 @@ public class FoodService {
 		for (int i =0; i<length; i++) {
 			nutritionMapper.getInfoNutrition(mainIngredient.get(i));
 		}
-		nutritionMapper.getInfoNutrition(ingre_name)
+		// nutritionMapper.getInfoNutrition(ingre_name)
 	}
 	
 	
