@@ -5,20 +5,20 @@
 <mapper namespace="kr.ssog.mapper.BoardMapper">
     
     <select id="boardList" resultType="kr.ssog.domain.Board"><!-- id = BoardMapper.java의 메서드 이름과 동일해야함 boardList -->
-    	select * from board
+    	select * from board where boardCate=#{boardCate} order by w_day desc
 	</select>
 	
     <insert id="boardInsert" parameterType="kr.ssog.domain.Board">
-	    insert into board(userId, title, contents, writer)
-	    values(#{userId},#{title},#{contents},#{writer})
+	    insert into board
+	    values(board_seq.nextval,#{boardCate},#{title},#{writer},#{fileName},#{filePath},#{content},sysdate)
     </insert>
     <select id="boardContent" resultType="kr.ssog.domain.Board" parameterType="int">
     <!-- select는 묶어주는 정보가 필요함! -> resultType, 1개만 받아줄때는 파라미터타입 생략가능parameterType="int"-->
-	    select * from board where idx=#{idx}
+	    select * from board where num=#{num}
     </select>
     
     <update id="boardUpdate" parameterType="kr.ssog.domain.Board">
-        update board set title=#{title},contents=#{contents} where idx=#{idx}
+        update board set title=#{title},contents=#{content} where num=#{num}
     </update>
     
 </mapper>

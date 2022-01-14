@@ -17,4 +17,5 @@ public class ExternerFactor {
 	private double exterRainHour;	//시간당강수량
 	private int exterHumidity;		//습도
 	private String fdCategori;		//먹는음식분류(정답)
+	private int purchaseSeq;		//구매순번
 }

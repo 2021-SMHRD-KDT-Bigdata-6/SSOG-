@@ -1,18 +1,28 @@
 package kr.ssog.service;
 
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import kr.ssog.domain.HistoryIndex;
 import kr.ssog.domain.Price;
+import kr.ssog.domain.PriceUnit;
+import kr.ssog.mapper.HistoryIndexMapper;
 import kr.ssog.mapper.IngredientMapper;
 import kr.ssog.mapper.PriceMapper;
 
 public class IngredientService {
 	@Autowired
 	PriceMapper priceMapper;
+	@Autowired
 	IngredientMapper ingredientMapper;
-	
+	@Autowired
+	HistoryIndexMapper historyIndexMapper;
+
 	
 	//식재료 이미지 가녀오기 : 판매처에서 랜덤으로 가져오기
 	public String getImgUrl(String ingre_name) {
@@ -49,14 +59,41 @@ public class IngredientService {
 		return result;
 	}
 	
-	//판매처 상위 가격 및 품질정보
 	
-	//가격 변화 가져오기
+	
+	//모든 지수 가져오기
+	public List<HistoryIndex> getIndHistory(String ingre_Name){
+		return historyIndexMapper.getIndHistory(ingre_Name); 
+	}
+	
+	//금일 가격 분포 가져오기
+	public List<Integer> getTodayPrice(String ingre_Name) {
+		Date date = new Date();
+		SimpleDateFormat formatChanger = new SimpleDateFormat("y-MM-dd");
+		String day = formatChanger.format(date);
+		
+		return priceMapper.getPrice(ingre_Name, day);
+	}
+	
 
-	//현재가격 가져오기
+	//모든 시간대 가격 분포 가져오기 ex) 20210113 1000~2000	
+	
+	public List<PriceUnit> getHistoryPrice(String ingre_Name){
+		List<PriceUnit> result = new ArrayList<PriceUnit>();
+		List<String> dates = priceMapper.getPriceDate(ingre_Name);
+		int length = dates.size();
+		for (int i =0; i<length; i++) {
+			String date = dates.get(i);
+			List<Integer> prices =  priceMapper.getPrice(ingre_Name, date);
+			result.add(new PriceUnit(date, prices));
+		}
+		
+		return result;
+		
+	}
 	
 	
-	// 해당음식 데이터(영양정보) 가져오기
+
 	
 	// 해당음식 db저장하기
 	

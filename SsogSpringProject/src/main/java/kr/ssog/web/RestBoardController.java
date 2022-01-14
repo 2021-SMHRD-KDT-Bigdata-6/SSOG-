@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,16 +18,16 @@ public class RestBoardController {
 	
 	@GetMapping("/boardAjaxList.do")
 	public @ResponseBody List<Board> boardAjaxList() {
-		List<Board> list = service.boardList();
+		List<Board> list = service.boardList("BoardCate");
 		// list -> [{ },{ },{ }] (json) -> API(Gson api)
 		//String json="[{ },{ },{ }]";
 		return list; // @@ResponseBody : 객체를 -> JSON으로 변환(API)시켜서 응답을 해라
 		// json.jsp? --> @ResponseBody를 붙여주면 json으로 리턴해줌
 	}
-	@PostMapping("/boardAjaxInsert.do")
-	public @ResponseBody void boardAjaxInsert(Board vo) {
-		service.boardInsert(vo);
-	}
+//	@PostMapping("/boardAjaxInsert.do")
+//	public @ResponseBody void boardAjaxInsert(Board vo) {
+//		service.boardInsert(vo);
+//	}
 //	@PostMapping("/boardAjaxContentUpdate.do")
 //	public @ResponseBody void boardAjaxContentUpdate(Board vo) { // idx, contents
 //		// Service -> Mapper -> SQL
@@ -41,8 +40,8 @@ public class RestBoardController {
 	
 	@GetMapping("/boardAjaxContent.do")
 	public Board boardAjaxContent(int idx) {
-		Board vo = service.boardContent(idx);
-		return vo;
+		Board board = service.boardContent(idx);
+		return board;
 	}
 	
 //	@GetMapping("/boardAjaxCount.do")
