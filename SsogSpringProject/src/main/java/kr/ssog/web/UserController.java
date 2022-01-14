@@ -1,38 +1,43 @@
 package kr.ssog.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.ssog.domain.Board;
 import kr.ssog.domain.t_member;
+import kr.ssog.service.BoardService;
 import kr.ssog.service.UserService;
 
 @Controller
 public class UserController {
 	@Autowired
 	UserService service;
-	
-	@RequestMapping("header")
-	public String header() { 
-		return "includes/header";
-	}
-	
-	@RequestMapping("footer")
-	public String footer() { 
-		return "includes/footer";
-	}
+	@Autowired
+	BoardService BoardService; 
 	
 	@RequestMapping("/")
 	public String root() {
 		return "redirect:index";
 	}
 	@RequestMapping("/index")
-	public String index() {
+	public String index(Model model) {
+		List<Board> happyList = BoardService.boardList("HappyCook"); 
+		model.addAttribute("happyList",happyList);
+		System.out.println("게시글 갯수" + happyList.size());
+		
+		List<Board> poisonList = BoardService.boardList("PoisonCook");
+		model.addAttribute("poisonList", poisonList);
+		System.out.println("포이즌게시글 갯수" + poisonList.size());
+		
 		return "index";
 	}
 	

@@ -62,10 +62,10 @@ public class IngredientService {
 	
 	
 	//모든 지수 가져오기
-	public List<HistoryIndex> getIndHistory(String ingre_Name){
-		return historyIndexMapper.getIndHistory(ingre_Name); 
-	}
-	
+//	public List<HistoryIndex> getIndHistory(String ingre_Name){
+//		return historyIndexMapper.getIndHistory(ingre_Name); 
+//	}
+//	
 	//금일 가격 분포 가져오기
 	public List<Integer> getTodayPrice(String ingre_Name) {
 		Date date = new Date();
