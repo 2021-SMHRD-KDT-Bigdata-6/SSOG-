@@ -10,10 +10,8 @@ public class Purchase {
 	private String mID;					//구입한아이디			
 	private String purchaseAddress;		//주소
 	private String purchaseDate;		//구입날짜
-	private String ingreName;			//재료이름
-	private int price;					//가격
-	private String priceSeller;			//판매처
-	private String priceSite;			//사이트
+	private String priceSeq;			//식재료 순번(정보 들어있음)
+	private int purchaseCount;			//구입 량
 	private String purchaseDelivery;	//배달 유무
 	private String fdName;				//음식이름
 }
