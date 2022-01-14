@@ -31,7 +31,6 @@ public class FoodService {
 		
 	}
 	
-	ㅇ
 	//이미지 파일 URL가져오기
 	public String getImgUrl(String food_name) {
 		String url = foodMapper.getImgUrl(food_name);
