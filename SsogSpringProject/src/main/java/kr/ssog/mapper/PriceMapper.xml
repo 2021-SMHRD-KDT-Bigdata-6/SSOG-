@@ -15,6 +15,14 @@
 	<select id = "sellerQualityNullRandom5" resultType = "kr.ssog.domain.Price" parameterType = "String">
 	    select * from Price where fdQualityIndx is null 
 	</select>
+	
+	<select id = "getPrice" resultType = "int" parameterType ="String">
+	    select price from Price where ingreName = #{ingre_name} and priceDate = #{date}
+	</select>
+	
+	<select id = "getPriceDate" resultType = "String" parameterType = "String">
+	    select priceDate from Price group by priceDate where ingreName = #{ingre_name}
+	</select>
 
 
 

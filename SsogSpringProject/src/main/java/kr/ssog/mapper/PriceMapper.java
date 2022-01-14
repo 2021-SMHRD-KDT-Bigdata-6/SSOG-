@@ -17,5 +17,12 @@ public interface PriceMapper {
 	
 	public List<Price> sellerQualityNullRandom5(String ingre_name);
 	
+	public List<Integer> getPrice(String ingre_name, String date);
+	
+	public List<String> getPriceDate(String ingre_name);
+
+	
+
+	
 
 }
