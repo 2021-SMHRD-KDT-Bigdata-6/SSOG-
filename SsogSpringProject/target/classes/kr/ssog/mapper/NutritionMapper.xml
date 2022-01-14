@@ -5,6 +5,9 @@
 <mapper namespace="kr.ssog.mapper.NutritionMapper">
     <select id = "getInfoNutrition" parameterType ="String" resultType ="kr.ssog.domain.Nutrition">
         select * from nutrition where ingreName = #{ingre_name}
+        
+        
+        
     </select>
 </mapper>
     
