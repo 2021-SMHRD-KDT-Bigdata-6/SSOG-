@@ -31,7 +31,6 @@ public class FoodService {
 		
 	}
 	
-	
 	//이미지 파일 URL가져오기
 	public String getImgUrl(String food_name) {
 		String url = foodMapper.getImgUrl(food_name);
@@ -102,7 +101,7 @@ public class FoodService {
 		for (int i =0; i<length; i++) {
 			nutritionMapper.getInfoNutrition(mainIngredient.get(i));
 		}
-		// nutritionMapper.getInfoNutrition(ingre_name)
+		nutritionMapper.getInfoNutrition(ingre_name)
 	}
 	
 	
