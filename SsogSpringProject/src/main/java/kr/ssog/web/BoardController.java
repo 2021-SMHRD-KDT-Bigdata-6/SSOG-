@@ -72,4 +72,6 @@ public class BoardController {
 		}
 		return categori;
 	}
+	
+	
 }

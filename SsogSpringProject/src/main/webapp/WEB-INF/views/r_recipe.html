@@ -44,15 +44,9 @@
   </head>
   <body>
   <!-- 수정 -->
-  <%--
-  	String fName = request.getParameter("fName");
-  	Controller_food conf = new Controller_food();
-  	//RecipeVO result = conf.getRecipe("fName");
-  --%>
-  
-	<div>
-    	<%@include file="includes/header.jsp" %>
-    </div>
+ 
+    <th:block th:include="includes/header :: header"></th:block>
+
     <!-- END nav -->
     
     <section class="hero-wrap hero-wrap-2" style="background-image: url('resources/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
@@ -60,7 +54,7 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-end justify-content-center">
           <div class="col-md-9 ftco-animate mb-5 text-center">
-          	<p class="breadcrumbs mb-0"><span class="mr-2"><a href="index.do">Home <i class="fa fa-chevron-right"></i></a></span> <span><a href="r_theme.do">테마추천 <i class="fa fa-chevron-right"></i></a></span> <span>레시피 <i class="fa fa-chevron-right"></i></span></p>
+          	<p class="breadcrumbs mb-0"><span class="mr-2"><a href="index.do">Home <i class="fa fa-chevron-right"></i></a></span> <span><a href="r_theme.do">테마추천 <i class="fa fa-chevron-right"></i></a></span> <span>레시피</i></span></p>
             <h2 class="mb-0 bread">레시피</h2>
           </div>
         </div>
@@ -74,7 +68,7 @@
     				<a href="<%--=conf.getImgUrl(fName) --%>" class="image-popup prod-img-bg"><img src="resources/img/1.jpg<%--=conf.getImgUrl(fName) --%>" class="img-fluid" alt="Colorlib Template"></a>
     			</div>
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
-    				<h3>음식이름<%--=fName --%></h3>
+    				<h3>음식이름</h3>
     				<div class="rating d-flex">
 							<p class="text-left mr-4">
 								<a href="#" class="mr-2">난이도</a>
@@ -88,9 +82,9 @@
 						</div>
     				<!-- <p class="price"><span>고추장 양념에 빨갛게 무쳐 먹던 마늘종을<br>햄과 함께 달달 볶았어요.</span></p> -->
     				<p><strong>주재료</strong></p>
-						<p><%--=conf.getMainIngre(fName) --%></p>
+						<p>주재료 코드</p>
     				<p><strong>부재료</strong></p>
-						<p><%--=conf.getSubIngre(fName) --%></p>
+						<p>부재료 코드</p>
 
 						
 						<div class="row mt-4">
@@ -133,26 +127,16 @@
 
               <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
               	<div class="p-4">
-	              	<h3 class="mb-4">음식이름<%--=fName --%></h3>
+	              	<h3 class="mb-4">음식이름</h3>
 	              	<p>
-	              	레시피
-	              	<%--
-	              	ArrayList<RecipeSubVO> sample =(conf.getRecipe(fName)).getRecipes();
-	              	for(int i = 0; i< sample.size(); i++) {
-	   
-	              		%><%=sample.get(i).getR_content()
-	              	%> <br>	
-	              	<%
-	              	
-	              	}
-	              	 --%>
+	              	레시피 코드
 	              	 </p>
               	</div>
               </div>
 
               <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-day-2-tab">
               	<div class="p-4">
-	              	<h3 class="mb-4"><%--=fName --%> 영양정보</h3>
+	              	<h3 class="mb-4">영양정보</h3>
 	              	<div id="chartBox"><canvas id="radarChart"></canvas></div>
               	</div>
               </div>
@@ -288,9 +272,7 @@
     	</div>
     </section>
 
-	<div>
-	    <%@include file="includes/footer.jsp" %>
-	</div>
+	<th:block th:include="includes/footer :: footer"></th:block>
     
   
 
