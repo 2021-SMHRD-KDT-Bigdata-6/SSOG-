@@ -173,7 +173,7 @@
               <div class="item" th:each="list : ${happyList}">
                 <div class="testimony-wrap py-4" id="bordercolor" style="text-align: center">
                 		<div style="width: 100%; height:203px;">
-                			<a href="b_happyCook.do"><img th:src="@{${list.filePath}}" style="width:100%; height:100%;"/></a>
+                			<a th:href="@{boardContents(num=${list.num})}"><img th:src="@{${list.filePath}}" style="width:100%; height:100%;"/></a>
                 		</div>
                 		<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
                  		 <div class="text text2">
@@ -206,7 +206,7 @@
         <div class="row ftco-animate">
           <div class="col-md-12">
             <div class="carousel-testimony owl-carousel ftco-owl">           
-              <div class="item" th:each="${list:${poisonList}}">
+              <div class="item" th:each="list:${poisonList}">
                 <div class="testimony-wrap py-4" id="bordercolor" style="text-align:center">
                 		<div style="width: 100%; height:203px;">
                 			<a href="b_poisonCook.do"><img th:src="@{${list.filePath}}" style="width:100%; height:100%;"/></a>
@@ -215,7 +215,7 @@
                   <div class="text text2">
                     <p class="mb-4"></p>
                     <div class="d-flex align-items-center">
-                    	<div class="user-img" style="background-image: url(resources/images/person_1.jpg)"></div>
+                    	<div class="user-img" th:style="'background-image: url('+@{${list.filePath}}+');'"></div>
                     	<div class="pl-3 text2">
 		                    <p class="name" th:text="${list.writer}">작성자이름</p>
 		                    <span class="position">새싹회원</span>
