@@ -23,6 +23,8 @@
 	<select id = "getPriceDate" resultType = "String" parameterType = "String">
 	    select priceDate from Price group by priceDate where ingreName = #{ingre_name}
 	</select>
+	
+
 
 
 

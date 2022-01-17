@@ -49,6 +49,27 @@ public class IngredientService {
 		return ingredientMapper.ingreSeason();
 	}
 	
+	
+	////// 카테고리별로
+	//식재료 별 순위출력- 가격
+	public List<String> CategoriPriceTop(String categori){
+		return ingredientMapper.CategoriPriceTop(categori);
+		
+	}
+	
+	//식재료별 순위 출력 - 품질
+	public List<String> CategoriQualityTop(String categori){
+		return ingredientMapper.CategoriQualityTop(categori);
+	}
+	
+	//식재료별 순위 출력 - 종합
+	public List<String> CategoriSeason(String categori){
+		return ingredientMapper.CategoriSeason(categori);
+		
+	}
+	
+	
+	
 	//판매처 상위 10개 가격정보
 	public List<Price> sellerPriceTop10(String ingre_name){
 		return priceMapper.sellerPriceTop10(ingre_name);
