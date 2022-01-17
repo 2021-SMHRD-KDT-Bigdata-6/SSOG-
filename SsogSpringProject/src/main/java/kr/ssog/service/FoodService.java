@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.ssog.domain.Board;
 import kr.ssog.domain.FoodRecipe;
+import kr.ssog.domain.Price;
 import kr.ssog.mapper.FoodIngredientMapper;
 import kr.ssog.mapper.FoodMapper;
 import kr.ssog.mapper.FoodRecipeMapper;
@@ -23,7 +25,6 @@ public class FoodService {
 	FoodIngredientMapper foodIngredientMapper;
 	@Autowired
 	NutritionMapper nutritionMapper;
-	
 	
 	
 	//음식 가격품질 지수 업데이트
