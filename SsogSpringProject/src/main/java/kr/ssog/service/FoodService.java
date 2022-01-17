@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.ssog.domain.Board;
+import kr.ssog.domain.FoodIngredient;
 import kr.ssog.domain.FoodRecipe;
-import kr.ssog.domain.Price;
+import kr.ssog.domain.Nutrition;
 import kr.ssog.mapper.FoodIngredientMapper;
 import kr.ssog.mapper.FoodMapper;
 import kr.ssog.mapper.FoodRecipeMapper;
@@ -96,18 +96,83 @@ public class FoodService {
 	
 	
 	// 해당음식 데이터(영양정보) 가져오기
-	public void getFoodNutrition(String food_name) {
-		List<String> mainIngredient=foodIngredientMapper.getMainIngre(food_name);
-		int length = mainIngredient.size();
-		for (int i =0; i<length; i++) {
-			nutritionMapper.getInfoNutrition(mainIngredient.get(i));
+	public List<Double> getFoodNutrition(String food_name) {
+		List<FoodIngredient> mainIngredients=foodIngredientMapper.getMainIngreInfo(food_name);
+		int length = mainIngredients.size();
+		// 재료나열
+		// 영양나열
+		
+		
+		// 결과 도출할 공간 만들기
+		List <Nutrition> nutritions = nutritionMapper.getInfoNutrition("쑥갓");
+		List<String> nutritionNames = new ArrayList<String>();
+		List<Double> totalNutritionQuan = new ArrayList<Double>();
+		for (int j = 0; j < nutritions.size(); j++) {
+			Nutrition nutrition =nutritions.get(j);
+			nutritionNames.add(nutrition.getNutritionName());
+			totalNutritionQuan.add(0.0);
 		}
-		// nutritionMapper.getInfoNutrition(ingre_name)
+	
+		for (int i =0; i<length; i++) {
+			FoodIngredient ingredient = mainIngredients.get(i);
+			nutritions = nutritionMapper.getInfoNutrition(ingredient.getIngreName());
+	
+			//탄수화물(g). 지질(g). 단백질(g). 당류(g). 지방(g)
+			//비타민D,비타민E,비타민K,비타민B12 (나노그램)
+			//비타민B2,비타민B5,비타민B6,비타민C,비타민1
+			//칼륨, 식이섬유,아연,마그네슘,철,나트륨,칼슘,인,에너지
+			
+			String quantity =ingredient.getIngreQuantity();
+			
+			// g , ml 전처리하기
+			int index = quantity.indexOf('g');
+			if(index !=-1) {
+				int j = 0;
+				while(true) {
+					if(47<(byte)quantity.charAt(index-j) && (byte)quantity.charAt(index-j)<58) j++;
+					else break;
+				}
+				
+				quantity= quantity.substring(index-j, index);
+				
+			}else {
+				index = quantity.indexOf("ml");
+				if(index != -1) {
+					int j = 0;
+					while(true) {
+						if(47<(byte)quantity.charAt(index-j) && (byte)quantity.charAt(index-j)<58) j++;
+						else break;
+					}
+					quantity= quantity.substring(index-j, index);
+					
+				}else {
+					quantity= "0";
+				}	
+			}
+			double preproQuantity =Double.parseDouble(quantity);
+			
+			
+
+			
+			
+			
+			//재료 -->다양한 영양정보 --> 추출하기
+			for (int j = 0; j < nutritions.size(); j++) {
+				Nutrition nutrition =nutritions.get(j);
+				totalNutritionQuan.set(j, totalNutritionQuan.get(j) + nutrition.getNutritionQuantity()*(preproQuantity/nutrition.getNutritionStandard()));			
+			}///--> 이름이랑 영양정보 담기!
+			
+			
+			System.out.println(nutritionNames);
+			System.err.println(totalNutritionQuan);
+			
+		}
+		return totalNutritionQuan;
 	}
 	
 	
-	
-	
-	
+	// 영양정보 그래프 처럼가져오기!
+	public void getNutritionGraph(){
+	}
 
 }

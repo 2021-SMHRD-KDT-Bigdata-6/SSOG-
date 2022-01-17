@@ -9,10 +9,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import kr.ssog.domain.HistoryIndex;
+import kr.ssog.domain.Nutrition;
 import kr.ssog.domain.Price;
 import kr.ssog.domain.PriceUnit;
 import kr.ssog.mapper.HistoryIndexMapper;
 import kr.ssog.mapper.IngredientMapper;
+import kr.ssog.mapper.NutritionMapper;
 import kr.ssog.mapper.PriceMapper;
 
 public class IngredientService {
@@ -22,7 +24,8 @@ public class IngredientService {
 	IngredientMapper ingredientMapper;
 	@Autowired
 	HistoryIndexMapper historyIndexMapper;
-
+	@Autowired
+	NutritionMapper nutritionMapper;
 	
 	//식재료 이미지 가녀오기 : 판매처에서 랜덤으로 가져오기
 	public String getImgUrl(String ingre_name) {
@@ -45,6 +48,27 @@ public class IngredientService {
 	public List<String> ingreSeason(){
 		return ingredientMapper.ingreSeason();
 	}
+	
+	
+	////// 카테고리별로
+	//식재료 별 순위출력- 가격
+	public List<String> CategoriPriceTop(String categori){
+		return ingredientMapper.CategoriPriceTop(categori);
+		
+	}
+	
+	//식재료별 순위 출력 - 품질
+	public List<String> CategoriQualityTop(String categori){
+		return ingredientMapper.CategoriQualityTop(categori);
+	}
+	
+	//식재료별 순위 출력 - 종합
+	public List<String> CategoriSeason(String categori){
+		return ingredientMapper.CategoriSeason(categori);
+		
+	}
+	
+	
 	
 	//판매처 상위 10개 가격정보
 	public List<Price> sellerPriceTop10(String ingre_name){
@@ -95,11 +119,21 @@ public class IngredientService {
 	
 
 	
-	// 해당음식 db저장하기
-	
-	
-	
-	//재료 업데이트 --> 서버로 뺴야겠네
-	public void insertAll() {}
+	// 해당 재료 영양정보 출력하기
+	public List<Double> getIngreNutrition(String ingre_name){
+		List<Nutrition>nutritions = nutritionMapper.getInfoNutrition(ingre_name);
+		List<String> nutritionNames = new ArrayList<String>();
+		List<Double> totalNutritionQuan = new ArrayList<Double>();
+		int scale =100; // 100g을 기준으로 정보 출력!
+		for (int j = 0; j < nutritions.size(); j++) {
+			Nutrition nutrition =nutritions.get(j);
+			nutritionNames.add(nutrition.getNutritionName());
+			totalNutritionQuan.add( nutrition.getNutritionQuantity()*(100/nutrition.getNutritionStandard()) );
+		}
+		System.out.println(nutritionNames);
+		System.err.println(totalNutritionQuan);
+		return totalNutritionQuan;
+	}
+
 	
 }
