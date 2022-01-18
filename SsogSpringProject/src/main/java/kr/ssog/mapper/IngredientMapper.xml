@@ -19,5 +19,17 @@
 	    select * from (select ingreName from ingredient order by ingreIndex desc) where rownum <![CDATA[ < ]]>101
 	</select>
 
+	
+	<select id = "CategoriPriceTop" resultType = "String" parameterType = "String">
+	    select * from ingreName where ingreCategori = #{categori} order by ingrePriceInd
+	</select>
+	
+	<select id = "CategoriQualityTop" resultType = "String" parameterType = "String">
+	    select * from ingreName where ingreCategori = #{categori} order by ingreQualityInd
+	</select>
+	
+	<select id = "CategoriSeason" resultType = "String" parameterType = "String">
+	    select * from ingreName where ingreCategori = #{categori} and ingreSeasonInd  <![CDATA[ > ]]> 1
+	</select>
 
 </mapper>

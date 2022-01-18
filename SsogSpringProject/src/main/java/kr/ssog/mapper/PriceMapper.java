@@ -20,6 +20,8 @@ public interface PriceMapper {
 	public List<Integer> getPrice(String ingre_name, String date);
 	
 	public List<String> getPriceDate(String ingre_name);
+	
+
 
 	
 

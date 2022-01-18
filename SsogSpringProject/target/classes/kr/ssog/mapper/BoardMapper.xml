@@ -21,4 +21,5 @@
         update board set title=#{title},contents=#{content} where num=#{num}
     </update>
     
+    
 </mapper>

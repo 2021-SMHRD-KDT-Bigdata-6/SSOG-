@@ -9,7 +9,11 @@ public interface FoodMapper {
 	
 	public String getImgUrl(String food_name);
 	
-	public List<String> Top200(); 
+	public void createViewTop200(); 
+	
+	public void deleteViewTop200();
+	
+	public List<String> Top200();
 	
 	public List<String> Top100Price();
 	
