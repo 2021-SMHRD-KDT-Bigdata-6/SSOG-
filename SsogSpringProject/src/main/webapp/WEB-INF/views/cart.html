@@ -52,29 +52,24 @@
     <form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
     
             <input type="hidden" name="cmd" value="order">
-            <div class="basketdiv" id="basket">
-                <div class="row head">
-                    <div class="subdiv font">
-                        <div class="check">선택</div>
-                        <div class="img">이미지</div>
-                        <div class="pname">상품명</div>
-                    </div>
-                    <div class="subdiv font">
-                        <div class="basketprice">가격</div>
-                        <div class="num">수량</div>
-                        <div class="num">합계</div>
-                    </div>
-                    <div class="subdiv font">
-    
-                        <div class="basketcmd">삭제</div>
-                    </div>
-                    <div class="split"></div>
-                </div>
+            <div class="basketdiv table-wrap" id="basket">
+                <table class="table" id="table01">
+						<thead class="thead-primary">
+						    <tr>
+						    	<th>&nbsp;</th>
+						    	<th>&nbsp;</th>
+						    	<th>상품</th>
+						      	<th>가격</th>
+						      	<th>개수</th>
+						      	<th>총 금액</th>
+						      	<th>&nbsp;</th>
+						    </tr>
+						  </thead></table>
         
-                <div class="row data" th:each="num:${#numbers.sequence(1,5)}">
+                <div class="row data" th:each="num:${#numbers.sequence(1,3)}">
                     <div class="subdiv">
-                        <div class="check"><input type="checkbox" name="buy" value="260" checked="" onclick="javascript:basket.checkItem();">&nbsp;</div>
-                        <div class="img"><img th:src="@{resources/images/}+'prod-'+${num}+'.jpg'" width="60"></div>
+                        <div class="check"><input type="checkbox" name="buy" value="260" onclick="javascript:basket.checkItem();">&nbsp;</div>
+                        <div class="img"><img th:src="@{resources/images/}+'prod-'+${num}+'.jpg'" width="70px" height="90px"></div>
                         <div class="pname">
                             <span>찜마마(XJ-92214/3)</span>
                         </div>
@@ -83,7 +78,7 @@
                         <div class="basketprice"><input type="hidden" name="p_price" th:id="'p_price'+${num}" class="p_price" value="20000">20,000원</div>
                         <div class="num">
                             <div class="updown">
-                                <input type="text" th:name="'p_num'+${num}" th:id="'p_num1'+${num}" size="2" maxlength="4" class="p_num" value="2" th:onkeyup="'javascript:basket.changePNum(\'' + ${num} + '\');'">
+                                <input type="text" th:name="'p_num'+${num}" th:id="'p_num1'+${num}" size="2" maxlength="4" class="p_num" value="1" th:onkeyup="'javascript:basket.changePNum(\'' + ${num} + '\');'">
                                 <span  th:onclick="'javascript:basket.changePNum(\'' + ${num} + '\');'" style="margin-right:0.3rem; margin-left:0.3rem;"><i class="fas fa-arrow-alt-circle-up up"></i></span>
                                 <span th:onclick="'javascript:basket.changePNum(\'' + ${num} + '\');'"><i class="fas fa-arrow-alt-circle-down down"></i></span>
                             </div>
@@ -91,24 +86,25 @@
                         <div class="sum">40,000원</div>
                     </div>
                     <div class="subdiv">
-                        <div class="basketcmd"><a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delItem();">삭제</a></div>
+                        <div class="basketcmd"><a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delItem();">삭&nbsp;제</a></div>
                     </div>
                 </div>
                 
                 
         
             </div>
-    
             <div class="right-align basketrowcmd">
-                <a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delCheckedItem();">선택상품삭제</a>
-                <a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delAllItem();">장바구니비우기</a>
+            	<div id="delBtn">
+	                <a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delAllItem();">장&nbsp;바&nbsp;구&nbsp;니&nbsp;&nbsp;&nbsp;비&nbsp;우&nbsp;기</a>
+	                <a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delCheckedItem();">선&nbsp;택&nbsp;상&nbsp;품&nbsp;&nbsp;&nbsp;삭&nbsp;제</a>
+                </div>
             </div>
     
     		<div class="row justify-content-end">
     			<div class="col col-lg-5 col-md-6 mt-5 cart-wrap ftco-animate">
     				<div class="cart-total mb-3">
-    					<div class="bigtext right-align sumcount" id="sum_p_num">상품갯수: 4개</div>
-            <div class="bigtext right-align box summoney" id="sum_p_price">합계금액: 74,200원</div>
+    					<div class="bigtext right-align sumcount" id="sum_p_num">상품갯수: 0개</div>
+            <div class="bigtext right-align box summoney" id="sum_p_price">합계금액: 0원</div>
     
             <!-- <div id="goorder" class="">
                 <div class="clear"></div>
@@ -117,11 +113,11 @@
                 </div>
             </div> -->
     				</div>
-    				<p class="text-center"><a href="checkout.do" class="btn btn-primary py-3 px-4">결제하기</a></p>
+    				<p class="text-center"><a href="checkout.do" class="btn btn-primary py-3 px-4">결&nbsp;제&nbsp;하&nbsp;기</a></p>
     			</div>
     		</div>
             
-        </form>
+	</form>
         </div>
 	</section>
 
