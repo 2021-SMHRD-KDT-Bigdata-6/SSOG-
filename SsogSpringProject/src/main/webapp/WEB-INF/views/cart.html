@@ -53,7 +53,7 @@
     
             <input type="hidden" name="cmd" value="order">
             <div class="basketdiv table-wrap" id="basket">
-                <table class="table" id="table01">
+               <table class="table" id="table01">
 						<thead class="thead-primary">
 						    <tr>
 						    	<th>&nbsp;</th>
@@ -64,7 +64,8 @@
 						      	<th>총 금액</th>
 						      	<th>&nbsp;</th>
 						    </tr>
-						  </thead></table>
+						  </thead>
+				</table>
         
                 <div class="row data" th:each="num:${#numbers.sequence(1,3)}">
                     <div class="subdiv">
@@ -72,6 +73,7 @@
                         <div class="img"><img th:src="@{resources/images/}+'prod-'+${num}+'.jpg'" width="70px" height="90px"></div>
                         <div class="pname">
                             <span>찜마마(XJ-92214/3)</span>
+                            <a id="btn_open" type="button" style="text-align:center" onclick="btnOpen()">상품 더보기</a>
                         </div>
                     </div>
                     <div class="subdiv">
@@ -120,6 +122,52 @@
 	</form>
         </div>
 	</section>
+	<!-- 모달창 구현! -->
+	<section>
+		<div id="outer">
+		    <div class="inner">
+		        <span class="btn_close">&times;</span>
+		 
+		        <div class="title">
+		            <span>TITLE</span>
+		        </div>
+		 		<form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
+    
+		            <input type="hidden" name="cmd" value="order">
+		            <div class="basketdiv table-wrap overflow-y" id="basket">
+		               <table class="table" id="table02">
+							<thead class="thead-primary">
+								<tr>
+								    <th>&nbsp;</th>
+								    <th>&nbsp;</th>
+								    <th>상품</th>
+								    <th>가격</th>
+								    <th>&nbsp;</th>
+								    <th>&nbsp;</th>
+								</tr>
+							 </thead>
+						</table>
+		        
+		                <div class="row data" id="data" th:each="num:${#numbers.sequence(1,5)}">
+		                    <div class="subdiv" id="modalCon">
+		                        <div class="check"><input type="checkbox" name="buy" value="260" onclick="javascript:basket.checkItem();">&nbsp;</div>
+		                        <div class="img"><img th:src="@{resources/images/}+'prod-'+${num}+'.jpg'" width="70px" height="90px"></div>
+		                        <div class="pname" id="modalPname">
+		                            <span>식재료 이름</span>
+		                        </div>
+		                    </div>
+		                    <div class="subdiv">
+		                        <div class="basketprice" id="modalPrice"><input type="hidden" name="p_price" th:id="'p_price'+${num}" class="p_price" value="20000">20,000원</div>
+		                    </div>
+		                </div>
+		            </div>
+				</form>
+		        <div class="content">
+		        	&nbsp;
+		        </div>
+		    </div>
+		</div>
+	</section>
 
 <th:block th:include="includes/footer :: footer"></th:block>
     
@@ -145,6 +193,28 @@
   <script src="resources/js/main.js"></script>
   <!-- 추가 js -->
   <script src="resources/js/cartEvent.js"></script>
-    
+  <!-- 모달창 js -->
+  <script>
+    var outer = document.getElementById('outer');
+    var btn_open = document.getElementById("btn_open");
+    var btn_close = document.getElementsByClassName("btn_close")[0];
+ 
+    /*btn_open.onclick = function () {
+        outer.style.display = "block";
+    };*/
+    function btnOpen(){
+    	outer.style.display = "block";
+    }
+ 
+    btn_close.onclick = function () {
+        outer.style.display = "none";
+    };
+ 
+    window.onclick = function (event) {
+        if (event.target == outer) {
+            outer.style.display = "none";
+        }
+    }
+	</script>
   </body>
 </html>

@@ -292,3 +292,90 @@
         border-radius: 2px;
         transform: scale(1) translate(-50%, -50%)
     }
+    
+    /*모달창 부분 CSS*/
+    .inner{
+    	max-width:700px;
+    }
+    #table02{
+    	min-width:700px !important;
+		margin-bottom:0;
+		
+	}
+    #data{
+    	min-width:700px;
+    
+    }
+	.overflow-y{
+		overflow-x:hidden !important;
+		overflow-y:scroll;
+		height:500px;
+	}
+    #outer {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    #outer .inner {
+        position: absolute;
+        background-color: #fefefe;
+        min-width:500px;
+        width: 25%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    #outer .inner .title {
+        width: 100%;
+        height: 70px;
+        line-height: 70px;
+        text-align: left;
+    }
+ 
+    #outer .inner .title span {
+        padding-left: 30px;
+        font-size: 20px;
+    }
+    #outer .inner .btn_close {
+        position: absolute;
+        right: 20px;
+        top: 8px;
+        font-size: 35px;
+        font-weight: bold;
+        z-index: 100;
+        opacity: 0.7;
+    }
+    #outer .inner .btn_close:hover,
+    #outer .inner .btn_close:focus {
+        opacity: 1;
+        cursor: pointer;
+    }
+    #modalCon{
+    	width:50%;
+    }
+    #modalPname{
+    	padding-left:45px;
+    	padding-right:45px;
+    }
+    #modalPname>span{
+    	text-align:center;
+    }
+    #modalPrice{
+    	padding-left:0;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
