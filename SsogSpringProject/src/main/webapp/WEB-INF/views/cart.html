@@ -72,7 +72,7 @@
                         <div class="check"><input type="checkbox" name="buy" value="260" onclick="javascript:basket.checkItem();">&nbsp;</div>
                         <div class="img"><img th:src="@{resources/images/}+'prod-'+${num}+'.jpg'" width="70px" height="90px"></div>
                         <div class="pname">
-                            <span>찜마마(XJ-92214/3)</span>
+                            <span id="pName2" th:text="'당근'">찜마마(XJ-92214/3)</span>
                             <a id="btn_open" type="button" style="text-align:center" onclick="btnOpen()">상품 더보기</a>
                         </div>
                     </div>
@@ -151,13 +151,13 @@
 		                <div class="row data" id="data" th:each="num:${#numbers.sequence(1,5)}">
 		                    <div class="subdiv" id="modalCon">
 		                        <div class="check"><input type="checkbox" name="buy" value="260" onclick="javascript:basket.checkItem();">&nbsp;</div>
-		                        <div class="img"><img th:src="@{resources/images/}+'prod-'+${num}+'.jpg'" width="70px" height="90px"></div>
+		                        <div class="img"><img id="modalImg" th:src="@{resources/images/}+'prod-'+${num}+'.jpg'" width="70px" height="90px"></div>
 		                        <div class="pname" id="modalPname">
-		                            <span>식재료 이름</span>
+		                            <span id="modalClick" onclick="pNameClick()" th:text="'식재료'">식재료 이름</span>
 		                        </div>
 		                    </div>
 		                    <div class="subdiv">
-		                        <div class="basketprice" id="modalPrice"><input type="hidden" name="p_price" th:id="'p_price'+${num}" class="p_price" value="20000">20,000원</div>
+		                        <div class="basketprice" id="modalPrice"><input type="hidden" name="p_price" id="p_price" class="p_price" value="20000">20,000원</div>
 		                    </div>
 		                </div>
 		            </div>
@@ -198,7 +198,8 @@
     var outer = document.getElementById('outer');
     var btn_open = document.getElementById("btn_open");
     var btn_close = document.getElementsByClassName("btn_close")[0];
- 
+    let pNam2 = document.getElementById('pName2')
+	let body = document.getElegmentByTagName('body')
     /*btn_open.onclick = function () {
         outer.style.display = "block";
     };*/
@@ -214,6 +215,20 @@
         if (event.target == outer) {
             outer.style.display = "none";
         }
+    }
+    function pNameClick(){
+    	
+    	let pName = document.getElementById('modalClick').innerHTML
+    	let pImg = document.getElementById('modalImg').src
+    	let price = document.getElementById('p_price').value
+    	
+    	alert('상품명: ' + pName + '이미지: ' + pImg + '가격: ' + price)
+    	
+    	outer.style.display = "none";
+    	
+    	pName2.innerText = pName
+    	document.write(body.innerHTML)
+    	
     }
 	</script>
   </body>
