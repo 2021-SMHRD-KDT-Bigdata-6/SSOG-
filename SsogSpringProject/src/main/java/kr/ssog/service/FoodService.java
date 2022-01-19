@@ -41,7 +41,23 @@ public class FoodService {
 		return url;
 	}
 	
+	//이미지 파일 URL뭉치 가져오기
+	public List<String> getAllImgUrl(List<String> foodNames){
+		int count = 30;
+		if (foodNames.size() < count) {
+			count = foodNames.size();
+		}
+		
+		List<String> imgs = new ArrayList<String>();
+		for (int i =0; i<count; i++) {
+			imgs.add(getImgUrl(foodNames.get(i)));
+		}
+		
+		
+		return imgs;
+	}
 	
+
 	//레시피 정보 가져오기
 	public List<FoodRecipe> getRecipe(String food_name) {
 		List<FoodRecipe> result=foodRecipeMapper.getRecipes(food_name);
@@ -184,5 +200,10 @@ public class FoodService {
 		//칼륨, 식이섬유,아연,마그네슘,철,나트륨,칼슘,인,에너지
 		
 	}
+	
+	
+	
+
+	
 
 }
