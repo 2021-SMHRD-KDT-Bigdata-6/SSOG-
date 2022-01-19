@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.ssog.domain.Food;
 import kr.ssog.domain.FoodIngredient;
 import kr.ssog.domain.FoodRecipe;
 import kr.ssog.domain.Nutrition;
@@ -65,21 +66,21 @@ public class FoodService {
 	}
 	
 	//Top200 array 가져오기
-	public List<String> Top200() {
+	public List<Food> Top200() {
 		return foodMapper.Top200();
 	}
 	
 	//TOP100 가격
-	public List<String> Top100Price() {
+	public List<Food> Top100Price() {
 		return foodMapper.Top100Price();
 	}
 	//Top100품질
-	public List<String> Top100Quality(){
+	public List<Food> Top100Quality(){
 		return foodMapper.Top100Quality();
 	}
 	
 	//제철식품종류
-	public List<String> season(){
+	public List<Food> season(){
 		return foodMapper.season();
 	}
 	

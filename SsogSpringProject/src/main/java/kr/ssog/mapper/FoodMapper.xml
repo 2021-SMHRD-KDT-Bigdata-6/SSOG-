@@ -16,22 +16,22 @@
         drop view top200;
     </select>
     
-    <select id = "Top200" resultType = "String">
+    <select id = "Top200" resultType = "kr.ssog.domain.Food">
         select * from top200
     </select>
     
     
-    <select id = "Top100Price" resultType ="String">
-        select * from (select fdName from food where fdDate =SYSDATE order by fdPriceInd desc) where rownum <![CDATA[ < ]]>101
+    <select id = "Top100Price" resultType ="kr.ssog.domain.Food">
+        select * from (select * from food where fdDate =SYSDATE order by fdPriceInd desc) where rownum <![CDATA[ < ]]>101
     </select>
     
-    <select id = "Top100Quality" resultType ="String">
-        select * from (select fdName from food where fdDate =SYSDATE order by fdQualityInd desc) where rownum <![CDATA[ < ]]> 101
+    <select id = "Top100Quality" resultType ="kr.ssog.domain.Food">
+        select * from (select * from food where fdDate =SYSDATE order by fdQualityInd desc) where rownum <![CDATA[ < ]]> 101
     </select>
     
     
         
-    <select id = "season" resultType ="String">
-        select fdName from food order by fdSeasonInd desc sample(5)
+    <select id = "season" resultType ="kr.ssog.domain.Food">
+        select * from food order by fdSeasonInd desc sample(5)
     </select>
 </mapper>
