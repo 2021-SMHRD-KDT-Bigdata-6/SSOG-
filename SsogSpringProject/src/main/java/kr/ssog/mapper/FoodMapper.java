@@ -26,5 +26,8 @@ public interface FoodMapper {
 	
 	@Select("select fdCategori from food where fdName = #{food_name}")
 	public String showCategori(String food_name);
+	
+	@Select("select fdName from food")
+	public List<String> getFoodName();
 
 }
