@@ -129,7 +129,7 @@
 		        <span class="btn_close">&times;</span>
 		 
 		        <div class="title">
-		            <span>TITLE</span>
+		            <span onclick="modalClose()">TITLE</span>
 		        </div>
 		 		<form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
     
@@ -206,7 +206,9 @@
     function btnOpen(){
     	outer.style.display = "block";
     }
- 
+    function modalClose(){
+        outer.style.display = "none";
+ 	}
     btn_close.onclick = function () {
         outer.style.display = "none";
     };
