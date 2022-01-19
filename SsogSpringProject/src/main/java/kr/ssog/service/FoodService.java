@@ -37,6 +37,7 @@ public class FoodService {
 	public String getImgUrl(String food_name) {
 		String url = foodMapper.getImgUrl(food_name);
 		url = url.substring(url.indexOf("webapp")+7);
+		url = "../../resources/"+url;
 		return url;
 	}
 	

@@ -9,7 +9,7 @@
     
     
     <select id = "createViewTop200">
-        create view top200 as select * from (select * from food where fdDate =SYSDATE order by fdIndex desc) where rownum <![CDATA[ < ]]> 201
+        create view top200 as select * from (select * from food order by fdIndex desc) where rownum <![CDATA[ < ]]> 201
     </select>
     
     <select id = "deleteViewTop200">
