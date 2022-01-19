@@ -50,7 +50,7 @@ public class FoodService {
 		
 		List<String> imgs = new ArrayList<String>();
 		for (int i =0; i<count; i++) {
-			imgs.add(getImgUrl(foodNames.get(i).getFdURL()));
+			imgs.add(getImgUrl(foodNames.get(i).getFdName()));
 		}
 		
 		
