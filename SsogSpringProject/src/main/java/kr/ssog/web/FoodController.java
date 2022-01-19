@@ -31,4 +31,9 @@ public class FoodController {
 		return "r_it";
 	}
 	
+	@RequestMapping("/itAjaxTest")
+	public String itAjaxTest() {
+		return "itAjaxTest";
+	}
+	
 }
