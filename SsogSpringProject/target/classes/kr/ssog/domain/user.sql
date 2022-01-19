@@ -36,9 +36,15 @@ select * from member;
 
 select * from board;
 
+select count(*) from board where boardcate = 'HappyCook';
+select count('HappyCook') from board;
 
-
-
+select * from (
+	select ROWNUM NUM1, n. * from(
+		select * from board where boardCate='HappyCook' order by w_day desc
+	) n
+) 
+where num1 between 1 and 10;
 
 
 

@@ -27,7 +27,6 @@ public class FoodService {
 	NutritionMapper nutritionMapper;
 	
 	
-	
 	//음식 가격품질 지수 업데이트
 	public void updateFdIndex() {
 		
