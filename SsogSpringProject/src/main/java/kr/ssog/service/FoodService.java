@@ -113,6 +113,7 @@ public class FoodService {
 			nutritionNames.add(nutrition.getNutritionName());
 			totalNutritionQuan.add(0.0);
 		}
+		System.out.println(nutritionNames);
 	
 		for (int i =0; i<length; i++) {
 			FoodIngredient ingredient = mainIngredients.get(i);
@@ -174,6 +175,13 @@ public class FoodService {
 	
 	// 영양정보 그래프 처럼가져오기!
 	public void getNutritionGraph(){
+		
+		
+		//탄수화물(g). 지질(g). 단백질(g). 당류(g). 지방(g)
+		//비타민D,비타민E,비타민K,비타민B12 (나노그램)
+		//비타민B2,비타민B5,비타민B6,비타민C,비타민1
+		//칼륨, 식이섬유,아연,마그네슘,철,나트륨,칼슘,인,에너지
+		
 	}
 
 }

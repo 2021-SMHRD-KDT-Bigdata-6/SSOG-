@@ -20,18 +20,20 @@ class BackServerController {
 	
 	@GetMapping("/FlaskControlCoupang")
 	public String coupang() {
-		crawlingUpdate.createViewTop200();
 		return "redirect:http://222.102.43.230:9000/CoupangCrawling?key=yes";
 	}
 	
 	
-	
 	@GetMapping("/FlaskControlMarketKurly")
 	public String marketKurly() {
-		crawlingUpdate.createViewTop200();
 		return "redirect:http://222.102.43.230:9000/MarketKurlyCrawling?key=yes";
 	}
 	
+	
+	@RequestMapping("/updateAll")
+	public void updateAll() {
+		crawlingUpdate.createViewTop200();
+	}
 	
 
 	
