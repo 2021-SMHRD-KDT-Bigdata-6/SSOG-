@@ -42,7 +42,7 @@ public class FoodService {
 	}
 	
 	//이미지 파일 URL뭉치 가져오기
-	public List<String> getAllImgUrl(List<String> foodNames){
+	public List<String> getAllImgUrl(List<Food> foodNames){
 		int count = 30;
 		if (foodNames.size() < count) {
 			count = foodNames.size();
@@ -50,7 +50,7 @@ public class FoodService {
 		
 		List<String> imgs = new ArrayList<String>();
 		for (int i =0; i<count; i++) {
-			imgs.add(getImgUrl(foodNames.get(i)));
+			imgs.add(getImgUrl(foodNames.get(i).getFdURL()));
 		}
 		
 		
