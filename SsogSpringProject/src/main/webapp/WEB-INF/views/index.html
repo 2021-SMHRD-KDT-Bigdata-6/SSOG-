@@ -38,6 +38,57 @@
     	margin-bottom: 16px !important;
     }
     
+     @keyframes anime_textup { 0% { top: 0; } 20% { top: -0.2rem; } 40% { top: 0 } 60% { top: 0 } 80% { top: 0 } 100% { top: 0 } }
+ 
+    .h2 span {
+        position: relative;
+        animation: anime_textup 1.5s infinite;
+    }
+ 
+    .h2 span:nth-of-type(1) {
+        animation-delay: .1s;
+    }
+ 
+    .h2 span:nth-of-type(2) {
+        animation-delay: .2s;
+    }
+ 
+    .h2 span:nth-of-type(3) {
+        animation-delay: .3s;
+    }
+ 
+    .h2 span:nth-of-type(4) {
+        animation-delay: .4s;
+    }
+ 
+    .h2 span:nth-of-type(5) {
+        animation-delay: .5s;
+    }
+    
+    .h2 span:nth-of-type(6) {
+        animation-delay: .6s;
+    }
+    
+    .h2 span:nth-of-type(7) {
+        animation-delay: .7s;
+    }
+    
+    .h2 span:nth-of-type(8) {
+        animation-delay: .8s;
+    }
+    
+    .h2 span:nth-of-type(9) {
+        animation-delay: .9s;
+    }
+    
+    .h2 span:nth-of-type(10) {
+        animation-delay: .10s;
+    }
+    
+    #bigData{
+    	color: #b7472a;
+    }
+    
     </style>
   </head>
   <body>
@@ -60,12 +111,25 @@
       </div>
     </div>
 
-		<section class="ftco-section" style="padding-top: 144px;">
+		<section class="ftco-section" style="padding-top: 144px; padding-bottom: 0px;">
 			<div class="container">
 				<div class="row justify-content-center pb-5">
           <div class="col-md-7 heading-section text-center ftco-animate">
           	<span class="subheading">신선 알뜰 인기절정 재료로 만든!</span>
-            <h2 class="h2">오늘의 it 추천메뉴!</h2>
+            <h2 class="h2">
+            <span>오</span>
+            <span>늘</span>
+            <span>의</span>
+            <span>&nbsp;</span>
+            <span>i</span>
+            <span>t</span>
+            <span>&nbsp;</span>
+            <span>추</span>
+            <span>천</span>
+            <span>메</span>
+            <span>뉴</span>
+            <span>!</span>
+            </h2>
           </div>
         </div>
 				<div class="row">
@@ -101,7 +165,65 @@
                      		</div>
                   	</div>
               	 </div>
-            </th:block>
+					</div>
+				</div>
+			
+		</section>
+		
+		<section class="ftco-section" style="padding-top: 144px; padding-bottom: 48px;">
+			<div class="container">
+				<div class="row justify-content-center pb-5">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+          	<span class="subheading">신선 알뜰 인기절정 재료!</span>
+             <h2 class="h2">
+            <span>알</span>
+            <span>고</span>
+            <span>리</span>
+            <span>즘</span>
+            <span>&nbsp;</span>
+            <span>추</span>
+            <span>천</span>
+            <span>&nbsp;</span>
+            <span>식</span>
+            <span>재</span>
+            <span>료</span>
+            <span>!</span>
+            </h2>
+          </div>
+        </div>
+				<div class="row">
+					
+                	<!-- 
+                	th:each="배열에서 꺼내 담을 변수 :배열" 
+                	
+                	th:text="${변수}" : 태그 안에 있는 내용을 변경
+                	
+                	th:src="${변수}" : 태그의 src 속성을 변경
+                	th:속성명="${변수}" : 속성값을 변수값으로 변경
+                	
+                	 -->
+             
+               <div class="col-md-3 d-flex" th:each="num: ${#numbers.sequence(1,4)}">
+                  <div class="product ftco-animate">
+                   	
+                  
+                     <div class="img d-flex align-items-center justify-content">
+                     	<img th:src="@{resources/images/}+'prod-'+${num}+'.jpg'" style="width:255px; height: 350px;">
+                     		<div class="desc">
+                     			<p class="meta-prod d-flex" style="text-align:center;" >
+                    				<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
+                        			<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
+                        			<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
+                    			</p>
+                    		</div>
+                     </div>
+                     		<div class="text text-center">
+                        		<span class="seller">추천식재료!</span>
+                        		<span class="category">category</span>
+                        		<h2>name</h2>
+                     		</div>
+                  	</div>
+              	 </div>
 					</div>
 				</div>
 			
@@ -110,7 +232,17 @@
 				<div class="row justify-content-center pb-5" style="padding-top: 96px;">
           			<div class="col-md-7 heading-section text-center ftco-animate">
           				<span class="subheading">지금 기분이 어때요?</span>
-            			<h2 class="h2">테마별 음식 추천</h2>
+            			<h2 class="h2">
+			            <span>테</span>
+			            <span>마</span>
+			            <span>별</span>
+			            <span>&nbsp;</span>
+			            <span>추</span>
+			            <span>천</span>
+			            <span>메</span>
+			            <span>뉴</span>
+			            <span>!</span>
+			            </h2>
           			</div>
         		</div>
   <section class="ftco-section ftco-no-pb" id="padding" style="padding-bottom: 48px; padding-top: 0px">
@@ -120,19 +252,19 @@
 					<div class="col-lg-2 col-md-4 ">
 						<div class="sort w-100 text-center ftco-animate">
 							<div class="img" style="background-image: url(resources/images/kind-1.jpg);"></div>
-							<h3>이달의 제철상품</h3>
+							<h3 id="bigData">AI 맞춤 추천</h3>
 						</div>
 					</div>
 					<div class="col-lg-2 col-md-4 ">
 						<div class="sort w-100 text-center ftco-animate">
 							<div class="img" style="background-image: url(resources/images/kind-2.jpg);"></div>
-							<h3>비오는 날엔</h3>
+							<h3>이달의 제철상품</h3>
 						</div>
 					</div>
 					<div class="col-lg-2 col-md-4 ">
 						<div class="sort w-100 text-center ftco-animate">
 							<div class="img" style="background-image: url(resources/images/kind-3.jpg);"></div>
-							<h3>눈오는 날엔</h3>
+							<h3>비오는 날엔</h3>
 						</div>
 					</div>
 					<div class="col-lg-2 col-md-4 ">
@@ -163,7 +295,18 @@
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center heading-section heading-section-white ftco-animate text2">
           	<span class="subheading text2" id="subTitle">요리금손 다 모여라!</span>
-            <h2 class="mb-3 text2">Happy Cook</h2>
+            <h2 class="mb-3 text2 h2">
+            <span>H</span>
+            <span>a</span>
+            <span>p</span>
+            <span>p</span>
+            <span>y</span>
+            <span>&nbsp;</span>
+            <span>C</span>
+            <span>o</span>
+            <span>o</span>
+            <span>k</span>
+            </h2>
           </div>
         </div>
         <div class="row ftco-animate">
@@ -188,7 +331,6 @@
                   </div>
                 </div>
               </div>
-             </th:block>
               
             </div>
           </div>
@@ -200,7 +342,19 @@
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center heading-section heading-section-white ftco-animate text2">
           	<span class="subheading text2" id="subTitle">요리인데..이제 독을 곁들인</span>
-            <h2 class="mb-3 text2">Posion Cook</h2>
+            <h2 class="mb-3 text2 h2">
+            <span>P</span>
+            <span>o</span>
+            <span>i</span>
+            <span>s</span>
+            <span>o</span>
+            <span>n</span>
+            <span>&nbsp;</span>
+            <span>C</span>
+            <span>o</span>
+            <span>o</span>
+            <span>k</span>
+            </h2>
           </div>
         </div>
         <div class="row ftco-animate">
@@ -224,7 +378,6 @@
                   </div>
                 </div>
               </div>
-             </th:block>
               
             </div>
           </div>

@@ -21,5 +21,16 @@
         update board set title=#{title},contents=#{content} where num=#{num}
     </update>
     
+    <select id="infiniteScrollingH" parameterType="Integer" resultType="kr.ssog.domain.Board">
+        select * from board where num <![CDATA[ < ]]> #{num} and rownum <![CDATA[ <= ]]> 6 and boardcate = 'HappyCook' order by num desc
+    </select>
+    
+    <select id="infiniteScrollingP" parameterType="int" resultType="kr.ssog.domain.Board">
+        select * from board where num <![CDATA[ < ]]> #{num} and rownum <![CDATA[ <= ]]> 6 and boardcate = 'PoisonCook' order by num desc
+    </select>
+    
+    
+
+    
     
 </mapper>

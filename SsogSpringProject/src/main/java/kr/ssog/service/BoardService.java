@@ -58,4 +58,9 @@ public class BoardService {
 	public void boardCount(int idx) {
 		mapper.boardCount(idx);
 	}
+	
+	public List<Board> infiniteScrollingH(int num){
+		System.out.println(num);
+		return mapper.infiniteScrollingH(num);
+	}
 }

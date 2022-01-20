@@ -67,10 +67,10 @@ public class UserController {
 	public String joinGo() {
 		return "join";
 	}
-	@RequestMapping("/r_it")
-	public String r_it() {
-		return "r_it";
-	}
+//	@RequestMapping("/r_it")
+//	public String r_it() {
+//		return "r_it";
+//	}
 	@RequestMapping("/r_recipe")
 	public String r_recipe() {
 		return "r_recipe";

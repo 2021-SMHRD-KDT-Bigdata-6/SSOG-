@@ -20,17 +20,7 @@
     <!-- 추가 css -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="resources/css/cart.css">
-    <script>
-    	function moreCart(){
-    		$('#table01').css("display","none")
-    		$('#table02').css("display","block")
-    	}
-    	function closeCart(){
-    		$('#table01').css("display","block")
-    		$('#table02').css("display","none")
-    	}
-
-    </script>
+    
   </head>
   <body>
 
@@ -53,7 +43,7 @@
     
             <input type="hidden" name="cmd" value="order">
             <div class="basketdiv table-wrap" id="basket">
-               <table class="table" id="table01">
+               <!-- <table class="table" id="table01">
 						<thead class="thead-primary">
 						    <tr>
 						    	<th>&nbsp;</th>
@@ -90,7 +80,7 @@
                     <div class="subdiv">
                         <div class="basketcmd"><a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delItem();">삭&nbsp;제</a></div>
                     </div>
-                </div>
+                </div> -->
                 
                 
         
@@ -126,10 +116,12 @@
 	<section>
 		<div id="outer">
 		    <div class="inner">
-		        <span class="btn_close">&times;</span>
+		        <div id="modalContents"></div>
+					<!-- 
+					<span class="btn_close">&times;</span>
 		 
 		        <div class="title">
-		            <span>TITLE</span>
+		            <span onclick="modalClose()">TITLE</span>
 		        </div>
 		 		<form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
     
@@ -165,6 +157,9 @@
 		        <div class="content">
 		        	&nbsp;
 		        </div>
+					
+					 -->
+		     
 		    </div>
 		</div>
 	</section>
@@ -193,6 +188,71 @@
   <script src="resources/js/main.js"></script>
   <!-- 추가 js -->
   <script src="resources/js/cartEvent.js"></script>
+  
+  <!-- view -->
+  <script type="text/javascript">
+    $(document).ready(()=>{
+  		loadList();
+  	});
+    function loadList(){
+  		
+  		$.ajax({
+  			url : "cartAjaxList.do", 
+  			type : "get",
+  			dataType : "json", 
+  			success : cartHtml, 
+  			error : function(){alert("error");}
+  		});
+  	}
+    function cartHtml(cartList){
+    	let view="";
+    	
+    	
+    	view+="<table class='table' id='table01'>";
+		view+="<thead class='thead-primary'>";
+		view+="<tr>";
+		view+="<th>&nbsp;</th>";
+		view+="<th>&nbsp;</th>";
+		view+="<th>상품</th>";
+		view+="<th>가격</th>";
+		view+="<th>개수</th>";
+		view+="<th>총 금액</th>";
+		view+="<th>&nbsp;</th>";
+		view+="</tr>";
+		view+="</thead>";
+		view+="</table>";
+		$.each(cartList, function(index, obj){
+			view+="<div class='row data'>";
+			view+="<div class='subdiv'>";
+			view+="<div class='check'><input type='checkbox' name='buy' value='260' onclick='javascript:basket.checkItem();'>&nbsp;</div>";
+			view+="<div class='img'><img src='"+obj.img+"' width='70px' height='90px'></div>";
+			view+="<div class='pname'>";
+			view+="<span id='pName2'>"+obj.name+"</span>";
+			view+="<a id='btn_open' type='button' style='text-align:center' onclick='btnOpen()'>상품 더보기</a>";
+			view+="</div>";
+			view+="</div>";
+			view+="<div class='subdiv'>";
+			view+="<div class='basketprice'><input type='hidden' name='p_price' id='p_price"+index+"' class='p_price' value='"+obj.price+"'>"+obj.price+"원</div>";
+			view+="<div class='num'>";
+			view+="<div class='updown'>";
+			view+="<input type='text' name='p_num"+index+"' id='p_num1"+index+"' size='2' maxlength='4' class='p_num' value='1' onkeyup='javascript:basket.changePNum("+index+");'>";
+			view+="<span onclick='javascript:basket.changePNum("+index+");' style='margin-right:0.3rem; margin-left:0.3rem;'><i class='fas fa-arrow-alt-circle-up up'></i></span>";
+			view+="<span onclick='javascript:basket.changePNum("+index+");'><i class='fas fa-arrow-alt-circle-down down'></i></span>";
+			view+="</div>";
+			view+="</div>";
+			view+="<div class='sum'>"+obj.price+"원</div>";
+			view+="</div>";
+			view+="<div class='subdiv'>";
+			view+="<div class='basketcmd'><a href='javascript:void(0)' class='abutton' onclick='javascript:basket.delItem();'>삭&nbsp;제</a></div>";
+			view+="</div>";
+			view+="</div>";
+		});
+
+    	$("#basket").html(view);
+    }
+	
+    </script>
+  
   <!-- 모달창 js -->
   <script>
     var outer = document.getElementById('outer');
@@ -202,32 +262,88 @@
 	let body = document.getElegmentByTagName('body')
     /*btn_open.onclick = function () {
         outer.style.display = "block";
+    };
+    btn_close.onclick = function () {
+        outer.style.display = "none";
     };*/
     function btnOpen(){
     	outer.style.display = "block";
+    	modalAjax();
     }
- 
-    btn_close.onclick = function () {
+ 	function modalClose(){
         outer.style.display = "none";
-    };
+ 	}
  
     window.onclick = function (event) {
         if (event.target == outer) {
             outer.style.display = "none";
         }
     }
+    function modalAjax(){
+    	
+    	$.ajax({
+    		url : "madalAjax",
+    		type : "get",
+    		dataType : "json",
+    		success : modalList,
+    		error : function(){alert("error");}
+    	})
+    }
+    
+    function modalList(modalCartList){
+    	let view="";
+    	view+="<span class='btn_close' onclick='modalClose()'>&times;</span>";
+    	view+="<div class='title'>";
+    	view+="<span>TITLE</span>";
+    	view+="</div>";
+    	view+="<form name='orderform' id='orderform' method='post' class='orderform' action='/Page' onsubmit='return false;'>";
+    	view+="<input type='hidden' name='cmd' value='order'>";
+    	view+="<div class='basketdiv table-wrap overflow-y' id='basket'>";
+    	view+="<table class='table' id='table02'>";
+    	view+="<thead class='thead-primary'>";
+    	view+="<tr>";
+    	view+="<th>&nbsp;</th>";
+    	view+="<th>&nbsp;</th>";
+    	view+="<th>상품</th>";
+    	view+="<th>가격</th>";
+    	view+="<th>&nbsp;</th>";
+    	view+="<th>&nbsp;</th>";
+    	view+="</tr>";
+    	view+="</thead>";
+    	view+="</table>";
+    	$.each(modalCartList, function(index, item){
+	    	view+="<div class='row data' id='data'>";
+	    	view+="<div class='subdiv' id='modalCon'>";
+	    	view+="<div class='check'><input type='checkbox' name='buy' value='260' onclick='javascript:basket.checkItem();'>&nbsp;</div>";
+	    	view+="<div class='img'><img id='modalImg' src='"+item.img+"' width='70px' height='90px'></div>";
+	    	view+="<div class='pname' id='modalPname'>";
+	    	view+="<span id='modalClick' onclick='pNameClick()'>"+item.name+"</span>";
+	    	view+="</div>";
+	    	view+="</div>";
+	    	view+="<div class='subdiv'>";
+	    	view+="<div class='basketprice' id='modalPrice'><input type='hidden' name='p_price' id='p_price' class='p_price' value='"+item.price+"'>"+item.price+"원</div>";
+	    	view+="</div>";
+	    	view+="</div>";
+    	});
+    	view+="</div>";
+    	view+="</form>"; 
+       	view+="<div class='content'>&nbsp;</div>";
+
+    	   
+    	$("#modalContents").html(view);
+    }
+    
+
     function pNameClick(){
-    	
-    	let pName = document.getElementById('modalClick').innerHTML
-    	let pImg = document.getElementById('modalImg').src
-    	let price = document.getElementById('p_price').value
-    	
-    	alert('상품명: ' + pName + '이미지: ' + pImg + '가격: ' + price)
-    	
     	outer.style.display = "none";
     	
-    	pName2.innerText = pName
-    	document.write(body.innerHTML)
+    	$.ajax({
+    		url : "pNameAjax",
+    		type : "get",
+    		dataType : "json",
+    		success : cartHtml,
+    		error : function(){alert("error");}
+    	})
     	
     }
 	</script>
