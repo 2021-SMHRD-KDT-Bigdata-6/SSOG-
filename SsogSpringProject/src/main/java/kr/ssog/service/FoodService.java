@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.ssog.domain.Food;
 import kr.ssog.domain.FoodIngredient;
 import kr.ssog.domain.FoodRecipe;
 import kr.ssog.domain.Nutrition;
@@ -36,10 +37,27 @@ public class FoodService {
 	public String getImgUrl(String food_name) {
 		String url = foodMapper.getImgUrl(food_name);
 		url = url.substring(url.indexOf("webapp")+7);
+		url = "resources/"+url;
 		return url;
 	}
 	
+	//이미지 파일 URL뭉치 가져오기
+	public List<String> getAllImgUrl(List<Food> foodNames){
+		int count = 30;
+		if (foodNames.size() < count) {
+			count = foodNames.size();
+		}
+		
+		List<String> imgs = new ArrayList<String>();
+		for (int i =0; i<count; i++) {
+			imgs.add(getImgUrl(foodNames.get(i).getFdName()));
+		}
+		
+		
+		return imgs;
+	}
 	
+
 	//레시피 정보 가져오기
 	public List<FoodRecipe> getRecipe(String food_name) {
 		List<FoodRecipe> result=foodRecipeMapper.getRecipes(food_name);
@@ -65,21 +83,21 @@ public class FoodService {
 	}
 	
 	//Top200 array 가져오기
-	public List<String> Top200() {
+	public List<Food> Top200() {
 		return foodMapper.Top200();
 	}
 	
 	//TOP100 가격
-	public List<String> Top100Price() {
+	public List<Food> Top100Price() {
 		return foodMapper.Top100Price();
 	}
 	//Top100품질
-	public List<String> Top100Quality(){
+	public List<Food> Top100Quality(){
 		return foodMapper.Top100Quality();
 	}
 	
 	//제철식품종류
-	public List<String> season(){
+	public List<Food> season(){
 		return foodMapper.season();
 	}
 	
@@ -112,6 +130,7 @@ public class FoodService {
 			nutritionNames.add(nutrition.getNutritionName());
 			totalNutritionQuan.add(0.0);
 		}
+		System.out.println(nutritionNames);
 	
 		for (int i =0; i<length; i++) {
 			FoodIngredient ingredient = mainIngredients.get(i);
@@ -173,6 +192,18 @@ public class FoodService {
 	
 	// 영양정보 그래프 처럼가져오기!
 	public void getNutritionGraph(){
+		
+		
+		//탄수화물(g). 지질(g). 단백질(g). 당류(g). 지방(g)
+		//비타민D,비타민E,비타민K,비타민B12 (나노그램)
+		//비타민B2,비타민B5,비타민B6,비타민C,비타민1
+		//칼륨, 식이섬유,아연,마그네슘,철,나트륨,칼슘,인,에너지
+		
 	}
+	
+	
+	
+
+	
 
 }
