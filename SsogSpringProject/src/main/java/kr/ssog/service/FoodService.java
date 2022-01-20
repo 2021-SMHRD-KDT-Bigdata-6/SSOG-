@@ -123,7 +123,7 @@ public class FoodService {
 	}
 	
 	//음식카테고리 --> 속해있는 음식
-	public List<String> getFoodCategori(String categori) {
+	public List<Food> getFoodCategori(String categori) {
 		return foodMapper.getFoodCategori(categori);
 	}
 	
