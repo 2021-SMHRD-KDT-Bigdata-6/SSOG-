@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import kr.ssog.domain.HistoryIndex;
 import kr.ssog.domain.Ingredient;
@@ -18,6 +19,7 @@ import kr.ssog.mapper.IngredientMapper;
 import kr.ssog.mapper.NutritionMapper;
 import kr.ssog.mapper.PriceMapper;
 
+@Service
 public class IngredientService {
 	@Autowired
 	PriceMapper priceMapper;
