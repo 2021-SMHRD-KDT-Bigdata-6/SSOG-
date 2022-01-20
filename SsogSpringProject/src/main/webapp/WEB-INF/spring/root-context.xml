@@ -25,6 +25,7 @@
 	    <property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
+	
 	<!-- Mapper들을 메모리에 올리는 작업 -->
 	<mybatis:scan base-package="kr.ssog.mapper"/>
 	
