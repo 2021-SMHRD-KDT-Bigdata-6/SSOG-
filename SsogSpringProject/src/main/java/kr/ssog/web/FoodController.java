@@ -23,11 +23,6 @@ public class FoodController {
 	    //30개이미지
 	    List<String> imgs = FoodService.getAllImgUrl(top200);
 	    model.addAttribute("imgs", imgs);
-
-		
-		
-		System.out.println(imgs.get(1));
-		System.out.println(top200.get(1));
 		return "r_it";
 	}
 	

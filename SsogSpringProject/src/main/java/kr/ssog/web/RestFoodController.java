@@ -28,21 +28,8 @@ public class RestFoodController {
 		
 		List<Food> top200 = FoodService.Top200();
 		List<FoodAndImage> imgs = FoodService.getAllImgUrlOb(top200);
-		
-		System.out.println(top200.size());
-		System.out.println(imgs.get(1));
-		
-		return imgs;
-		
-		
-	}
-	
-	@GetMapping("/topImgList")
-	public @ResponseBody List<String> topImgList(){
-		List<Food> top200 = FoodService.Top200();
-		List<String> imgs = FoodService.getAllImgUrl(top200);
-		
+
 		return imgs;
 	}
-	
+
 }
