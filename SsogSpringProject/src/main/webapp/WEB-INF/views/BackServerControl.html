@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+	let now = new Date();
+	let today = now.getData();
+	while(true){
+		setTimeout(() =>{
+			$.ajax({
+				url : "FlaskControlCoupang1", //보내줄 위치
+				success : ()=>{
+					$("h1").after( "<h2> Coupang"+today+" 성공했습니다.</h2>");
+				}
+				error : () => {""
+					$("h1").after( "<h2>"+today+" 실패했습니다.</h2>")
+				}
+			})	
+		
+		},1000*60*60*24)}
+				
+	}
+	
+	while(true){
+		setTimeout(() =>{
+			$.ajax({
+				url : "FlaskControlCoupang2", //보내줄 위치
+				success : ()=>{
+					$("h1").after( "<h2> Coupang"+today+" 성공했습니다.</h2>");
+				}
+				error : () => {""
+					$("h1").after( "<h2>"+today+" 실패했습니다.</h2>")
+				}
+			})	
+		
+		},1000*60*60*24)}
+				
+	}
+
+	</script>
+</body>
+</html>
