@@ -19,7 +19,28 @@ public class FoodAndImage {
 	private String mID;				//등록아이디
 	private String fdDate;			//등록날짜
 	private String imgs;
+	public FoodAndImage(Food fdData, String imgs) {
+		super();
+		this.imgs = imgs;
+		this.fdName = fdData.getFdName();
+		this.fdCategori = fdData.getFdCategori();
+		this.fdPriceInd = fdData.getFdPriceInd();
+		this.fdQualityInd = fdData.getFdQualityInd();
+		this.fdSeasonInd = fdData.getFdSeasonInd();
+		this.fdIndex = fdData.getFdIndex();
+		this.fdImg = fdData.getFdImg();
+		this.fdURL = fdData.getFdURL();
+		this.fdFeature1 = fdData.getFdFeature1();
+		this.fdFeature2 = fdData.getFdFeature2();
+		this.mID = fdData.getMID();
+		this.fdDate = fdData.getFdDate();
+		this.imgs = imgs;
+	}
+	public FoodAndImage() {
+		super();
 
+	}
+	
 }
 
 

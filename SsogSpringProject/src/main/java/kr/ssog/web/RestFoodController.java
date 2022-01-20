@@ -24,16 +24,15 @@ public class RestFoodController {
 //	}
 	
 	@GetMapping("/top200List.do")
-	public @ResponseBody FoodAndImage top200List(Model model){
+	public @ResponseBody List<FoodAndImage> top200List(Model model){
 		
 		List<Food> top200 = FoodService.Top200();
-		List<String> imgs = FoodService.getAllImgUrl(top200);
+		List<FoodAndImage> imgs = FoodService.getAllImgUrlOb(top200);
 		
-		model.addAttribute("imgs", imgs);
 		System.out.println(top200.size());
 		System.out.println(imgs.get(1));
 		
-		return new FoodAndImage(top200, imgs);
+		return imgs;
 		
 		
 	}

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.ssog.domain.Food;
+import kr.ssog.domain.FoodAndImage;
 import kr.ssog.domain.FoodIngredient;
 import kr.ssog.domain.FoodRecipe;
 import kr.ssog.domain.Nutrition;
@@ -51,6 +52,25 @@ public class FoodService {
 		List<String> imgs = new ArrayList<String>();
 		for (int i =0; i<count; i++) {
 			imgs.add(getImgUrl(foodNames.get(i).getFdName()));
+		}
+		
+		
+		return imgs;
+	}
+	
+	
+	
+	//이미지 파일 URL뭉치 가져오기
+	public List<FoodAndImage> getAllImgUrlOb(List<Food> foodNames){
+		int count = 30;
+		if (foodNames.size() < count) {
+			count = foodNames.size();
+		}
+		
+		List<FoodAndImage> imgs = new ArrayList<FoodAndImage>();
+		for (int i =0; i<count; i++) {
+			Food data =foodNames.get(i);
+			imgs.add(new FoodAndImage(data,getImgUrl(data.getFdName())));
 			//foodNames.get(i).setFdImg(fdImg);
 		}
 		
