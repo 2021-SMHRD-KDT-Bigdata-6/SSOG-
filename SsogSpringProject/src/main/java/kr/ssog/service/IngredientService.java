@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import kr.ssog.domain.HistoryIndex;
+import kr.ssog.domain.Ingredient;
 import kr.ssog.domain.Nutrition;
 import kr.ssog.domain.Price;
 import kr.ssog.domain.PriceUnit;
@@ -52,18 +53,18 @@ public class IngredientService {
 	
 	////// 카테고리별로
 	//식재료 별 순위출력- 가격
-	public List<String> CategoriPriceTop(String categori){
+	public List<Ingredient> CategoriPriceTop(String categori){
 		return ingredientMapper.CategoriPriceTop(categori);
 		
 	}
 	
 	//식재료별 순위 출력 - 품질
-	public List<String> CategoriQualityTop(String categori){
+	public List<Ingredient> CategoriQualityTop(String categori){
 		return ingredientMapper.CategoriQualityTop(categori);
 	}
 	
 	//식재료별 순위 출력 - 종합
-	public List<String> CategoriSeason(String categori){
+	public List<Ingredient> CategoriSeason(String categori){
 		return ingredientMapper.CategoriSeason(categori);
 		
 	}
@@ -97,6 +98,17 @@ public class IngredientService {
 		String day = formatChanger.format(date);
 		
 		return priceMapper.getPrice(ingre_Name, day);
+	}
+	
+	public List<String> getAllTodayPrice(List<Ingredient> categori){
+		List<String> priceRange = new ArrayList<String>();
+		for (int i  = 0;  i<categori.size(); i++) {
+			List<Integer> pricess =getTodayPrice(categori.get(i).getIngreName());
+			String price = pricess.get(0) + " ~ " +pricess.get(pricess.size()-1);
+			priceRange.add(price);
+		}
+		
+		return priceRange;
 	}
 	
 

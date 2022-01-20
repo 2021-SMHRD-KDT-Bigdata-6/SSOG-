@@ -7,6 +7,8 @@
         select fdIMG from food where fdName = #{food_name}
     </select>
     
+
+    
     
     <select id = "createViewTop200">
         create view top200 as select * from (select * from food order by fdIndex desc) where rownum <![CDATA[ < ]]> 201
