@@ -14,20 +14,15 @@ import kr.ssog.service.FoodService;
 public class FoodController {
 	
 	@Autowired
-	FoodService service;
+	FoodService FoodService;
 	
 	@RequestMapping("/r_it")
 	public String it(Model model) {
-		List<Food> top200 = service.Top200();
+		List<Food> top200 = FoodService.Top200();
 		model.addAttribute("foodList", top200);
 	    //30개이미지
-	    List<String> imgs = service.getAllImgUrl(top200);
+	    List<String> imgs = FoodService.getAllImgUrl(top200);
 	    model.addAttribute("imgs", imgs);
-
-		
-		
-		System.out.println(imgs.get(1));
-		System.out.println(top200.get(1));
 		return "r_it";
 	}
 	

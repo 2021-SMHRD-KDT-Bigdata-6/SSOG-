@@ -24,8 +24,8 @@ public interface FoodMapper {
 	
 	public List<Food> season();
 	
-	@Select("select fdName from food where fdCategori = #{categori}")
-	public List<String> getFoodCategori(String categori);
+	@Select("select fdName,fdcategori from food where fdCategori LIKE '%'||#{categori}||'%'")
+	public List<Food> getFoodCategori(String categori);
 	
 	@Select("select fdCategori from food where fdName = #{food_name}")
 	public String showCategori(String food_name);
