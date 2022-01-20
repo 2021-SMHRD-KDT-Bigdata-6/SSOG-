@@ -57,7 +57,7 @@
 						<div class="row mb-4">
 							<div class="col-md-12 d-flex justify-content-between align-items-center">
 								<h4 class="product-select">바쁜당신을 위한 추천메뉴</h4>
-								<!-- <select class="selectpicker" multiple>
+								 <!--<select class="selectpicker" multiple>
 				          <option>Brandy</option>
 				          <option>Gin</option>
 				          <option>Rum</option>
@@ -67,8 +67,7 @@
 				        </select> -->
 							</div>
 						</div>
-						<div id="itView">
-						<div class="row">
+						 <div class="row" id="itContents">
 					
 							<!-- <div class="col-md-4 d-flex" th:each="num: ${#numbers.sequence(1,12)}">
 								<a th:href="@{r_recipe.do}">
@@ -85,10 +84,9 @@
 									</div>
 								</div>
 								</a>
-							</div> -->
+							</div>  -->
 							
 							
-						</div>
 						</div>
 						<!-- <div class="row" id="itView">
 					
@@ -113,7 +111,7 @@
 							
 							
 						</div> -->
-						<div class="row mt-5">
+				<!-- <div class="row mt-5">
 		          <div class="col text-center">
 		            <div class="block-27">
 		              <ul>
@@ -127,7 +125,7 @@
 		              </ul>
 		            </div>
 		          </div>
-		        </div>
+		        </div> -->
 					</div>
 
 					
@@ -163,7 +161,7 @@
     
     
     
-  <script type="text/javascript">
+  <script th:inline="javascript">
 	  	$(document).ready(()=>{
 	    	loadTop200();
 	  	});
@@ -173,35 +171,57 @@
 	  			url : "top200List.do", 
 	  			type : "get",
 	  			dataType : "json", 
-	  			success : itView
-	  			, 
+	  			success : itView, 
 	  			error : function(){alert("error");}
 	  		});
 	  	}
     
     	function itView(foodList){
+    		/*<![CDATA[*/  let name =  /*[[ ${imgs} ]]*/; 
+
     		let view="";
+    		
+    		/* $.each(foodList, function(index, obj){
+	    		
+		    		
+			    		view+="<div class='col-md-4 d-flex'>";
+			    		view+="<a href='r_recipe'>";
+			    		view+="<div class='product' style='text-align:center'>";
+			    		view+="<div class='img d-flex align-items-center justify-content-center' style='background-image: url();'>";
+			    		view+="<div class='desc'>";
+			    		view+="</div>";
+			    		view+="</div>";
+			    		view+="<div class='text text-center' style='width: 315px;'>";
+			    		view+="<span class='category'>"+obj.fdCategori+"</span>";
+			    		view+="<h2>"+obj.fdName+"</h2>";
+			    		view+="</div>";
+			    		view+="</div>";
+			    		view+="</a>";
+			    		view+="</div>";
+		    	
+    		}); */
+    		
     		$.each(foodList, function(index, obj){
-    		view+="<div class='row'>";
-    		view+="<div class='col-md-4 d-flex'>";
-    		view+="<a href='r_recipe'>";
-    		view+="<div class='product ftco-animate' style='text-align:center'>";
-    		view+="<div class='img d-flex align-items-center justify-content-center' style='background-image: url("+obj.fdImg+");'>";
-    		view+="<div class='desc'>";
-    		view+="</div>";
-    		view+="</div>";
-    		view+="<div class='text text-center' style='width: 315px;'>";
-    		view+="<span class='category'>"+obj.fdCategori+"</span>";
-    		view+="<h2>"+obj.fdName+"</h2>";
-    		view+="</div>";
-    		view+="</div>";
-    		view+="</a>";
-    		view+="</div>";
-    		
-  
+    			if(index < 30){
+    				view+="<div class='col-md-4 d-flex'>";
+    	    		view+="<a href='r_recipe'>";
+    	    		view+="<div class='product' style='text-align:center'>";
+    	    		view+="<div class='img d-flex align-items-center justify-content-center' style='background-image: url("+name+");'>";
+    	    		view+="<div class='desc'>";
+    	    		view+="</div>";
+    	    		view+="</div>";
+    	    		view+="<div class='text text-center' style='width: 315px;'>";
+    	    		view+="<span class='category'>"+obj.fdCategori+"</span>";
+    	    		view+="<h2>"+obj.fdName+"</h2>";
+    	    		view+="</div>";
+    	    		view+="</div>";
+    	    		view+="</a>";
+    	    		view+="</div>";
+    			};
     		});
+    		/*]]*/
     		
-    		$("#itView").html(view)
+    		$("#itContents").html(view);
     	} 
     </script>
     
