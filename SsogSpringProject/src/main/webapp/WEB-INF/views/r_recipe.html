@@ -65,10 +65,10 @@
     	<div class="container">
     		<div class="row">
     			<div class="col-lg-6 mb-5 ftco-animate">
-    				<a href="<%--=conf.getImgUrl(fName) --%>" class="image-popup prod-img-bg"><img src="resources/img/1.jpg<%--=conf.getImgUrl(fName) --%>" class="img-fluid" alt="Colorlib Template"></a>
+    				<a href="<%--=conf.getImgUrl(fName) --%>" class="image-popup prod-img-bg"><img th:src="@{${fdImg}}" class="img-fluid" alt="Colorlib Template"></a>
     			</div>
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
-    				<h3>음식이름</h3>
+    				<h3 th:text="${fdName}"></h3>
     				<div class="rating d-flex">
 							<p class="text-left mr-4">
 								<a href="#" class="mr-2">난이도</a>
@@ -82,9 +82,9 @@
 						</div>
     				<!-- <p class="price"><span>고추장 양념에 빨갛게 무쳐 먹던 마늘종을<br>햄과 함께 달달 볶았어요.</span></p> -->
     				<p><strong>주재료</strong></p>
-						<p>주재료 코드</p>
+						<p th:text="${mainIngre}" style="color:#0c0c0c;">주재료 코드</p>
     				<p><strong>부재료</strong></p>
-						<p>부재료 코드</p>
+						<p th:text="${subIngre}" style="color:#0c0c0c;">부재료 코드</p>
 
 						
 						<div class="row mt-4">
@@ -126,11 +126,12 @@
             <div class="tab-content bg-light" id="v-pills-tabContent">
 
               <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
-              	<div class="p-4">
-	              	<h3 class="mb-4">음식이름</h3>
-	              	<p>
-	              	레시피 코드
-	              	 </p>
+              	<div class="p-4" style="text-align:center;">
+	              	<h3 class="mb-4" th:text="${fdName}">음식이름</h3>
+	              	<th:block th:each="recipe : ${recipe} ">
+	              		<img th:src="@{resources/}+${recipe.recipeImg}" style="margin-bottom:100px;">
+	              		<p th:text="${recipe.recipeContent}" style="margin-bottom:100px;"></p>
+	              	 </th:block>
               	</div>
               </div>
 

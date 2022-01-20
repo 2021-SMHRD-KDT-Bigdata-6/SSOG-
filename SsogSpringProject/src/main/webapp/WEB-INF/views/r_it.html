@@ -132,7 +132,7 @@
     		$.each(foodList, function(index, obj){
     			if(index < 30){
     				view+="<div class='col-md-4 d-flex'>";
-    	    		view+="<a href='r_recipe'>";
+    	    		view+="<a href='r_recipe?fdName="+obj.fdName+"'>";
     	    		view+="<div class='product' style='text-align:center'>";
     	    		view+="<div class='img d-flex align-items-center justify-content-center' style='background-image: url("+obj.imgs+");'>";
     	    		view+="<div class='desc'>";

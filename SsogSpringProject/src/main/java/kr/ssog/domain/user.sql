@@ -58,5 +58,13 @@ select fdcategori from food group by fdcategori;
 
 select fdName,fdcategori from food where fdcategori like '%면류%';
 
+select ingreName from FoodIngredient where mainSub = 'main' and fdName = '잔치국수';
+select ingreName,mainsub from FoodIngredient where fdName ='잔치국수';
+
+select * from foodingredient where fdName = '잔치국수' and mainSub = 'main';
+
+select * from foodrecipe;
+
+select * from foodrecipe where fdName = '잔치국수' order by recipeOrder;
 
 
