@@ -20,16 +20,16 @@
 	</select>
 
 	
-	<select id = "CategoriPriceTop" resultType = "String" parameterType = "String">
-	    select * from ingreName where ingreCategori = #{categori} order by ingrePriceInd
+	<select id = "CategoriPriceTop" resultType = "String" parameterType = "kr.ssog.domain.Ingredient">
+	    select * from ingredient where ingreCategori = #{categori} order by ingrePriceInd desc
 	</select>
 	
-	<select id = "CategoriQualityTop" resultType = "String" parameterType = "String">
-	    select * from ingreName where ingreCategori = #{categori} order by ingreQualityInd
+	<select id = "CategoriQualityTop" resultType = "String" parameterType = "kr.ssog.domain.Ingredient">
+	    select * from ingredient where ingreCategori = #{categori} order by ingreQualityInd desc
 	</select>
 	
-	<select id = "CategoriSeason" resultType = "String" parameterType = "String">
-	    select * from ingreName where ingreCategori = #{categori} and ingreSeasonInd  <![CDATA[ > ]]> 1
+	<select id = "CategoriSeason" resultType = "String" parameterType = "kr.ssog.domain.Ingredient">
+	    select * from ingredient where ingreCategori = #{categori} and ingreSeasonInd  <![CDATA[ > ]]> 1
 	</select>
 
 </mapper>
