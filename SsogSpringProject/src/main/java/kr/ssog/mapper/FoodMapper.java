@@ -11,6 +11,7 @@ public interface FoodMapper {
 	
 	public String getImgUrl(String food_name);
 	
+	
 	public void createViewTop200(); 
 	
 	public void deleteViewTop200();

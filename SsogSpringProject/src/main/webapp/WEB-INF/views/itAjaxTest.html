@@ -30,46 +30,7 @@
    	
     </style>
     
-    <script type="text/javascript">
-	  	$(document).ready(()=>{
-	    	loadTop200();
-	  	});
-	    function loadTop200(){
-	  		
-	  		$.ajax({
-	  			url : "top200List.do", 
-	  			type : "get",
-	  			dataType : "json", 
-	  			success : itView, 
-	  			error : function(){alert("error");}
-	  		});
-	  	}
     
-    	function itView(foodList){
-    		let view="";
-    		$.each(foodList, function(index, obj){
-    		view+="<div class='row'>";
-    		view+="<div class='col-md-4 d-flex'>";
-    		view+="<a href='r_recipe'>";
-    		view+="<div class='product ftco-animate' style='text-align:center'>";
-    		view+="<div class='img d-flex align-items-center justify-content-center' style='background-image: url("+obj.fdImg+");'>";
-    		view+="<div class='desc'>";
-    		view+="</div>";
-    		view+="</div>";
-    		view+="<div class='text text-center' style='width: 315px;'>";
-    		view+="<span class='category'>"+obj.fdCategori+"</span>";
-    		view+="<h2>"+obj.fdName+"</h2>";
-    		view+="</div>";
-    		view+="</div>";
-    		view+="</a>";
-    		view+="</div>";
-    		
-  
-    		});
-    		
-    		$("#itView").html(view)
-    	} 
-    </script>
   </head>
   <body>
    	
@@ -199,6 +160,51 @@
   <script src="resources/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="resources/js/google-map.js"></script>
   <script src="resources/js/main.js"></script>
+    
+    
+    
+  <script type="text/javascript">
+	  	$(document).ready(()=>{
+	    	loadTop200();
+	  	});
+	    function loadTop200(){
+	  		
+	  		$.ajax({
+	  			url : "top200List.do", 
+	  			type : "get",
+	  			dataType : "json", 
+	  			success : itView
+	  			, 
+	  			error : function(){alert("error");}
+	  		});
+	  	}
+    
+    	function itView(foodList){
+    		let view="";
+    		$.each(foodList, function(index, obj){
+    		view+="<div class='row'>";
+    		view+="<div class='col-md-4 d-flex'>";
+    		view+="<a href='r_recipe'>";
+    		view+="<div class='product ftco-animate' style='text-align:center'>";
+    		view+="<div class='img d-flex align-items-center justify-content-center' style='background-image: url("+obj.fdImg+");'>";
+    		view+="<div class='desc'>";
+    		view+="</div>";
+    		view+="</div>";
+    		view+="<div class='text text-center' style='width: 315px;'>";
+    		view+="<span class='category'>"+obj.fdCategori+"</span>";
+    		view+="<h2>"+obj.fdName+"</h2>";
+    		view+="</div>";
+    		view+="</div>";
+    		view+="</a>";
+    		view+="</div>";
+    		
+  
+    		});
+    		
+    		$("#itView").html(view)
+    	} 
+    </script>
+    
     
   </body>
 </html>

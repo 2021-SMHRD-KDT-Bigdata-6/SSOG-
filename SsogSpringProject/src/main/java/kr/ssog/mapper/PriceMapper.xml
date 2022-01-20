@@ -17,7 +17,7 @@
 	</select>
 	
 	<select id = "getPrice" resultType = "int" parameterType ="String">
-	    select price from Price where ingreName = #{ingre_name} and priceDate = #{date}
+	    select price from Price where ingreName = #{ingre_name} and priceDate = #{date} order by price desc
 	</select>
 	
 	<select id = "getPriceDate" resultType = "String" parameterType = "String">
