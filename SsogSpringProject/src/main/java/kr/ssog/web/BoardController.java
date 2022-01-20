@@ -5,15 +5,18 @@ package kr.ssog.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.ssog.domain.Board;
 import kr.ssog.service.BoardService;
+import sun.util.logging.resources.logging_sv;
 
 @Controller
 public class BoardController {
@@ -73,5 +76,24 @@ public class BoardController {
 		return categori;
 	}
 	
+	// 무한 스크롤링
+	@RequestMapping("/load_happyCook")
+	@ResponseBody
+	public List<Board> getLogs(Model model, @RequestParam("num") int num) {
+		//int count = 6;
+		//String num = "34";
+		System.out.println("test"+num);
+		//model.addAttribute("count", count);
+		//model.addAttribute("num",num);
+		List<Board> result = service.infiniteScrollingH(num);
+		return result; 
+	}
+	
+	/*public ResponseEntity getLogs() {
+		List<Board> logs = logs.
+
+		return ResponseEntity.ok()
+	        	.body(logs);
+	}*/
 	
 }

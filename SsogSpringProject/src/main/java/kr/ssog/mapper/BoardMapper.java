@@ -30,5 +30,11 @@ public interface BoardMapper {
 		@Update("update board set count=count+1 where idx=#{idx}")
 		public void boardCount(int idx); // SQL --> update ~
 		
+		// HappyCook 무한 스크롤링
+		public List<Board> infiniteScrollingH(int num);
+		
+		// PoisonCook 무한 스크롤링
+		public List<Board> infiniteScrollingP(int num);
+		
 	//추후 좋아요, 태그 기능, 댓글기능
 }

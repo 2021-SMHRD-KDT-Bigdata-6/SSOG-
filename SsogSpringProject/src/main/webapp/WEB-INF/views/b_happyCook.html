@@ -145,6 +145,21 @@
   <script src="resources/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="resources/js/google-map.js"></script>
   <script src="resources/js/main.js"></script>
-    
+  <script src="resources/js/infiniteScrolling.js"></script>
+  
+   <script>
+   getList("load_happyCook");
+   window.addEventListener("scroll", function () {
+	   const SCROLLED_HEIGHT = window.scrollY;
+	   const WINDOW_HEIGHT = window.innerHeight;
+	   const DOC_TOTAL_HEIGHT = document.body.offsetHeight;
+	     const IS_END = (WINDOW_HEIGHT + SCROLLED_HEIGHT > DOC_TOTAL_HEIGHT - 500);
+	  
+	   if (IS_END && !isFetching) { // isFetching이 false일 때 조건 추가
+	     getList("load_happyCook");
+	   }
+	 });
+   
+   </script>
   </body>
 </html>
