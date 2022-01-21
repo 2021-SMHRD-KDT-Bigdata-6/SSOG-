@@ -2,6 +2,8 @@ package kr.ssog.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,13 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.ssog.domain.Food;
 import kr.ssog.domain.FoodRecipe;
+import kr.ssog.domain.t_member;
 import kr.ssog.service.FoodService;
+import kr.ssog.service.UserService;
 
 @Controller
 public class FoodController {
 	
 	@Autowired
 	FoodService FoodService;
+	UserService userService;
 	
 	@RequestMapping("/r_it")
 	public String it(Model model) {
@@ -28,10 +33,11 @@ public class FoodController {
 	}
 	
 	@RequestMapping("/r_recipe")
-	public String r_recipe(String fdName, Model model) {
+	public String r_recipe(String fdName, Model model, HttpSession session) {
 		// 음식이름
 		model.addAttribute("fdName",fdName);
-		
+		Object vo1 = session.getAttribute("users");
+		if (vo1 != null) {userService.plusLogCount((t_member)vo1, fdName);}
 		// 음식 이미지
 		String fdImg = FoodService.getImgUrl(fdName);
 		model.addAttribute("fdImg",fdImg);
