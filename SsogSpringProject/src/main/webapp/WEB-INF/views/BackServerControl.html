@@ -1,44 +1,90 @@
+<html xmlns:th="http://www.thymeleaf.org">
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Back Server Control</title>
 </head>
 <body>
+  <script src="resources/js/jquery.min.js"></script>
+  <script src="resources/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="resources/js/popper.min.js"></script>
+  <script src="resources/js/bootstrap.min.js"></script>
+  <script src="resources/js/jquery.easing.1.3.js"></script>
+  <script src="resources/js/jquery.waypoints.min.js"></script>
+  <script src="resources/js/jquery.stellar.min.js"></script>
+  <script src="resources/js/owl.carousel.min.js"></script>
+  <script src="resources/js/jquery.magnific-popup.min.js"></script>
+  <script src="resources/js/jquery.animateNumber.min.js"></script>
+  <script src="resources/js/scrollax.min.js"></script>
+  <script src="resources/js/main.js"></script>
+	<h1> 단순, update server입니다.</h1>
 	<script>
 	let now = new Date();
-	let today = now.getData();
-	while(true){
-		setTimeout(() =>{
+	let today = now.getData;
+
+
+		setInterval(() =>{
 			$.ajax({
 				url : "FlaskControlCoupang1", //보내줄 위치
 				success : ()=>{
-					$("h1").after( "<h2> Coupang"+today+" 성공했습니다.</h2>");
-				}
-				error : () => {""
+					$("h1").after( "<h2> Coupang1 "+today+" 성공했습니다.</h2>");
+				},
+				error : () => {
 					$("h1").after( "<h2>"+today+" 실패했습니다.</h2>")
 				}
 			})	
 		
-		},1000*60*60*24)}
-				
-	}
-	
-	while(true){
-		setTimeout(() =>{
+		},1000*10)
+		
+		
+		
+		setInterval(() =>{
 			$.ajax({
 				url : "FlaskControlCoupang2", //보내줄 위치
 				success : ()=>{
-					$("h1").after( "<h2> Coupang"+today+" 성공했습니다.</h2>");
-				}
-				error : () => {""
+					$("h1").after( "<h2> Coupang2 "+today+" 성공했습니다.</h2>");
+				},
+				error : () => {
 					$("h1").after( "<h2>"+today+" 실패했습니다.</h2>")
 				}
 			})	
 		
-		},1000*60*60*24)}
+		},1000*20)
+		
+		
+		setInterval(() =>{
+			$.ajax({
+				url : "FlaskControlCoupang3", //보내줄 위치
+				success : ()=>{
+					$("h1").after( "<h2> Coupang3 "+today+" 성공했습니다.</h2>");
+				},
+				error : () => {
+					$("h1").after( "<h2>"+today+" 실패했습니다.</h2>")
+				}
+			})	
+		
+		},1000*30)
+		
+		
+		setInterval(() =>{
+			$.ajax({
+				url : "FlaskControlCoupang4", //보내줄 위치
+				success : ()=>{
+					$("h1").after( "<h2> Coupang4 "+today+" 성공했습니다.</h2>");
+				},
+				error : () => {
+					$("h1").after( "<h2>"+today+" 실패했습니다.</h2>")
+				}
+			})	
+		
+		},1000*40)
+	
+		
 				
-	}
+
+	
+	
 
 	</script>
 </body>
