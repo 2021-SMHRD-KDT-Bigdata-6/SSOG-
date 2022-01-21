@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ssog.domain.Board;
-import kr.ssog.domain.FoodRecipe;
 import kr.ssog.domain.t_member;
 import kr.ssog.service.BoardService;
 import kr.ssog.service.FoodService;
@@ -75,34 +74,7 @@ public class UserController {
 //	public String r_it() {
 //		return "r_it";
 //	}
-	@RequestMapping("/r_recipe")
-	public String r_recipe(String fdName, Model model) {
-		model.addAttribute("fdName",fdName);
-		
-		String fdImg = FoodService.getImgUrl(fdName);
-		model.addAttribute("fdImg",fdImg);
-		
-		List<String> main = FoodService.getMainIngre(fdName);
-		String mainIngre = "";
-		for(int i = 0; i < main.size(); i++) {
-			mainIngre += main.get(i) + " ";
-		}
-		model.addAttribute("mainIngre",mainIngre);
-		
-		System.out.println(main.toString());
-		
-		List<String> sub = FoodService.getSubIngre(fdName);
-		String subIngre = "";
-		for(int i = 0; i < sub.size(); i++) {
-			subIngre += sub.get(i) + " ";
-		}
-		model.addAttribute("subIngre",subIngre);
-		
-		List<FoodRecipe> recipe = FoodService.getRecipe(fdName);
-		model.addAttribute("recipe",recipe);
-		
-		return "r_recipe";
-	}
+
 	@RequestMapping("/r_theme")
 	public String r_theme() {
 		return "r_theme";

@@ -127,9 +127,14 @@
 
               <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
               	<div class="p-4" style="text-align:center;">
-	              	<h3 class="mb-4" th:text="${fdName}">음식이름</h3>
+	              	<h3 id="fdName" class="mb-4" th:text="${fdName}">음식이름</h3>
 	              	<th:block th:each="recipe : ${recipe} ">
-	              		<img th:src="@{resources/}+${recipe.recipeImg}" style="margin-bottom:100px;">
+	              		<th:block th:if="${recipe.recipeImg!=null}">
+	              			<img th:src="@{resources/}+${recipe.recipeImg}" style="margin-bottom:100px;">
+	              		</th:block>
+	              		<th:block th:if="${recipe.recipeImg==null}">
+	              			<img>
+	              		</th:block>
 	              		<p th:text="${recipe.recipeContent}" style="margin-bottom:100px;"></p>
 	              	 </th:block>
               	</div>
@@ -301,6 +306,7 @@
   <script>
 	//1) chart를 세팅할 수 있는 canvas 태그 가져오기
 	let radarChart = document.getElementById('radarChart')
+	let fdName = document.getElementById('fdName')
 	//2) chart 생성
 	//2-1) 데이터 준비
 	//============임의의 데이터를 생성하는 함수를 만들어 봄!================
@@ -323,7 +329,7 @@
 		data : {
 			labels : ['탄수화물', '단백질', '지방', '무기질', '비타민'],
 		  	datasets: [{
-			    label: '마늘종장아찌 볶음밥 영양정보',
+			    label:fdName,
 			    data: [...randomData()],
 			    fill: true,
 			    backgroundColor: 'rgba(255, 80, 0, 0.7)',

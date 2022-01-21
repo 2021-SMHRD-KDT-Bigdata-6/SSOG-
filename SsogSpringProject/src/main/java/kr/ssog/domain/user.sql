@@ -67,4 +67,7 @@ select * from foodrecipe;
 
 select * from foodrecipe where fdName = '잔치국수' order by recipeOrder;
 
+select * from foodrecipe where fdName = '생선초밥' order by recipeOrder;
+
+select recipeimg from foodrecipe;
 
