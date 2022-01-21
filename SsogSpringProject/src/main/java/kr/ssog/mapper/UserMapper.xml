@@ -17,5 +17,17 @@
         update t_member set mb_nick=#{mb_nick}, mb_pwd=#{mb_pwd}, mb_name=#{mb_name}, mb_phone=#{mb_phone}, mb_addr=#{mb_addr}, mb_gender=#{mb_gender}
     </update>
     
-    
+    <!--           로그인,회원가입, 회원정보수정
+    <select id="login" resultType="kr.ssog.domain.Member" parameterType="java.util.HashMap">
+    select는 묶어주는 정보가 필요함! -> resultType, 1개만 받아줄때는 파라미터타입 생략가능parameterType="int"
+	    select * from Member where MID=#{MID} and MPassword=#{MPassword}
+    </select>
+	
+    <insert id="join" parameterType="kr.ssog.domain.Member">
+	    insert into Member values(#{MID},#{MPassword},#{MName},#{MPhone},#{MAddress},#{MAge},#{MGender},sysdate,'n')
+    </insert>
+
+    <update id="memberUpdate" parameterType="kr.ssog.domain.Member">
+        update Member set MID=#{MID}, MPassword=#{MPassword}, MName=#{MName}, MPhone=#{MPhone}, MAddress=#{MAddress}, MAge=#{MAge}, MGender=#{MGender}
+    </update> -->
 </mapper>

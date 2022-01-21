@@ -19,7 +19,7 @@ insert into BOARD values(BOARD_SEQ.nextval,'HappyCook','오늘 저녁은 미트�
 select * from board where boardCate='HappyCook' order by w_day desc;
 
 
-delete from board where content = 'test';
+delete from board where writer = 'test';
 delete from board where filename = '6db8dc03-f4a0-49eb-99f1-78ccdee00680_pich.png';
 
 insert into BOARD values(BOARD_SEQ.nextval,'PoisonCook','불맛나는 스파게티 ㅎㅎ','금손레시피','image_1_1.jpg','resources/files/image_1_1.jpg','오늘 저녁 만들어봄 ',sysdate);
