@@ -46,7 +46,25 @@ select * from (
 ) 
 where num1 between 1 and 10;
 
+select * from food;
 
+select fdName,fdcategori from food where fdcategori like '%밥';
+select fdName,fdcategori from food where fdcategori like '%죽';
+select count(*) from food where fdcategori like '%밥';
+select count(*) from food where fdcategori like '%밥%';
+select fdName from food where fdcategori ='밥';
 
+select fdcategori from food group by fdcategori;
+
+select fdName,fdcategori from food where fdcategori like '%면류%';
+
+select ingreName from FoodIngredient where mainSub = 'main' and fdName = '잔치국수';
+select ingreName,mainsub from FoodIngredient where fdName ='잔치국수';
+
+select * from foodingredient where fdName = '잔치국수' and mainSub = 'main';
+
+select * from foodrecipe;
+
+select * from foodrecipe where fdName = '잔치국수' order by recipeOrder;
 
 

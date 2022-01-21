@@ -1,6 +1,8 @@
 package kr.ssog.web;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -22,6 +24,7 @@ public class RestFoodController {
 //	public String itAjaxTest() {
 //		return "itAjaxTest";
 //	}
+	Random ran = new Random();
 	
 	@GetMapping("/top200List.do")
 	public @ResponseBody List<FoodAndImage> top200List(Model model){
@@ -29,20 +32,37 @@ public class RestFoodController {
 		List<Food> top200 = FoodService.Top200();
 		List<FoodAndImage> imgs = FoodService.getAllImgUrlOb(top200);
 		
-		System.out.println(top200.size());
-		System.out.println(imgs.get(1));
-		
-		return imgs;
-		
-		
-	}
-	
-	@GetMapping("/topImgList")
-	public @ResponseBody List<String> topImgList(){
-		List<Food> top200 = FoodService.Top200();
-		List<String> imgs = FoodService.getAllImgUrl(top200);
+//		List<FoodAndImage> randomFood;
+//		for(int i = 0; i < imgs.size(); i++ ) {
+//			int num = ran.nextInt(imgs.size());
+//			randomFood.addAll(imgs.get(num));
+//		}
 		
 		return imgs;
 	}
-	
+
+	@GetMapping("/defaultList")
+	public @ResponseBody List<FoodAndImage> defaultList() {
+		// 밥/죽에 해당하는 음식이름 가져오기
+		List<Food> categoriFdName = FoodService.getFoodCategori("밥");
+//		System.out.println(categoriFdName.size());
+//		categoriFdName.addAll(FoodService.getFoodCategori("죽"));
+//		System.out.println(categoriFdName.size());
+		List<FoodAndImage> categoriFood = FoodService.getAllImgUrlOb(categoriFdName);
+		
+//		List<FoodAndImage> randomFood;
+//		for(int i = 0; i < categoriFood.size(); i++ ) {
+//			int num = ran.nextInt(categoriFood.size());
+//			randomFood.addAll(categoriFood.get(i));
+//		}
+		
+		return categoriFood;
+	}
+	@GetMapping("/showCategoriList")
+	public @ResponseBody List<FoodAndImage> showCategoriList(String categori) {
+		
+		List<Food> categoriFdName = FoodService.getFoodCategori(categori);
+		List<FoodAndImage> categoriFood = FoodService.getAllImgUrlOb(categoriFdName);
+		return categoriFood;
+	}
 }

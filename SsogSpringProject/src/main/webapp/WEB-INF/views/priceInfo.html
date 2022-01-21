@@ -28,25 +28,46 @@
     <link rel="stylesheet" href="resources/css/flaticon.css">
     <link rel="stylesheet" href="resources/css/style.css">
 <style>
-.cate {
-	display: inline-block;
-	padding-left: 50px;
+
+.button {
+	border-right: 1px solid #b7472a !important;
+	border-bottom: 1px solid #b7472a !important;
+	box-sizing:border-box;
 }
 
-.cate>li {
-	width: 60px;
-	height: 40px;
-	background-color: #b7472a;
-	list-style: none;
-	text-align: center;
+.button-bottom-none {
+	border-right: 1px solid #b7472a !important;
+	box-sizing:border-box;
+}
+
+.button-right-none {
+	border-bottom: 1px solid #b7472a !important;
+	box-sizing: border-box;
+	box-sizing:border-box;
+}
+
+#btn-group button {
+	background-color: rgba(0,0,0,0);
+	color: #b7472a; 
+	padding: 5px;
+	width: 19.75%;
+	border: 0;
+	outline: none;
+  	box-shadow: none;
+}
+
+#btn-group {
+	border: 1px solid #b7472a;
+	border-radius: 4px;
+}
+
+button:active {
+	outline: none;
+  	box-shadow: none;}
+
+#btn-group button:hover{
 	color: white;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	float: left;
-	border-radius: 5px;
-	font-size: 12px;
-	margin-right: 15px;
+	background-color: #b7472a;
 }
 
 .card {
@@ -105,27 +126,22 @@
 
 
 
-						<div>
-							<ul class="cate" id="center2">
-								<li id="meet">육류</li>
-								<li>생선류</li>
-								<li>곡류</li>
-								<li>야채류</li>
-								<li>과일류</li>
-								
-
-							</ul>
-
-
-
-
-
-
-
-
-
-
-
+						<div id="btn-group">
+								<button class="button" onclick="loadList('유기농/친환경 전문관')">유기농/친환경 전문관</button>
+								<button class="button" onclick="loadList('과일')">과일</button>
+								<button class="button" onclick="loadList('견과/건과')">견과/건과</button>
+								<button class="button" onclick="loadList('채소')">채소</button>
+								<button class="button-right-none" onclick="loadList('쌀/잡곡')">쌀/잡곡</button>
+								<button class="button" onclick="loadList('축산/계란')">축산/계란</button>
+								<button class="button" onclick="loadList('수산물/건어물')">수산물/건어물</button>
+								<button class="button" onclick="loadList('생수/음료')">생수/음료</button>
+								<button class="button" onclick="loadList('커피/원두/차')">커피/원두/차</button>
+								<button class="button-right-none" onclick="loadList('과자/초콜릿/시리얼')">과자/초콜릿/시리얼</button>
+								<button class="button-bottom-none" onclick="loadList('면/통조림/가공식품')">면/통조림/가공식품</button>								
+								<button class="button-bottom-none" onclick="loadList('가루/조미료/오일')">가루/조미료/오일</button>								
+								<button class="button-bottom-none" onclick="loadList('장/소스/드레싱/식초')">장/소스/드레싱/식초</button>								
+								<button class="button-bottom-none" onclick="loadList('유제품/아이스크림')">유제품/아이스크림</button>								
+								<button class="button-bottom-right-none" onclick="loadList('냉장/냉동/간편요리')">냉장/냉동/간편요리</button>								
 						</div>
 
 
@@ -164,7 +180,7 @@
 											<th style="width: 25%;">품목</th>
 											<!--<th>분류</th>-->
 											<th style="width: 25%;">지역</th>
-											<th style="width: 25%;">오눌날짜</th>
+											<th style="width: 25%;">오늘날짜</th>
 											<th style="width: 25%;">가격</th>
 										</tr>
 									</thead>
@@ -177,342 +193,13 @@
 										</tr>
 									</tfoot>
 									<tbody>
-										<tr>
+										<tr th:each="num: ${#numbers.sequence(1,60)}">
 											<td>쌀</td>
 											<td>고흥</td>
 											<td>2021/11/26</td>
 											<td>54800원</td>
 										</tr>
-										<tr>
-											<td>팥/붉은 팥(국산)</td>
-											<td>영광</td>
-											<td>2021/11/26</td>
-											<td>8797원</td>
-										</tr>
-										<tr>
-											<td>배추/가을</td>
-											<td>해남</td>
-											<td>2021/11/26</td>
-											<td>4048원</td>
-										</tr>
-										<tr>
-											<td>갓/갓</td>
-											<td>여수</td>
-											<td>2021/11/26</td>
-											<td>3799원</td>
-										</tr>
-										<tr>
-											<td>오이/취청</td>
-											<td>광주</td>
-											<td>2021/11/26</td>
-											<td>16622원</td>
-										</tr>
-										<tr>
-											<td>호박/애호박</td>
-											<td>전주</td>
-											<td>2021/11/26</td>
-											<td>1737원</td>
-										</tr>
-										<tr>
-											<td>쌀</td>
-											<td>고흥</td>
-											<td>2021/11/26</td>
-											<td>54800원</td>
-										</tr>
-										<tr>
-											<td>팥/붉은 팥(국산)</td>
-											<td>영광</td>
-											<td>2021/11/26</td>
-											<td>8797원</td>
-										</tr>
-										<tr>
-											<td>배추/가을</td>
-											<td>해남</td>
-											<td>2021/11/26</td>
-											<td>4048원</td>
-										</tr>
-										<tr>
-											<td>갓/갓</td>
-											<td>여수</td>
-											<td>2021/11/26</td>
-											<td>3799원</td>
-										</tr>
-										<tr>
-											<td>호박/애호박</td>
-											<td>전주</td>
-											<td>2021/11/26</td>
-											<td>1737원</td>
-										</tr>
-										<tr>
-											<td>Charde Marshall</td>
-											<td>San Francisco</td>
-											<td>2008/10/16</td>
-											<td>$470,600</td>
-										</tr>
-										<tr>
-											<td>Haley Kennedy</td>
-											<td>London</td>
-											<td>2012/12/18</td>
-											<td>$313,500</td>
-										</tr>
-										<tr>
-											<td>Tatyana Fitzpatrick</td>
-											<td>London</td>
-											<td>2010/03/17</td>
-											<td>$385,750</td>
-										</tr>
-										<tr>
-											<td>Michael Silva</td>
-											<td>London</td>
-											<td>2012/11/27</td>
-											<td>$198,500</td>
-										</tr>
-										<tr>
-											<td>Paul Byrd</td>
-											<td>New York</td>
-											<td>2010/06/09</td>
-											<td>$725,000</td>
-										</tr>
-										<tr>
-											<td>Gloria Little</td>
-											<td>New York</td>
-											<td>2009/04/10</td>
-											<td>$237,500</td>
-										</tr>
-										<tr>
-											<td>Bradley Greer</td>
-											<td>London</td>
-											<td>2012/10/13</td>
-											<td>$132,000</td>
-										</tr>
-										<tr>
-											<td>Dai Rios</td>
-											<td>Edinburgh</td>
-											<td>2012/09/26</td>
-											<td>$217,500</td>
-										</tr>
-										<tr>
-											<td>Jenette Caldwell</td>
-											<td>New York</td>
-											<td>2011/09/03</td>
-											<td>$345,000</td>
-										</tr>
-										<tr>
-											<td>Yuri Berry</td>
-											<td>New York</td>
-											<td>2009/06/25</td>
-											<td>$675,000</td>
-										</tr>
-										<tr>
-											<td>Caesar Vance</td>
-											<td>New York</td>
-											<td>2011/12/12</td>
-											<td>$106,450</td>
-										</tr>
-										<tr>
-											<td>Doris Wilder</td>
-											<td>Sidney</td>
-											<td>2010/09/20</td>
-											<td>$85,600</td>
-										</tr>
-										<tr>
-											<td>Angelica Ramos</td>
-											<td>London</td>
-											<td>2009/10/09</td>
-											<td>$1,200,000</td>
-										</tr>
-										<tr>
-											<td>Gavin Joyce</td>
-											<td>Edinburgh</td>
-											<td>2010/12/22</td>
-											<td>$92,575</td>
-										</tr>
-										<tr>
-											<td>Jennifer Chang</td>
-											<td>Singapore</td>
-											<td>2010/11/14</td>
-											<td>$357,650</td>
-										</tr>
-										<tr>
-											<td>Brenden Wagner</td>
-											<td>San Francisco</td>
-											<td>2011/06/07</td>
-											<td>$206,850</td>
-										</tr>
-										<tr>
-											<td>Fiona Green</td>
-											<td>San Francisco</td>
-											<td>2010/03/11</td>
-											<td>$850,000</td>
-										</tr>
-										<tr>
-											<td>Shou Itou</td>
-											<td>Tokyo</td>
-											<td>2011/08/14</td>
-											<td>$163,000</td>
-										</tr>
-										<tr>
-											<td>Michelle House</td>
-											<td>Sidney</td>
-											<td>2011/06/02</td>
-											<td>$95,400</td>
-										</tr>
-										<tr>
-											<td>Suki Burks</td>
-											<td>London</td>
-											<td>2009/10/22</td>
-											<td>$114,500</td>
-										</tr>
-										<tr>
-											<td>Prescott Bartlett</td>
-											<td>London</td>
-											<td>2011/05/07</td>
-											<td>$145,000</td>
-										</tr>
-										<tr>
-											<td>Gavin Cortez</td>
-											<td>San Francisco</td>
-											<td>2008/10/26</td>
-											<td>$235,500</td>
-										</tr>
-										<tr>
-											<td>Martena Mccray</td>
-											<td>Edinburgh</td>
-											<td>2011/03/09</td>
-											<td>$324,050</td>
-										</tr>
-										<tr>
-											<td>Unity Butler</td>
-											<td>San Francisco</td>
-											<td>2009/12/09</td>
-											<td>$85,675</td>
-										</tr>
-										<tr>
-											<td>Howard Hatfield</td>
-											<td>San Francisco</td>
-											<td>2008/12/16</td>
-											<td>$164,500</td>
-										</tr>
-										<tr>
-											<td>Hope Fuentes</td>
-											<td>San Francisco</td>
-											<td>2010/02/12</td>
-											<td>$109,850</td>
-										</tr>
-										<tr>
-											<td>Vivian Harrell</td>
-											<td>San Francisco</td>
-											<td>2009/02/14</td>
-											<td>$452,500</td>
-										</tr>
-										<tr>
-											<td>Timothy Mooney</td>
-											<td>London</td>
-											<td>2008/12/11</td>
-											<td>$136,200</td>
-										</tr>
-										<tr>
-											<td>Jackson Bradshaw</td>
-											<td>New York</td>
-											<td>2008/09/26</td>
-											<td>$645,750</td>
-										</tr>
-										<tr>
-											<td>Olivia Liang</td>
-											<td>Singapore</td>
-											<td>2011/02/03</td>
-											<td>$234,500</td>
-										</tr>
-										<tr>
-											<td>Bruno Nash</td>
-											<td>London</td>
-											<td>2011/05/03</td>
-											<td>$163,500</td>
-										</tr>
-										<tr>
-											<td>Sakura Yamamoto</td>
-											<td>Tokyo</td>
-											<td>2009/08/19</td>
-											<td>$139,575</td>
-										</tr>
-										<tr>
-											<td>Thor Walton</td>
-											<td>New York</td>
-											<td>2013/08/11</td>
-											<td>$98,540</td>
-										</tr>
-										<tr>
-											<td>Finn Camacho</td>
-											<td>San Francisco</td>
-											<td>2009/07/07</td>
-											<td>$87,500</td>
-										</tr>
-										<tr>
-											<td>Serge Baldwin</td>
-											<td>Singapore</td>
-											<td>2012/04/09</td>
-											<td>$138,575</td>
-										</tr>
-										<tr>
-											<td>Zenaida Frank</td>
-											<td>New York</td>
-											<td>2010/01/04</td>
-											<td>$125,250</td>
-										</tr>
-										<tr>
-											<td>Zorita Serrano</td>
-											<td>San Francisco</td>
-											<td>2012/06/01</td>
-											<td>$115,000</td>
-										</tr>
-										<tr>
-											<td>Jennifer Acosta</td>
-											<td>Edinburgh</td>
-											<td>2013/02/01</td>
-											<td>$75,650</td>
-										</tr>
-										<tr>
-											<td>Cara Stevens</td>
-											<td>New York</td>
-											<td>2011/12/06</td>
-											<td>$145,600</td>
-										</tr>
-										<tr>
-											<td>Hermione Butler</td>
-											<td>London</td>
-											<td>2011/03/21</td>
-											<td>$356,250</td>
-										</tr>
-										<tr>
-											<td>Lael Greer</td>
-											<td>London</td>
-											<td>2009/02/27</td>
-											<td>$103,500</td>
-										</tr>
-										<tr>
-											<td>Jonas Alexander</td>
-											<td>San Francisco</td>
-											<td>2010/07/14</td>
-											<td>$86,500</td>
-										</tr>
-										<tr>
-											<td>Shad Decker</td>
-											<td>Edinburgh</td>
-											<td>2008/11/13</td>
-											<td>$183,000</td>
-										</tr>
-										<tr>
-											<td>Michael Bruce</td>
-											<td>Singapore</td>
-											<td>2011/06/27</td>
-											<td>$183,000</td>
-										</tr>
-										<tr>
-											<td>Donna Snider</td>
-											<td>New York</td>
-											<td>2011/01/25</td>
-											<td>$112,000</td>
-										</tr>
+										
 									</tbody>
 								</table>
 							</div>
@@ -552,10 +239,26 @@
   <script src="resources/js/jquery.magnific-popup.min.js"></script>
   <script src="resources/js/jquery.animateNumber.min.js"></script>
   <script src="resources/js/scrollax.min.js"></script>
-  <script src="resources/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="resources/js/google-map.js"></script>
   <script src="resources/js/main.js"></script>
-    
+  <script>
+    function loadList(str){
+    	alert(str);
+    	console.log(str)
+    	// Controller에게 데이터 리스트를 요청하기(boardAjaxList.do)
+    	$.ajax({
+    		url : "priceInfoAjaxTEST", //>>요청>>받는 데이터는(json)
+    		type : "get",
+    		data : {"ingre":str},
+    		dataType : "json", // [{  },{  },{  }]
+    		success :resultHtml, 
+    		error : function(){ alert("error"); }
+    	});
+    }   
+    function resultHtml(data){
+    	console.log(data);
+    }
+    loadList("");
+    </script>
 
 
      <!-- loader -->
