@@ -16,13 +16,22 @@
     <link rel="stylesheet" href="resources/css/magnific-popup.css">
     <link rel="stylesheet" href="resources/css/flaticon.css">
     <link rel="stylesheet" href="resources/css/style.css">
+    
+    <!-- Noto Sans 추가 -->
+    <link rel="stylesheet" href="resources/css/NotoSans.css">
     <style>
     	strong{
     		font-weight : bold;
     	}
     	.product-details .price span{
-    		font-size : 16px;
-    		font-family : '나눔고딕';
+   		    font-size: 15px;
+		    font-family: 'Noto Sans';
+		    font-weight: lighter;
+		    letter-spacing: -0.3px;
+    	}
+    	.ingre{
+   		    font-size: 16px;
+    		
     	}
     	.img-fluid {
     		height : 100%;
@@ -39,7 +48,28 @@
     	#v-pills-tabContent{
     		background-color : white !important;
     	}
-    
+    	
+    	#recipeCon{
+		    margin-bottom:100px; 
+   		    font-family: 'Noto Sans';
+		    font-weight: normal;
+		    font-size: 15px;
+		    color: #3e3e3e;
+    	}
+    	#fdName{
+    		margin-top:50px; 
+    		margin-bottom:50px;
+    	}
+    	#recipe{
+    		width: 370px;
+		    text-align: center;
+		    margin: 0 auto;
+    	}
+    	#ideaIcon{
+   		    width: 150px;
+		    height: 150px;
+		    margin-bottom: 20px;
+    	}
     </style>
   </head>
   <body>
@@ -65,7 +95,9 @@
     	<div class="container">
     		<div class="row">
     			<div class="col-lg-6 mb-5 ftco-animate">
-    				<a href="<%--=conf.getImgUrl(fName) --%>" class="image-popup prod-img-bg"><img th:src="@{${fdImg}}" class="img-fluid" alt="Colorlib Template"></a>
+    				<a href="<%--=conf.getImgUrl(fName) --%>" class="image-popup prod-img-bg">
+    					<img th:src="@{${fdImg}}" class="img-fluid" alt="Colorlib Template" style="width: 100%;">
+    				</a>
     			</div>
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
     				<h3 th:text="${fdName}"></h3>
@@ -80,11 +112,12 @@
 								<a href="#" class="mr-2" style="color: #000;">소요시간 <span style="color: #bbb;">20분</span></a>
 							</p>
 						</div>
+    				<p class="price"><span th:text="${recipeEtc}">고추장 양념에 빨갛게 무쳐 먹던 마늘종을<br>햄과 함께 달달 볶았어요.</span></p>
     				<!-- <p class="price"><span>고추장 양념에 빨갛게 무쳐 먹던 마늘종을<br>햄과 함께 달달 볶았어요.</span></p> -->
-    				<p><strong>주재료</strong></p>
-						<p th:text="${mainIngre}" style="color:#0c0c0c;">주재료 코드</p>
-    				<p><strong>부재료</strong></p>
-						<p th:text="${subIngre}" style="color:#0c0c0c;">부재료 코드</p>
+    				<p class="ingre"><strong>주재료</strong></p>
+						<p th:text="${mainIngre}" style="color:#0c0c0c;">주재료</p>
+    				<p class="ingre"><strong>부재료</strong></p>
+						<p th:text="${subIngre}" style="color:#0c0c0c;">부재료</p>
 
 						
 						<div class="row mt-4">
@@ -126,17 +159,19 @@
             <div class="tab-content bg-light" id="v-pills-tabContent">
 
               <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
-              	<div class="p-4" style="text-align:center;">
-	              	<h3 id="fdName" class="mb-4" th:text="${fdName}">음식이름</h3>
+              	<div class="p-4">
+              	  <div id="recipe">
+	              	<h3 id="fdName" th:text="${fdName}+' 만들기'">음식이름</h3>
 	              	<th:block th:each="recipe : ${recipe} ">
-	              		<th:block th:if="${recipe.recipeImg!=null}">
-	              			<img th:src="@{resources/}+${recipe.recipeImg}" style="margin-bottom:100px;">
+	              		<th:block th:if="${recipe.recipeImg!=''}">
+	              			<img th:src="@{resources/}+${recipe.recipeImg}" style="margin-bottom:100px; width:370px; height:350px;">
 	              		</th:block>
-	              		<th:block th:if="${recipe.recipeImg==null}">
-	              			<img>
+	              		<th:block th:if="${recipe.recipeImg==''}">
+	              			<img id="ideaIcon" src="resources/img/ideaIcon.png">
 	              		</th:block>
-	              		<p th:text="${recipe.recipeContent}" style="margin-bottom:100px;"></p>
+	              		<p th:text="${recipe.recipeContent}" id="recipeCon"></p>
 	              	 </th:block>
+	              </div>
               	</div>
               </div>
 

@@ -29,11 +29,14 @@ public class FoodController {
 	
 	@RequestMapping("/r_recipe")
 	public String r_recipe(String fdName, Model model) {
+		// 음식이름
 		model.addAttribute("fdName",fdName);
 		
+		// 음식 이미지
 		String fdImg = FoodService.getImgUrl(fdName);
 		model.addAttribute("fdImg",fdImg);
 		
+		// 주재료
 		List<String> main = FoodService.getMainIngre(fdName);
 		String mainIngre = "";
 		for(int i = 0; i < main.size(); i++) {
@@ -41,8 +44,9 @@ public class FoodController {
 		}
 		model.addAttribute("mainIngre",mainIngre);
 		
-		System.out.println(main.toString());
+		// System.out.println(main.toString());
 		
+		// 부재료
 		List<String> sub = FoodService.getSubIngre(fdName);
 		String subIngre = "";
 		for(int i = 0; i < sub.size(); i++) {
@@ -50,8 +54,12 @@ public class FoodController {
 		}
 		model.addAttribute("subIngre",subIngre);
 		
+		// 레시피, 이미지
 		List<FoodRecipe> recipe = FoodService.getRecipe(fdName);
 		model.addAttribute("recipe",recipe);
+		
+		String recipeEtc = recipe.get(0).getRecipeETC();
+		model.addAttribute("recipeEtc", recipeEtc);
 		
 		return "r_recipe";
 	}
