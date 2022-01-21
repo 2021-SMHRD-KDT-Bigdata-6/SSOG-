@@ -85,10 +85,10 @@ public class FoodService {
 		for (int i =0; i <result.size(); i++) {
 			FoodRecipe recipe = result.get(i);
 			String url = recipe.getRecipeImg();
-			if (url.indexOf("webapp")+7<0) {url = "";} 
+
+			if(url.equals("null")) {url = "";}
 			else{url =url.substring(url.indexOf("webapp")+7);}
-			System.out.println(url.indexOf("webapp")+7);
-			System.out.println(url);
+
 			recipe.setRecipeImg(url);
 			result.set(i, recipe);
 			}
