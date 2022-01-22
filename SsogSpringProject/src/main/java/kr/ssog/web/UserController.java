@@ -99,7 +99,7 @@ public class UserController {
 	public String join(t_member vo) {
 		UserService.join(vo);
 		System.out.println("회원가입완료");
-		//UserService.createLogTable(vo);
+		UserService.createLogTable(vo);
 		return "redirect:/";
 	}
 	// 아이디중복체크

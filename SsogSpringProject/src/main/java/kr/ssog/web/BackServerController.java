@@ -28,7 +28,7 @@ class BackServerController {
 	@GetMapping("/FlaskControlCoupang1")
 	public @ResponseBody String coupang1() {
 		System.out.println("확인");
-		return "redirect:http://172.30.1.59:9001/CoupangCrawlingCoffee?key=yes";
+		return "redirect:http://172.30.1.59:9001/CoupangCrawlingSea?key=yes";
 		
 
 	}
@@ -36,19 +36,19 @@ class BackServerController {
 	@GetMapping("/FlaskControlCoupang2")
 	public @ResponseBody String coupang2() {
 		System.out.println("확인2");
-		return "redirect:http://172.30.1.59:9001/CoupangCrawlingNoodle?key=yes";
+		return "redirect:http://172.30.1.59:9001/CoupangCrawlingVege?key=yes";
 	}
 	
 	@GetMapping("/FlaskControlCoupang3")
 	public @ResponseBody String coupang3() {
 		System.out.println("확인3");
-		return "redirect:http://222.102.43.230:9000/CoupangCrawlingNoodle?key=yes";
+		return "redirect:http://222.102.43.230:9000/CoupangCrawlingStock?key=yes";
 	}
 	
 	@GetMapping("/FlaskControlCoupang4")
 	public @ResponseBody String coupang4() {
 		System.out.println("확인4");
-		return "redirect:http://222.102.43.230:9000/CoupangCrawlingNoodle?key=yes";
+		return "redirect:http://222.102.43.230:9000/CoupangCrawlingRice?key=yes";
 	}
 	
 	
