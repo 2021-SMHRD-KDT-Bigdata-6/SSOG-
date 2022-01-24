@@ -203,12 +203,12 @@
                 	
                 	 -->
              
-               <div class="col-md-3 d-flex" th:each="num: ${#numbers.sequence(1,4)}">
+               <div class="col-md-3 d-flex" th:each="list: ${imgs}">
                   <div class="product ftco-animate">
                    	
                   
                      <div class="img d-flex align-items-center justify-content">
-                     	<img th:src="@{resources/images/}+'prod-'+${num}+'.jpg'" style="width:255px; height: 350px;">
+                     	<img th:src="@{${list.imgs}}" style="width:255px; height: 350px;">
                      		<div class="desc">
                      			<p class="meta-prod d-flex" style="text-align:center;" >
                     				<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>

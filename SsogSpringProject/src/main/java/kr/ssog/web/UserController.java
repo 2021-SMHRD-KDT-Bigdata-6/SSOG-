@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ssog.domain.Board;
+import kr.ssog.domain.Food;
 import kr.ssog.domain.t_member;
 import kr.ssog.service.BoardService;
 import kr.ssog.service.FoodService;
@@ -41,6 +42,12 @@ public class UserController {
 		model.addAttribute("poisonList", poisonList);
 		System.out.println("포이즌게시글 갯수" + poisonList.size());
 		
+			List<Food> top200 = FoodService.Top200();
+			model.addAttribute("foodList", top200);
+		    //30개이미지
+		    List<String> imgs = FoodService.getAllImgUrl(top200);
+		    model.addAttribute("imgs", imgs);
+	
 		return "index";
 	}
 	
