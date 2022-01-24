@@ -95,11 +95,12 @@
     	<div class="container">
     		<div class="row">
     			<div class="col-lg-6 mb-5 ftco-animate">
-    				<a href="<%--=conf.getImgUrl(fName) --%>" class="image-popup prod-img-bg">
+    				<a th:href="@{${fdImg}}" class="image-popup prod-img-bg">
     					<img th:src="@{${fdImg}}" class="img-fluid" alt="Colorlib Template" style="width: 100%;">
     				</a>
     			</div>
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
+    			<form action="setCart">
     				<h3 th:text="${fdName}"></h3>
     				<div class="rating d-flex">
 							<p class="text-left mr-4">
@@ -112,12 +113,22 @@
 								<a href="#" class="mr-2" style="color: #000;">소요시간 <span style="color: #bbb;">20분</span></a>
 							</p>
 						</div>
-    				<p class="price"><span th:text="${recipeEtc}">고추장 양념에 빨갛게 무쳐 먹던 마늘종을<br>햄과 함께 달달 볶았어요.</span></p>
-    				<!-- <p class="price"><span>고추장 양념에 빨갛게 무쳐 먹던 마늘종을<br>햄과 함께 달달 볶았어요.</span></p> -->
+    				<p class="price"><span th:text="${recipeEtc}"></span></p>
     				<p class="ingre"><strong>주재료</strong></p>
+    					<th:block th:each="main : ${mainIngre}">
+    						<span th:text="${main}" style="color:#0c0c0c;"></span>
+    						<span>&nbsp;</span>
+    					</th:block>
+    				<p class="ingre"><strong>부재료</strong></p>
+    				<th:block th:each="sub : ${subIngre}">
+    						<span th:text="${sub}" style="color:#0c0c0c;"></span>
+    						<span>&nbsp;</span>
+    					</th:block>
+    				
+    				<!-- <p class="ingre"><strong>주재료</strong></p>
 						<p th:text="${mainIngre}" style="color:#0c0c0c;">주재료</p>
     				<p class="ingre"><strong>부재료</strong></p>
-						<p th:text="${subIngre}" style="color:#0c0c0c;">부재료</p>
+						<p th:text="${subIngre}" style="color:#0c0c0c;">부재료</p> -->
 
 						
 						<div class="row mt-4">
@@ -136,7 +147,12 @@
 	          	</div>
 	          	<div class="w-100"></div>
           	</div>
-          	<p><a href="cart.do" class="btn btn-primary py-3 px-5 mr-2">장바구니</a><a href="checkout.do" class="btn btn-primary py-3 px-5">결제하기</a></p>
+          	<input type="hidden" th:value="${fdName}" name="fdName" for="fdName">
+          	<p>
+	          	<input type="submit" class="btn btn-primary py-3 px-5 mr-2" value="장바구니">
+          		<a href="checkout.do" class="btn btn-primary py-3 px-5">결제하기</a>
+          	</p>
+    			</form>
     			</div>
     		</div>
 

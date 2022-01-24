@@ -60,6 +60,7 @@ select fdName,fdcategori from food where fdcategori like '%면류%';
 
 select ingreName from FoodIngredient where mainSub = 'main' and fdName = '잔치국수';
 select ingreName,mainsub from FoodIngredient where fdName ='잔치국수';
+select count(mainsub) from FoodIngredient where mainsub = 'main' group by fdName;
 
 select * from foodingredient where fdName = '잔치국수' and mainSub = 'main';
 
