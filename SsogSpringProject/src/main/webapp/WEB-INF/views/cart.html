@@ -60,13 +60,13 @@
     			<div>&nbsp;</div>
     		</div>
     		<div id="ingreContents">
-	    		<div class="ingreContents" id="ingreCon" th:each="num : ${#numbers.sequence(1,5)}">
+	    		<!-- <div class="ingreContents" id="ingreCon" th:each="num : ${#numbers.sequence(1,5)}">
 	    			<div><img src="resources/img/10.jpg"></div>
 	    			<div>광어</div>
 	    			<div>20000원</div>
 	    			<div>쿠팡</div>
 	    			<div><button class="btn py-3 px-4">장바구니 추가</button></div>
-	    		</div>
+	    		</div> -->
 	    	</div>
     		<div class="ingreContents ingreOC" id="ingreClose">
     			<div onclick="closeIngre()">닫기</div>
@@ -233,6 +233,7 @@
     $(document).ready(()=>{
   		loadList();
   	});
+    
     function loadList(){
     	
   		$.ajax({
@@ -245,7 +246,18 @@
   	}
     function cartHtml(cartList){
     	let view="";
-    	
+    	let view2="";
+      	for(var i = 0; i <5; i++){
+      		view2+=`<div class="ingreContents" id="ingreCon">
+    			<div><img src="resources/img/10.jpg"></div>
+    				<div>광어</div>
+    				<div>20000원</div>
+    				<div>쿠팡</div>
+    				<div><button class="btn py-3 px-4">장바구니 추가</button></div>
+    			</div>`;
+      	}
+      	
+      	$("#ingreContents").html(view2);
     	
     	view+="<table class='table' id='table01'>";
 		view+="<thead class='thead-primary'>";
