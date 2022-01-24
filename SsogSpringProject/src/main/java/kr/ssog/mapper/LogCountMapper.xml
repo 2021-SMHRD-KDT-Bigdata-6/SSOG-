@@ -3,12 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.ssog.mapper.LogCountMapper">
-    <select id = "createLogTable" parameterType="String">
+    <select id = "createLogTable" parameterType ="map">
         insert into LogCount(logSeq, mID, fdName) values(logcount_seq.nextval, #{user_id}, #{food_name})
     </select>
     
-    <select id = "plusLogCount" parameterType = "String">
-        update LogCount set logNum = (select logNum from logCount where mID = #{user_id} and fdName = #{food_name})+1 where mID = #{user_id} and fdName = #{food_name}
+    <select id = "plusLogCount" parameterType = "map">
+        update LogCount set logNum = (select logNum from logCount where mID = #{user} and fdName = #{food})+1 where mID = #{user} and fdName = #{food}
     </select>
     
-</mapper>
+</mapper>	

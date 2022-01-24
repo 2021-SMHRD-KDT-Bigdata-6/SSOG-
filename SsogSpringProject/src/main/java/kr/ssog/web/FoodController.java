@@ -20,6 +20,7 @@ public class FoodController {
 	
 	@Autowired
 	FoodService FoodService;
+	@Autowired
 	UserService userService;
 	
 	@RequestMapping("/r_it")

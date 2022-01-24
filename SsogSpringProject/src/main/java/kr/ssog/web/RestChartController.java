@@ -1,5 +1,8 @@
 package kr.ssog.web;
+import kr.ssog.domain.Food;
+import kr.ssog.domain.FoodAndImage;
 import kr.ssog.domain.Ingredient;
+import kr.ssog.service.FoodService;
 import kr.ssog.service.IngredientService;
 import java.util.List;
 
@@ -7,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,9 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class RestChartController{
 	@Autowired
 	IngredientService service;
+	@Autowired
+	FoodService foodservice;
 	
 	// 카테고리 클릭시 
-	@GetMapping("/priceInfoAjaxTEST")
+	@GetMapping("/categori")
 	public @ResponseBody List<String> IngreCateList(HttpServletRequest request){
 		String ingre = request.getParameter("ingre");
 		System.out.println(ingre);
@@ -26,6 +32,20 @@ public class RestChartController{
 		return list;
 	}
 	
-	// 개별 검색
+	@GetMapping("/testTop200List.do")
+	public @ResponseBody List<FoodAndImage> top200List(Model model){	
+		List<Food> food200 = foodservice.Top200();
+		List<FoodAndImage> top200 = foodservice.getAllImgUrlOb(food200);
+		System.out.println("================"+top200);
+		return top200;
+	}
+	
+	@GetMapping("/expendTable")
+	public @ResponseBody String getImgUrl(){
+		String url = service.getImgUrl("ingre_name");
+		return "";
+	}
+	
+	
 	
 }

@@ -11,5 +11,5 @@ public class IngredientReview {
 	private String reviewAnswer1;	//설문조사 맛
 	private String reviewAnswer2;	//설문조사 신선도
 	private int reviewScore;		//리뷰점수
-
+	private String CrawlFoodName; //크롤링용 이름
 }
