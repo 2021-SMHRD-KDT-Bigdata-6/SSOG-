@@ -88,7 +88,7 @@
             color: #0075ff;
             font-size: 2em;
             letter-spacing: -5px;
-            color : #a23f25;
+            color : #eaeaea;
             display: flex;
     		align-items: center;
         }
@@ -370,6 +370,100 @@
     #modalPrice{
     	padding-left:0;
     }
+    /* 모달창 end */
+    
+    /* 장바구니 선택 리스트 */
+    .ingreCon{
+    	margin-bottom:100px;
+    }
+	#ingreName{
+		width:200px;
+		float:right;
+	}
+	#ingreName div{
+		border-bottom:1px solid #f8f8f8;
+	}
+	#ingreName+div{
+		padding-left : 20px;
+	}
+	#ingreName select{
+	    padding: 5px 0;
+	    width: 200px;
+	    text-align: center;
+	}
+	#ingreList{
+		width: 730px;
+	    float: left;
+	}
+	.ingreContents{
+		display:flex;
+		align-items: center;
+		justify-content: center;
+	}
+    .ingreContents div{
+    	width:20%;
+    	text-align: center;
+    	
+    }
+    #ingreHead{
+    	padding : 30px;
+    	border-bottom: 4px solid #f8f8f8;
+    }
+    #ingreHead div{
+    	font-size: 20px;
+    }
+    #ingreContents:last-child{
+    	border-bottom : 4px solid #f8f8f8;
+    }
+    #ingreCon div{
+    	padding-top : 30px;
+    	padding-bottom : 30px;
+    }
+    #ingreCon div img{
+    	width:100px;
+    	height:100px;
+    }
+    .ingreOC div{
+    	padding-top : 20px;
+    	padding-bottom : 30px;
+   	    display: flex;
+    	justify-content: center;
+    	cursor : pointer;
+    	margin: auto;
+    }
+    .ingreOC{
+    	text-align:center;
+    	
+    }
+    #ingreClose{
+    	border-top : 4px solid #f8f8f8;
+    }
+    #ingreOpen{
+    	display : none;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

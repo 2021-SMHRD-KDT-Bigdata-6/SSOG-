@@ -20,7 +20,6 @@
     <!-- 추가 css -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="resources/css/cart.css">
-    
   </head>
   <body>
 
@@ -39,8 +38,48 @@
     </section>
     <section class="ftco-section">
     <div class="container">
-    <form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
+    <div class='row ingreCon'>
+    	<div id="ingreName">
+	    	<div>
+	    		<select>
+		    		<option>판매순</option>
+		    		<option>낮은 가격순</option>
+	    		</select>
+	    		
+	    	</div>
+	    	<div th:each="ingre : ${ingre}"> 
+	    		<button th:text="${ingre}" class="btn py-3 px-4"></button>
+	    	</div> 
+    	</div>
+    	<div id="ingreList">
+    		<div class="ingreContents" id="ingreHead">
+    			<div>&nbsp;</div>
+    			<div>상품</div>
+    			<div>가격</div>
+    			<div>판매처</div>
+    			<div>&nbsp;</div>
+    		</div>
+    		<div id="ingreContents">
+	    		<div class="ingreContents" id="ingreCon" th:each="num : ${#numbers.sequence(1,5)}">
+	    			<div><img src="resources/img/10.jpg"></div>
+	    			<div>광어</div>
+	    			<div>20000원</div>
+	    			<div>쿠팡</div>
+	    			<div><button class="btn py-3 px-4">장바구니 추가</button></div>
+	    		</div>
+	    	</div>
+    		<div class="ingreContents ingreOC" id="ingreClose">
+    			<div onclick="closeIngre()">닫기</div>
+    		</div>
+	   		<div class="ingreContents ingreOC" id="ingreOpen">
+	   			<div onclick="openIngre()">상품보기</div>
+	   		</div>
+    	</div>
+    	
+    </div>
     
+    <form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
+    	
             <input type="hidden" name="cmd" value="order">
             <div class="basketdiv table-wrap" id="basket">
                <!-- <table class="table" id="table01">
@@ -190,12 +229,12 @@
   <script src="resources/js/cartEvent.js"></script>
   
   <!-- view -->
-  <script type="text/javascript">
+  <script>
     $(document).ready(()=>{
   		loadList();
   	});
     function loadList(){
-  		
+    	
   		$.ajax({
   			url : "cartAjaxList.do", 
   			type : "get",
@@ -250,7 +289,20 @@
 
     	$("#basket").html(view);
     }
-	
+    let ingreContents = document.getElementById('ingreContents');
+    let ingreOpen = document.getElementById('ingreOpen');
+    let ingreClose = document.getElementById('ingreClose');
+    function openIngre(){
+  	  ingreOpen.style.display="none";
+  	  ingreContents.style.display="block";
+  	  ingreClose.style.display="block";
+  	  
+    }
+    function closeIngre(){
+  	  ingreClose.style.display="none";
+  	  ingreContents.style.display="none";
+  	  ingreOpen.style.display="block";
+    }
     </script>
   
   <!-- 모달창 js -->

@@ -47,21 +47,21 @@ public class FoodController {
 		model.addAttribute("fdImg",fdImg);
 		
 		// 주재료
-		List<String> main = FoodService.getMainIngre(fdName);
-		String mainIngre = "";
-		for(int i = 0; i < main.size(); i++) {
-			mainIngre += main.get(i) + " ";
-		}
+		List<String> mainIngre = FoodService.getMainIngre(fdName);
+//		String mainIngre = "";
+//		for(int i = 0; i < main.size(); i++) {
+//			mainIngre += main.get(i) + " ";
+//		}
 		model.addAttribute("mainIngre",mainIngre);
 		
 		// System.out.println(main.toString());
 		
 		// 부재료
-		List<String> sub = FoodService.getSubIngre(fdName);
-		String subIngre = "";
-		for(int i = 0; i < sub.size(); i++) {
-			subIngre += sub.get(i) + " ";
-		}
+		List<String> subIngre = FoodService.getSubIngre(fdName);
+//		String subIngre = "";
+//		for(int i = 0; i < sub.size(); i++) {
+//			subIngre += sub.get(i) + " ";
+//		}
 		model.addAttribute("subIngre",subIngre);
 		
 		// 레시피, 이미지
