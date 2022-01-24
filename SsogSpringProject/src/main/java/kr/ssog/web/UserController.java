@@ -44,7 +44,7 @@ public class UserController {
 		
 			List<Food> top200 = FoodService.Top200();
 			model.addAttribute("foodList", top200);
-		    //30개이미지
+			
 		    List<String> imgs = FoodService.getAllImgUrl(top200);
 		    model.addAttribute("imgs", imgs);
 	

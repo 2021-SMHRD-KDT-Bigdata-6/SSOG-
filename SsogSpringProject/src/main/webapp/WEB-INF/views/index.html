@@ -144,12 +144,14 @@
                 	
                 	 -->
              
-               <div class="col-md-3 d-flex" th:each="num: ${#numbers.sequence(1,4)}">
+               <div class="col-md-3 d-flex" th:each="imgs: ${imgs}">
+               <th:block th:each="foodList: ${foodList}" th:if="${foodListStat.index == imgsStat.index && foodListStat.index < 4}">
+                  <a th:href="@{r_recipe.do(fdName=${foodList.fdName})}">
                   <div class="product ftco-animate">
                    	
                   
                      <div class="img d-flex align-items-center justify-content">
-                     	<img th:src="@{resources/images/}+'prod-'+${num}+'.jpg'" style="width:255px; height: 350px;">
+                     	<img th:src="@{${imgs}}" style="width:255px; height: 350px;">
                      		<div class="desc">
                      			<p class="meta-prod d-flex" style="text-align:center;" >
                     				<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
@@ -160,17 +162,18 @@
                      </div>
                      		<div class="text text-center">
                         		<span class="seller">추천상품!</span>
-                        		<span class="category">category</span>
-                        		<h2>name</h2>
+                        		<span class="category" th:text="${foodList.fdCategori}">category</span>
+                        		<h2 th:text="${foodList.fdName}">name</h2>
                      		</div>
                   	</div>
+                  </a>
               	 </div>
 					</div>
 				</div>
 			
 		</section>
 		
-		<section class="ftco-section" style="padding-top: 144px; padding-bottom: 48px;">
+		<!-- <section class="ftco-section" style="padding-top: 144px; padding-bottom: 48px;">
 			<div class="container">
 				<div class="row justify-content-center pb-5">
           <div class="col-md-7 heading-section text-center ftco-animate">
@@ -201,14 +204,15 @@
                 	th:src="${변수}" : 태그의 src 속성을 변경
                 	th:속성명="${변수}" : 속성값을 변수값으로 변경
                 	
-                	 -->
+                	 
              
-               <div class="col-md-3 d-flex" th:each="list: ${imgs}">
+               <div class="col-md-3 d-flex" th:each="imgs: ${imgs}">
+               <th:block th:each="foodList: ${foodList}" th:if="${foodListStat.index == imgsStat.index && foodListStat.index < 4}">
                   <div class="product ftco-animate">
                    	
                   
                      <div class="img d-flex align-items-center justify-content">
-                     	<img th:src="@{${list.imgs}}" style="width:255px; height: 350px;">
+                     	<img th:src="@{${imgs}}" style="width:255px; height: 350px;">
                      		<div class="desc">
                      			<p class="meta-prod d-flex" style="text-align:center;" >
                     				<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
@@ -219,15 +223,15 @@
                      </div>
                      		<div class="text text-center">
                         		<span class="seller">추천식재료!</span>
-                        		<span class="category">category</span>
-                        		<h2>name</h2>
+                        		<span class="category" th:text="${foodList.fdCategori}">category</span>
+                        		<h2 th:text = "${foodList.fdName}">name</h2>
                      		</div>
                   	</div>
               	 </div>
 					</div>
 				</div>
 			
-		</section>
+		</section> -->
 
 				<div class="row justify-content-center pb-5" style="padding-top: 96px;">
           			<div class="col-md-7 heading-section text-center ftco-animate">
@@ -313,7 +317,7 @@
           <div class="col-md-12">
             <div class="carousel-testimony owl-carousel ftco-owl">
   
-              <div class="item" th:each="list : ${happyList}">
+              <div class="item" th:each="list : ${happyList}" th:if = "${listStat.index < 6}">
                 <div class="testimony-wrap py-4" id="bordercolor" style="text-align: center">
                 		<div style="width: 100%; height:203px;">
                 			<a th:href="@{boardContents(num=${list.num})}"><img th:src="@{${list.filePath}}" style="width:100%; height:100%;"/></a>
@@ -322,7 +326,7 @@
                  		 <div class="text text2">
                    		 <p class="mb-4"></p>
                    		 <div class="d-flex align-items-center">
-                    		<div class="user-img" th:style="'background-image: url('+@{${list.filePath}}+');'"></div>
+                    		<div class="user-img" th:style="'background-image: url('+@{resources/images/person_1.png}+');'"></div>
                     		<div class="pl-3 text2">
 		                   	 	<p class="name" th:text="${list.writer}">작성자이름</p>
 		                    	<span class="position">새싹회원</span>
@@ -360,7 +364,7 @@
         <div class="row ftco-animate">
           <div class="col-md-12">
             <div class="carousel-testimony owl-carousel ftco-owl">           
-              <div class="item" th:each="list:${poisonList}">
+              <div class="item" th:each="list:${poisonList}" th:if = "${listStat.index < 6}">
                 <div class="testimony-wrap py-4" id="bordercolor" style="text-align:center">
                 		<div style="width: 100%; height:203px;">
                 			<a href="b_poisonCook.do"><img th:src="@{${list.filePath}}" style="width:100%; height:100%;"/></a>
@@ -369,7 +373,7 @@
                   <div class="text text2">
                     <p class="mb-4"></p>
                     <div class="d-flex align-items-center">
-                    	<div class="user-img" th:style="'background-image: url('+@{${list.filePath}}+');'"></div>
+                    	<div class="user-img" th:style="'background-image: url('+@{resources/images/person_1.png}+');'"></div>
                     	<div class="pl-3 text2">
 		                    <p class="name" th:text="${list.writer}">작성자이름</p>
 		                    <span class="position">새싹회원</span>

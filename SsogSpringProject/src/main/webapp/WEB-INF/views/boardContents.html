@@ -70,7 +70,7 @@
             </div>
             <div class="about-author d-flex p-4 bg-light" id="why">
               <div class="bio mr-5">
-                <img src="resources/images/person_1.jpg" style=width:100px; alt="Image placeholder" class="img-fluid mb-4" id="bdrd">
+                <img src="resources/images/person_1.png" style=width:100px; alt="Image placeholder" class="img-fluid mb-4" id="bdrd">
               </div>
               <div class="desc">
                 <h3 th:text="${board.writer}"></h3>
@@ -78,120 +78,82 @@
               </div>
             </div>
 
-
+		  
             <div class="pt-5 mt-5">
               <h3 class="mb-5">comment(6)</h3>
-              <ul class="comment-list">
-                <li class="comment">
+              <ul class="comment-list" id="comment-list">
+                <!-- <li class="comment">
                   <div class="vcard bio">
-                    <img src="resources/images/person_1.jpg" alt="Image placeholder">
+                    <img src="resources/images/person_1.png" alt="Image placeholder">
                   </div>
                 <div>
                   <div class="comment-body">
                     <h3>요리똥손</h3>
                     <div class="meta">2021-11-20 8:21pm</div>
                     <p> 와... 맛있어보여요... 고기 제가 구우면 맨날 숯덩이 되던데ㅠㅠ </p>
-                    <p><a href="#" class="reply">Reply</a></p>
                   </div>
                  </div> 
-                </li>
+                </li> -->
 
-                <li class="comment">
+               <!--  <li class="comment">
                   <div class="vcard bio">
-                    <img src="resources/images/person_1.jpg" alt="Image placeholder">
+                    <img src="resources/images/person_1.png" alt="Image placeholder">
                   </div>
                   <div class="comment-body">
                     <h3>민건맘</h3>
                     <div class="meta">2021-11-20 8:33pm</div>
                     <p>플레이팅도 예뻐서 보기 좋네요~</p>
-                    <p><a href="#" class="reply">Reply</a></p>
                   </div>
 				</li>
-                  <ul class="children">
-                    <li class="comment">
-                      <div class="vcard bio">
-                        <img src="resources/images/person_1.jpg" alt="Image placeholder">
-                      </div>
-                      <div class="comment-body">
-                        <h3>멍멍아야옹해봐</h3>
-                        <div class="meta">2021-11-20 9:18pm</div>
-                        <p>어떻게 저렇게 굽는지 알려주세용</p>
-                        <p><a href="#" class="reply">Reply</a></p>
-                      </div>
-
-
-                      <ul class="children">
-                        <li class="comment">
-                          <div class="vcard bio">
-                            <img src="resources/images/person_1.jpg" alt="Image placeholder">
-                          </div>
-                          <div class="comment-body">
-                            <h3>고기식신이</h3>
-                            <div class="meta">2021-11-20 9:20pm</div>
-                            <p>고기는 2.5cm 정도 되는걸로 준비하시고, 굽기전에 소금 후추 밑간해두시구요~ 팬을 3분정도 강불에 예열하시고, 버터 넉넉히 둘러주신후에 처음엔 4분 뒤집어서 3분 구워주세용~ 그럼 저런 미디움이 나온답니다~~</p>
-                            <p><a href="#" class="reply">Reply</a></p>
-                          </div>
-
-                            <ul class="children">
-                              <li class="comment">
-                                <div class="vcard bio">
-                                  <img src="resources/images/person_1.jpg" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                  <h3>멍멍아야옹해봐</h3>
-                                  <div class="meta">2021-11-20 9:25pm</div>
-                                  <p>꿀팁 감사합니당</p>
-                                  <p><a href="#" class="reply">Reply</a></p>
-                                </div>
-                              </li>
-                            </ul>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
+                 
                 
 
                 <li class="comment">
                   <div class="vcard bio">
-                    <img src="resources/images/person_1.jpg" alt="Image placeholder">
+                    <img src="resources/images/person_1.png" alt="Image placeholder">
                   </div>
                   <div class="comment-body">
                     <h3>노대동불주먹</h3>
                     <div class="meta">2021-11-21 12:04am</div>
                     <p>맛있겠다^^</p>
-                    <p><a href="#" class="reply">Reply</a></p>
                   </div>
-                </li>
+                </li> -->
               </ul>
               <!-- END comment-list -->
               
-              <div class="comment-form-wrap pt-5">
-                
+          <!-- comment 작성 -->
+           <div class="comment-form-wrap pt-5">
+         <th:block th:if="${session.users==null}"></th:block>
+         <th:block th:if="${session.users!=null}">
+          <form action = "insert" method = "get">
             <div class="pt-5 mt-5">
               <ul class="comment-list">
                 <li class="comment">
                   <div class="vcard bio">
-                    <img src="resources/images/person_1.jpg" alt="Image placeholder">
+                    <img src="resources/images/person_1.png" alt="Image placeholder">
                   </div>
                   <div class="comment-body">
-                    <h3>요리똥손</h3>
+                  	<input type="hidden" th:value="${board.num}" name="bno" id="bno">
+                    <h3 name="writer" th:text="${session.users.mb_id}">요리똥손</h3>
                     <div class="meta"></div>
                   </div>
                 </li>
                 </ul>
                 </div>
                   <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                    <label for="contents">Message</label>
+                    <textarea name="contents" id="message" cols="30" rows="10" class="form-control"></textarea>
                   </div>
                   <div class="form-group">
                     <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
                   </div>
 
                 </form>
+                </th:block>
               </div>
+              <!-- comment 작성 End -->
+              
             </div>
-
           </div> <!-- .col-md-8 -->
           <!--  
           <div class="col-lg-4 sidebar pl-lg-5 ftco-animate">
@@ -295,6 +257,45 @@
   <script src="resources/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="resources/js/google-map.js"></script>
   <script src="resources/js/main.js"></script>
+  <script>
+  $(document).ready(()=>{
+		loadCmt();
+		
+	})
+	function loadCmt(){
+	  let bno = document.getElementById("#bno").value;
+	  $.ajax({
+		  url : "getCmtList",
+		  type : "get",
+		  dataType : "jason",
+		  data : {"bno":bno},
+		  success : resultHtml,
+		  error : function(){alert("error");}
+	  });
+  }
   
+  function resultHtml(cmtList){
+	  let view = "";
+	  $.each(cmtList, function(index,obj){
+		  view += `<li class="comment">
+              <div class="vcard bio">
+                <img src="resources/images/person_1.png" alt="Image placeholder">
+              </div>
+            <div>
+              <div class="comment-body">
+                <h3>${obj["writer"]}</h3>
+                <div class="meta">${obj["comment_time"]}</div>
+                <p>${obj["contents"]}</p>
+              </div>
+             </div> 
+            </li>`;
+	  });
+			
+	
+	  
+	  $("#comment-list").html(view);
+  }
+  
+  </script>
   </body>
 </html>
