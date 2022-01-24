@@ -173,7 +173,7 @@
 			
 		</section>
 		
-		<section class="ftco-section" style="padding-top: 144px; padding-bottom: 48px;">
+		<!-- <section class="ftco-section" style="padding-top: 144px; padding-bottom: 48px;">
 			<div class="container">
 				<div class="row justify-content-center pb-5">
           <div class="col-md-7 heading-section text-center ftco-animate">
@@ -204,7 +204,7 @@
                 	th:src="${변수}" : 태그의 src 속성을 변경
                 	th:속성명="${변수}" : 속성값을 변수값으로 변경
                 	
-                	 -->
+                	 
              
                <div class="col-md-3 d-flex" th:each="imgs: ${imgs}">
                <th:block th:each="foodList: ${foodList}" th:if="${foodListStat.index == imgsStat.index && foodListStat.index < 4}">
@@ -231,7 +231,7 @@
 					</div>
 				</div>
 			
-		</section>
+		</section> -->
 
 				<div class="row justify-content-center pb-5" style="padding-top: 96px;">
           			<div class="col-md-7 heading-section text-center ftco-animate">
@@ -326,7 +326,7 @@
                  		 <div class="text text2">
                    		 <p class="mb-4"></p>
                    		 <div class="d-flex align-items-center">
-                    		<div class="user-img" th:style="'background-image: url('+@{${list.filePath}}+');'"></div>
+                    		<div class="user-img" th:style="'background-image: url('+@{resources/images/person_1.png}+');'"></div>
                     		<div class="pl-3 text2">
 		                   	 	<p class="name" th:text="${list.writer}">작성자이름</p>
 		                    	<span class="position">새싹회원</span>
@@ -373,7 +373,7 @@
                   <div class="text text2">
                     <p class="mb-4"></p>
                     <div class="d-flex align-items-center">
-                    	<div class="user-img" th:style="'background-image: url('+@{${list.filePath}}+');'"></div>
+                    	<div class="user-img" th:style="'background-image: url('+@{resources/images/person_1.png}+');'"></div>
                     	<div class="pl-3 text2">
 		                    <p class="name" th:text="${list.writer}">작성자이름</p>
 		                    <span class="position">새싹회원</span>

@@ -5,15 +5,15 @@
         select count(*) from cmt
     </select>
     
-    <select id="cmtList" resultType="kr.ssog.mapper.CmtMapper">
+    <select id="cmtList" resultType="kr.ssog.domain.Cmt" parameterType="int">
         select * from cmt where bno=#{bno} order by comment_time desc
     </select>
     
-    <insert id="cmtInsert" parameterType="kr.ssog.mapper.CmtMapper">
-        insert into cmt values(comment_seq.nextval,#{cno},#{bno},#{contents},#{writer},sysdate)
+    <insert id="cmtInsert" parameterType="kr.ssog.domain.Cmt">
+        insert into cmt values(comment_seq.nextval,#{bno},#{contents},#{writer},sysdate)
     </insert>
     
-    <update id="cmtUpdate" parameterType="kr.ssog.mapper.CmtMapper">
+    <update id="cmtUpdate" parameterType="kr.ssog.domain.Cmt">
         update cmt set contents = #{contents} where cno = #{cno}
     </update>
     
