@@ -16,13 +16,22 @@
     <link rel="stylesheet" href="resources/css/magnific-popup.css">
     <link rel="stylesheet" href="resources/css/flaticon.css">
     <link rel="stylesheet" href="resources/css/style.css">
+    
+    <!-- Noto Sans 추가 -->
+    <link rel="stylesheet" href="resources/css/NotoSans.css">
     <style>
     	strong{
     		font-weight : bold;
     	}
     	.product-details .price span{
-    		font-size : 16px;
-    		font-family : '나눔고딕';
+   		    font-size: 15px;
+		    font-family: 'Noto Sans';
+		    font-weight: lighter;
+		    letter-spacing: -0.3px;
+    	}
+    	.ingre{
+   		    font-size: 16px;
+    		
     	}
     	.img-fluid {
     		height : 100%;
@@ -39,7 +48,28 @@
     	#v-pills-tabContent{
     		background-color : white !important;
     	}
-    
+    	
+    	#recipeCon{
+		    margin-bottom:100px; 
+   		    font-family: 'Noto Sans';
+		    font-weight: normal;
+		    font-size: 15px;
+		    color: #3e3e3e;
+    	}
+    	#fdName{
+    		margin-top:50px; 
+    		margin-bottom:50px;
+    	}
+    	#recipe{
+    		width: 370px;
+		    text-align: center;
+		    margin: 0 auto;
+    	}
+    	#ideaIcon{
+   		    width: 150px;
+		    height: 150px;
+		    margin-bottom: 20px;
+    	}
     </style>
   </head>
   <body>
@@ -65,10 +95,12 @@
     	<div class="container">
     		<div class="row">
     			<div class="col-lg-6 mb-5 ftco-animate">
-    				<a href="<%--=conf.getImgUrl(fName) --%>" class="image-popup prod-img-bg"><img src="resources/img/1.jpg<%--=conf.getImgUrl(fName) --%>" class="img-fluid" alt="Colorlib Template"></a>
+    				<a href="<%--=conf.getImgUrl(fName) --%>" class="image-popup prod-img-bg">
+    					<img th:src="@{${fdImg}}" class="img-fluid" alt="Colorlib Template" style="width: 100%;">
+    				</a>
     			</div>
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
-    				<h3>음식이름</h3>
+    				<h3 th:text="${fdName}"></h3>
     				<div class="rating d-flex">
 							<p class="text-left mr-4">
 								<a href="#" class="mr-2">난이도</a>
@@ -80,11 +112,12 @@
 								<a href="#" class="mr-2" style="color: #000;">소요시간 <span style="color: #bbb;">20분</span></a>
 							</p>
 						</div>
+    				<p class="price"><span th:text="${recipeEtc}">고추장 양념에 빨갛게 무쳐 먹던 마늘종을<br>햄과 함께 달달 볶았어요.</span></p>
     				<!-- <p class="price"><span>고추장 양념에 빨갛게 무쳐 먹던 마늘종을<br>햄과 함께 달달 볶았어요.</span></p> -->
-    				<p><strong>주재료</strong></p>
-						<p>주재료 코드</p>
-    				<p><strong>부재료</strong></p>
-						<p>부재료 코드</p>
+    				<p class="ingre"><strong>주재료</strong></p>
+						<p th:text="${mainIngre}" style="color:#0c0c0c;">주재료</p>
+    				<p class="ingre"><strong>부재료</strong></p>
+						<p th:text="${subIngre}" style="color:#0c0c0c;">부재료</p>
 
 						
 						<div class="row mt-4">
@@ -127,10 +160,18 @@
 
               <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
               	<div class="p-4">
-	              	<h3 class="mb-4">음식이름</h3>
-	              	<p>
-	              	레시피 코드
-	              	 </p>
+              	  <div id="recipe">
+	              	<h3 id="fdName" th:text="${fdName}+' 만들기'">음식이름</h3>
+	              	<th:block th:each="recipe : ${recipe} ">
+	              		<th:block th:if="${recipe.recipeImg!=''}">
+	              			<img th:src="@{resources/}+${recipe.recipeImg}" style="margin-bottom:100px; width:370px; height:350px;">
+	              		</th:block>
+	              		<th:block th:if="${recipe.recipeImg==''}">
+	              			<img id="ideaIcon" src="resources/img/ideaIcon.png">
+	              		</th:block>
+	              		<p th:text="${recipe.recipeContent}" id="recipeCon"></p>
+	              	 </th:block>
+	              </div>
               	</div>
               </div>
 
@@ -300,6 +341,7 @@
   <script>
 	//1) chart를 세팅할 수 있는 canvas 태그 가져오기
 	let radarChart = document.getElementById('radarChart')
+	let fdName = document.getElementById('fdName')
 	//2) chart 생성
 	//2-1) 데이터 준비
 	//============임의의 데이터를 생성하는 함수를 만들어 봄!================
@@ -322,7 +364,7 @@
 		data : {
 			labels : ['탄수화물', '단백질', '지방', '무기질', '비타민'],
 		  	datasets: [{
-			    label: '마늘종장아찌 볶음밥 영양정보',
+			    label:fdName,
 			    data: [...randomData()],
 			    fill: true,
 			    backgroundColor: 'rgba(255, 80, 0, 0.7)',

@@ -108,7 +108,7 @@
 					<div class="col-lg-2 col-md-4 ">
 						<div class="sort w-100 text-center ftco-animate">
 							<div class="img" th:style="'background-image: url('+@{resources/images/}+'kind-1'+'.jpg);'"></div>
-							<h3>이달의 제철상품</h3>
+							<h3 style="color: #b7472a;">AI 맞춤 추천</h3>
 						</div>
 					</div>
 					<div class="col-lg-2 col-md-4 ">
@@ -278,7 +278,7 @@
 	  		$.each(categoriFood, function(index, obj){
 	  			if(index < 30){
 	  				view+="<div class='col-md-4 d-flex'>";
-	  	    		view+="<a href='r_recipe'>";
+	  	    		view+="<a href='r_recipe?fdName="+obj.fdName+"'>";
 	  	    		view+="<div class='product' style='text-align:center'>";
 	  	    		view+="<div class='img d-flex align-items-center justify-content-center' style='background-image: url("+obj.imgs+");'>";
 	  	    		view+="<div class='desc'>";

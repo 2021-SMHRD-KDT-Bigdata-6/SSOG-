@@ -47,6 +47,8 @@ public class UserService {
     
     //로그 기록 더하기
     public void plusLogCount(t_member vo, String food_name) {
+    	System.out.println(food_name);
+    	System.out.println(vo);
     	logMapper.plusLogCount(vo.getMb_id(), food_name);
     }
 }

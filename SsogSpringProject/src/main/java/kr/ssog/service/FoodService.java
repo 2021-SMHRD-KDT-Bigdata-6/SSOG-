@@ -85,7 +85,10 @@ public class FoodService {
 		for (int i =0; i <result.size(); i++) {
 			FoodRecipe recipe = result.get(i);
 			String url = recipe.getRecipeImg();
-			url =url.substring(url.indexOf("webapp")+7);
+
+			if(url.equals("null")) {url = "";}
+			else{url =url.substring(url.indexOf("webapp")+7);}
+
 			recipe.setRecipeImg(url);
 			result.set(i, recipe);
 			}
@@ -219,6 +222,9 @@ public class FoodService {
 		//비타민D,비타민E,비타민K,비타민B12 (나노그램)
 		//비타민B2,비타민B5,비타민B6,비타민C,비타민1
 		//칼륨, 식이섬유,아연,마그네슘,철,나트륨,칼슘,인,에너지
+		//어떤걸 보여줄 것인가?
+		// 전반적인 칼로리/ 탄단지/ 무기류/ 비타민
+		// 하루권장량을 기준으로 보여줄건데, 무기류 비타민, 하루권장량이
 		
 	}
 	

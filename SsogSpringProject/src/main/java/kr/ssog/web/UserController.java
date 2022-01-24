@@ -15,14 +15,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.ssog.domain.Board;
 import kr.ssog.domain.t_member;
 import kr.ssog.service.BoardService;
+import kr.ssog.service.FoodService;
 import kr.ssog.service.UserService;
 
 @Controller
 public class UserController {
 	@Autowired
-	UserService service;
+	UserService UserService;
 	@Autowired
 	BoardService BoardService; 
+	@Autowired
+	FoodService FoodService;
 	
 	@RequestMapping("/")
 	public String root() {
@@ -65,16 +68,14 @@ public class UserController {
 	
 	@RequestMapping("/joinGo")
 	public String joinGo() {
+		System.out.println("회원가입");
 		return "join";
 	}
 //	@RequestMapping("/r_it")
 //	public String r_it() {
 //		return "r_it";
 //	}
-	@RequestMapping("/r_recipe")
-	public String r_recipe() {
-		return "r_recipe";
-	}
+
 	@RequestMapping("/r_theme")
 	public String r_theme() {
 		return "r_theme";
@@ -82,7 +83,7 @@ public class UserController {
 	
 	@PostMapping("/login.do")
 	public String login(t_member vo, HttpSession session) { // userId, userPwd
-		t_member users = service.login(vo);
+		t_member users = UserService.login(vo);
 		if(users != null) { // 인증성공
 			// 객체바인딩(세션바인딩)
 			session.setAttribute("users", users);
@@ -96,19 +97,22 @@ public class UserController {
 	}
 	@PostMapping("/join")
 	public String join(t_member vo) {
-		service.join(vo);
+		UserService.join(vo);
+		System.out.println("회원가입완료");
+		UserService.createLogTable(vo);
 		return "redirect:/";
 	}
 	// 아이디중복체크
 	@ResponseBody
 	@PostMapping("/idCheck")
 	public int idCheck(t_member vo){
-		int result = service.idCheck(vo);
+		int result = UserService.idCheck(vo);
 		return result;
 	}
 	@PostMapping("/memberUpdate.do")
 	public String memberUpdate(t_member vo) {
-		service.memberUpdate(vo);
+		UserService.memberUpdate(vo);
 		return "redirect:memberUpdate.do";
 	}
+	
 }
