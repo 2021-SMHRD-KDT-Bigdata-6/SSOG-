@@ -29,6 +29,7 @@ public class RestChartController{
 		System.out.println(ingre);
 		List<Ingredient> categori = service.CategoriPriceTop(ingre);
 		List<String> list = service.getAllTodayPrice(categori);
+		System.out.println("===================="+list);
 		return list;
 	}
 	
@@ -43,7 +44,7 @@ public class RestChartController{
 	@GetMapping("/expendTable")
 	public @ResponseBody String getImgUrl(){
 		String url = service.getImgUrl("ingre_name");
-		return "";
+		return url;
 	}
 	
 	
