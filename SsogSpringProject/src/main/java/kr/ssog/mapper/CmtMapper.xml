@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.ssog.mapper.CmtMapper">
     <select id="cmtCount" resultType="int">
-        select count(*) from cmt
+        select count(*) from cmt where bno=#{bno}
     </select>
     
     <select id="cmtList" resultType="kr.ssog.domain.Cmt" parameterType="int">

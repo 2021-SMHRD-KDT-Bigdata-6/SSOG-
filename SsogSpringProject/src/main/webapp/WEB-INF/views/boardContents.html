@@ -80,7 +80,8 @@
 
 		  
             <div class="pt-5 mt-5">
-              <h3 class="mb-5">comment(6)</h3>
+            <!-- 문자와 변수 혼합 사용 !! ===> th:text="|문자열${변수}|" -->
+              <h3 class="mb-5" th:text="|comment (${cmtCount})|">comment(6)</h3>
               <ul class="comment-list" id="comment-list">
                 <!-- <li class="comment">
                   <div class="vcard bio">
@@ -125,7 +126,7 @@
            <div class="comment-form-wrap pt-5">
          <th:block th:if="${session.users==null}"></th:block>
          <th:block th:if="${session.users!=null}">
-          <form action = "insert" method = "get">
+          <form action = "cmtInsert" method = "get">
             <div class="pt-5 mt-5">
               <ul class="comment-list">
                 <li class="comment">
@@ -134,7 +135,9 @@
                   </div>
                   <div class="comment-body">
                   	<input type="hidden" th:value="${board.num}" name="bno" id="bno">
-                    <h3 name="writer" th:text="${session.users.mb_id}">요리똥손</h3>
+                  	<input type="hidden" th:value="${board.num}" name="num">
+                  	<input type="hidden" th:value="${session.users.mb_id}" name="writer">
+                    <h3 name="writer" th:text="${session.users.mb_id}"></h3>
                     <div class="meta"></div>
                   </div>
                 </li>
@@ -258,12 +261,14 @@
   <script src="resources/js/google-map.js"></script>
   <script src="resources/js/main.js"></script>
   <script>
+  // 현재 URL주소에서 파라미터 받는 함수
   function getParameterByName(name) {
 	  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
 	  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
 	      results = regex.exec(location.search);
 	  return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 	} 
+  
   $(document).ready(()=>{
 		loadCmt();
 		

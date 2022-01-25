@@ -2,13 +2,17 @@ package kr.ssog.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.ssog.domain.Cmt;
 import kr.ssog.service.CmtService;
@@ -26,18 +30,15 @@ public class CmtConroller {
         return service.cmtListService(bno);
     }
     
-    @RequestMapping("/insert") //댓글 작성 
-    @ResponseBody
-    private int cmtServiceInsert(@RequestParam int bno, @RequestParam String contents) throws Exception{
-        
-        Cmt cmt = new Cmt();
-        cmt.setBno(bno);
-        cmt.setContents(contents);
-        //로그인 기능을 구현했거나 따로 댓글 작성자를 입력받는 폼이 있다면 입력 받아온 값으로 사용하면 됩니다. 저는 따로 폼을 구현하지 않았기때문에 임시로 "test"라는 값을 입력해놨습니다.
-        cmt.setWriter("test");  
-        
-        return service.cmtInsertService(cmt);
-    }
+
+	@RequestMapping("/cmtInsert")
+	public String cmtInsert(@RequestParam("num") int num,RedirectAttributes re, Cmt cmt) throws Exception {
+		service.cmtInsertService(cmt);
+		// 댓글 insert 후 boardContents로 redirect
+		// redirect할때 파라미터 넘기기
+		re.addAttribute("num", num);
+		return "redirect:/boardContents";
+	}
     
     @RequestMapping("/update") //댓글 수정  
     @ResponseBody
