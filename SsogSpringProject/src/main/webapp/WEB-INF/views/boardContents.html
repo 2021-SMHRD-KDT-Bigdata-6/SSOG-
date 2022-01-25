@@ -258,16 +258,21 @@
   <script src="resources/js/google-map.js"></script>
   <script src="resources/js/main.js"></script>
   <script>
+  function getParameterByName(name) {
+	  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+	  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+	      results = regex.exec(location.search);
+	  return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	} 
   $(document).ready(()=>{
 		loadCmt();
 		
 	})
 	function loadCmt(){
-	  let bno = document.getElementById("#bno").value;
+		let bno = getParameterByName("num");
 	  $.ajax({
 		  url : "getCmtList",
-		  type : "get",
-		  dataType : "jason",
+		 
 		  data : {"bno":bno},
 		  success : resultHtml,
 		  error : function(){alert("error");}
@@ -295,7 +300,7 @@
 	  
 	  $("#comment-list").html(view);
   }
-  
+
   </script>
   </body>
 </html>

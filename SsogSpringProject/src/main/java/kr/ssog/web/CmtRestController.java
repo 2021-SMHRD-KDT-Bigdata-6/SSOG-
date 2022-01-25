@@ -20,6 +20,8 @@ public class CmtRestController {
 	public @ResponseBody List<Cmt> getCmtList(int bno) throws Exception {
 		
 		List<Cmt> cmtList = service.cmtListService(bno);
+		System.out.println("게시글 번호는 : " + bno);
+		System.out.println(cmtList.toString());
 		return cmtList;
 	}
 	

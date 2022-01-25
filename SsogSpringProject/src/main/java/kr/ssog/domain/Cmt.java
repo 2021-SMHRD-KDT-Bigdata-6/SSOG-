@@ -9,5 +9,5 @@ public class Cmt {
     private int bno;
     private String contents;
     private String writer;
-    private int comment_time;
+    private String comment_time;
 }

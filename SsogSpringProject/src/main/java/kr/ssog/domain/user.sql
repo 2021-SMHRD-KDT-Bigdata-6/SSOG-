@@ -72,3 +72,4 @@ select * from foodrecipe where fdName = '생선초밥' order by recipeOrder;
 
 select recipeimg from foodrecipe;
 
+select * from cmt where bno=79 order by comment_time desc
