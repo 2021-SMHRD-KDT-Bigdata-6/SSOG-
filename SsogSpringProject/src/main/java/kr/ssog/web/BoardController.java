@@ -4,8 +4,10 @@ package kr.ssog.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,12 +18,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.ssog.domain.Board;
 import kr.ssog.service.BoardService;
-import sun.util.logging.resources.logging_sv;
+import kr.ssog.service.CmtService;
 
 @Controller
 public class BoardController {
 	@Autowired
 	BoardService service;
+	@Autowired
+	CmtService cmtService;
 	
 	// happyCook 게시판 리스트
 	@RequestMapping("/b_happyCook")
@@ -32,12 +36,25 @@ public class BoardController {
 		return "b_happyCook";
 	}
 	
-	// 해피 게시글 내용
+	// 게시글 내용
 	@RequestMapping("/boardContents")
-	public String boardContents(@RequestParam("num") int num, Model model){
+	public String boardContents(@RequestParam("num") int num, Model model, HttpSession session,HttpServletRequest req) throws Exception{
 		Board board = service.boardContent(num);
 		model.addAttribute("board", board);
-		System.out.println("게시판 번호" + num);
+		
+		// 댓글 수
+		int cmtCount = cmtService.cmtCount(num);
+		model.addAttribute("cmtCount", cmtCount);
+		
+		// 현재 창 URL가져오기(http://localhost:8081/web/boardContents)
+		StringBuffer url = req.getRequestURL();
+		//String url = req.getHeader("Referer"); --> 이전창 주소 가져오는 코드("Referer")
+		String referer2 = url + "?num=" + num;
+		
+		System.out.println(referer2);
+		//req.getSession().setAttribute("referer", referer2);
+		session.setAttribute("referer",referer2);
+		
 		return "boardContents";
 	}
 	

@@ -2,6 +2,7 @@ package kr.ssog.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.ssog.domain.Board;
 import kr.ssog.domain.Food;
@@ -89,13 +91,27 @@ public class UserController {
 	}
 	
 	@PostMapping("/login.do")
-	public String login(t_member vo, HttpSession session) { // userId, userPwd
+	public String login(t_member vo, HttpSession session, HttpServletRequest req, RedirectAttributes rdttr) { // userId, userPwd
 		t_member users = UserService.login(vo);
 		if(users != null) { // 인증성공
 			// 객체바인딩(세션바인딩)
 			session.setAttribute("users", users);
+			System.out.println("로그인 성공");
+		}else{
+			System.out.println("로그인 실패");
+			// 로그인 실패시 login.html에서 판별
+			rdttr.addFlashAttribute("msg", false);
+			return "redirect:login";
 		}
-		return "redirect:/";
+		
+		// 로그인 성공 시 이전 창으로 redirect(boardContents만 적용됨)
+		Object referer = session.getAttribute("referer");
+		System.out.println("로그인 입니다." + referer);
+		if(referer != null) {
+			return "redirect:" + referer;
+		}else {
+			return "redirect:/";
+		}
 	}
 	@GetMapping("/logout.do")
 	public String logout(HttpSession session)	{ // HttpSession sessioin=request.getSession() 

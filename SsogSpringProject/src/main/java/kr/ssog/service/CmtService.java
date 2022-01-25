@@ -10,9 +10,14 @@ import kr.ssog.mapper.CmtMapper;
 
 @Service
 public class CmtService {
-@Autowired
-CmtMapper mapper;
-public List<Cmt> cmtListService(int bno) throws Exception{
+	@Autowired
+	CmtMapper mapper;
+	
+	public int cmtCount(int bno) throws Exception{
+		return mapper.cmtCount(bno);
+	}
+	
+	public List<Cmt> cmtListService(int bno) throws Exception{
         
         return mapper.cmtList(bno);
     }

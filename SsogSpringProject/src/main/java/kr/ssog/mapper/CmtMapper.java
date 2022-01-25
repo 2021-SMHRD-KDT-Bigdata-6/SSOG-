@@ -5,7 +5,7 @@ import kr.ssog.domain.Cmt;
  public interface CmtMapper {
 
 // 댓글 개수 
- public int cmtCount() throws Exception;
+ public int cmtCount(int bno) throws Exception;
 
 // 댓글 목록 
  public List<Cmt> cmtList(int bno) throws Exception;

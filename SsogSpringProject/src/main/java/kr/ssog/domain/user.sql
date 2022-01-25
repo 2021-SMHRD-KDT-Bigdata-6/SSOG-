@@ -2,7 +2,10 @@ create table test (
 	num number(10)
 );
 
-drop table test;
+select * from FoodReview;
+
+select * from cmt;
+delete from cmt where writer = 'test';
 
 insert into BOARD values(BOARD_SEQ.nextval,'HappyCook','test','test','1.jpg','resources/img/1.jpg','내용',sysdate);
 
