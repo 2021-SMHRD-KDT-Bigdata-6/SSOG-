@@ -2,6 +2,7 @@ package kr.ssog.web;
 import kr.ssog.domain.Food;
 import kr.ssog.domain.FoodAndImage;
 import kr.ssog.domain.Ingredient;
+import kr.ssog.domain.ingre_price;
 import kr.ssog.service.FoodService;
 import kr.ssog.service.IngredientService;
 import java.util.List;
@@ -24,13 +25,17 @@ public class RestChartController{
 	
 	// 카테고리 클릭시 
 	@GetMapping("/categori")
-	public @ResponseBody List<String> IngreCateList(HttpServletRequest request){
+	public @ResponseBody ingre_price IngreCateList(HttpServletRequest request){
 		String ingre = request.getParameter("ingre");
 		System.out.println(ingre);
 		List<Ingredient> categori = service.CategoriPriceTop(ingre);
 		List<String> list = service.getAllTodayPrice(categori);
-		System.out.println("===================="+list);
-		return list;
+		
+		ingre_price price = new ingre_price(categori, list);
+		
+		
+		
+		return price;
 	}
 	
 	@GetMapping("/testTop200List.do")
