@@ -3,6 +3,16 @@ create table test (
 );
 
 select * from FoodReview;
+select * from IngredientReview;
+insert into IngredientReview (purchaseseq, reviewcontent, reviewdate, reviewscore, crawlfoodname) values('29','웅2',sysdate, 3,'웅2');
+select * from IngredientReview where reviewcontent = '웅2';
+delete from IngredientReview where reviewcontent = '웅2';
+select * from IngredientReview where reviewcontent = 'test';
+delete from IngredientReview where reviewcontent = 'test';
+
+select * from IngredientReview where crawlfoodname = '갈비';
+
+select * from nutrition where ingrename = (select * from (select ingrename from nutrition where ingrename like '%계란%' group by ingrename ORDER BY DBMS_RANDOM.RANDOM) where rownum  < 2 );
 
 select * from cmt;
 delete from cmt where writer = 'test';
