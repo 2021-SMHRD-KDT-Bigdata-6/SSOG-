@@ -56,7 +56,7 @@
 		    font-size: 15px;
 		    color: #3e3e3e;
     	}
-    	#fdName{
+    	#fdName2{
     		margin-top:50px; 
     		margin-bottom:50px;
     	}
@@ -156,7 +156,7 @@
 	          	</div>
 	          	<div class="w-100"></div>
           	</div>
-          	<input type="hidden" th:value="${fdName}" name="fdName" for="fdName">
+          	<input type="hidden" th:value="${fdName}" name="fdName" for="fdName" id="fdName">
           	<p>
 	          	<input type="submit" class="btn btn-primary py-3 px-5 mr-2" value="장바구니">
           		<a href="checkout.do" class="btn btn-primary py-3 px-5">결제하기</a>
@@ -186,7 +186,7 @@
               <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
               	<div class="p-4">
               	  <div id="recipe">
-	              	<h3 id="fdName" th:text="${fdName}+' 만들기'">음식이름</h3>
+	              	<h3 id="fdName2" th:text="${fdName}+' 만들기'">음식이름</h3>
 	              	<th:block th:each="recipe : ${recipe} ">
 	              		<th:block th:if="${recipe.recipeImg!=''}">
 	              			<img th:src="@{resources/}+${recipe.recipeImg}" style="margin-bottom:100px; width:370px; height:350px;">
@@ -202,7 +202,8 @@
 
               <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-day-2-tab">
               	<div class="p-4">
-	              	<h3 class="mb-4">영양정보</h3>
+	              	<h3 class="mb-4" th:text="|${fdName} 영양정보|"></h3>
+	              	<p th:text="|${fdName} 칼로리 : ${cal}|"></p>
 	              	<div id="chartBox"><canvas id="radarChart"></canvas></div>
               	</div>
               </div>
@@ -385,8 +386,6 @@
   <script src="resources/js/jquery.magnific-popup.min.js"></script>
   <script src="resources/js/jquery.animateNumber.min.js"></script>
   <script src="resources/js/scrollax.min.js"></script>
-  <script src="resources/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="resources/js/google-map.js"></script>
   <script src="resources/js/main.js"></script>
   <!-- chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
@@ -394,7 +393,7 @@
   <script>
 	//1) chart를 세팅할 수 있는 canvas 태그 가져오기
 	let radarChart = document.getElementById('radarChart')
-	let fdName = document.getElementById('fdName')
+	let fdName = $("#fdName").val();
 	//2) chart 생성
 	//2-1) 데이터 준비
 	//============임의의 데이터를 생성하는 함수를 만들어 봄!================
@@ -412,33 +411,47 @@
 		]
 	}
 	//============임의의 데이터를 생성하는 함수를 만들어 봄!================
-	let radarCht =  new Chart(radarChart,{
-		type : 'radar',
-		data : {
-			labels : ['탄수화물', '단백질', '지방', '무기질', '비타민'],
-		  	datasets: [{
-			    label:fdName,
-			    data: [...randomData()],
-			    fill: true,
-			    backgroundColor: 'rgba(255, 80, 0, 0.7)',
-			    borderColor: 'rgb(255, 80, 0)',
-			    pointBackgroundColor: 'rgb(255, 80, 0)',
-			    pointBorderColor: '#fff',
-			    pointHoverBackgroundColor: '#fff',
-			    pointHoverBorderColor: 'rgb(255, 80, 0)'
-			  }]
-		},
-		options : {
-			elements : {
-				line: {
-			        borderWidth: 1
-			      }
+	$(document).ready(()=>{
+		loadNutri();
+	});
+	function loadNutri(){
+		$.ajax({
+			url:"showNutri",
+			data:{"fdName":fdName},
+			type : "get",
+			success : showNutri,
+		});
+	}
+	function showNutri(nutriList){
+		let radarCht =  new Chart(radarChart,{
+			type : 'radar',
+			data : {
+				labels : ['탄수화물', '단백질', '지방', '무기질', '비타민'],
+			  	datasets: [{
+				    label:fdName,
+				    data: [nutriList[0],nutriList[1],nutriList[2],nutriList[3],nutriList[4]],
+				    fill: true,
+				    backgroundColor: 'rgba(255, 80, 0, 0.7)',
+				    borderColor: 'rgb(255, 80, 0)',
+				    pointBackgroundColor: 'rgb(255, 80, 0)',
+				    pointBorderColor: '#fff',
+				    pointHoverBackgroundColor: '#fff',
+				    pointHoverBorderColor: 'rgb(255, 80, 0)'
+				  }]
+			},
+			options : {
+				elements : {
+					line: {
+				        borderWidth: 1
+				      }
+				}
+				
 			}
 			
-		}
-		
-		
-	})
+			
+		});
+	}
+	
 	function starScore(score){
 		let scoreVal = $("#reviewScore");
 		
