@@ -13,7 +13,7 @@
     </select>
     
     <select id = "getMainIngreInfo" resultType = "kr.ssog.domain.FoodIngredient">
-        select * from foodingredient where fdName = #{food_name} and mainSub = main
+        select * from foodingredient where fdName = #{food_name} and mainSub = 'main'
     </select>
     
 

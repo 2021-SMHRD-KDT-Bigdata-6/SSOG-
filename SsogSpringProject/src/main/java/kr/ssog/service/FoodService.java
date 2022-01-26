@@ -215,9 +215,11 @@ public class FoodService {
 	
 	
 	// 영양정보 그래프 처럼가져오기!
-	public void getNutritionGraph(){
+	public void getNutritionGraph(String food_name){
 		
-		
+		//String data = getFoodNutrition(food_name);
+		//에너지 2301, 단백질 84, 지방 57, 탄수화물 325, 식이섬유 24, 칼슘, 572, 인 1200, 나트륨 3800,
+		// 칼륨 2863, 철 13, 비타민 408, 티아민 1562, 리보플라빈 1857, 나이아신 15, 비타민 65
 		//탄수화물(g). 지질(g). 단백질(g). 당류(g). 지방(g)
 		//비타민D,비타민E,비타민K,비타민B12 (나노그램)
 		//비타민B2,비타민B5,비타민B6,비타민C,비타민1

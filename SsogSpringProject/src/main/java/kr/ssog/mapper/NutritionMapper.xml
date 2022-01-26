@@ -5,7 +5,7 @@
 <mapper namespace="kr.ssog.mapper.NutritionMapper">
     <select id = "getInfoNutrition" parameterType ="String" resultType ="kr.ssog.domain.Nutrition">
         select * from nutrition where ingrename = (
-		select * from (select ingrename from nutrition where ingrename like %쑥갓% group by ingrename ORDER BY DBMS_RANDOM.RANDOM)
+		select * from (select ingrename from nutrition where ingrename like %{ingre_name}% group by ingrename ORDER BY DBMS_RANDOM.RANDOM)
 		 where rownum <![CDATA[ < ]]> 2 )
         
         
