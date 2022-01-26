@@ -57,6 +57,12 @@
 					<div class="row mb-4">
 						<div class="col-md-12 d-flex justify-content-between align-items-center">
 							<h4 class="product-select">바쁜당신을 위한 추천메뉴</h4>
+							<th:block th:if="${session.users==null}">
+								<input type="hidden" th:value="0" id="users">
+							</th:block>
+							<th:block th:if="${session.users!=null}">
+								<input type="hidden" th:value="${session.users.mb_id}" id="usersID">
+							</th:block>
 						</div>
 					</div>
 					
@@ -112,9 +118,33 @@
   
   <!-- FoodTop200 보여주는 코드 -->
   <script type="text/javascript" th:inline="javascript">
-	  	$(document).ready(()=>{
-	    	loadTop200();
-	  	});
+  let users = $("#users").val();
+	  $(document).ready(()=>{
+	    		loadTop200();
+	  });
+		  
+		/*$(document).ready(()=>{
+		  if(users==0){
+	    		loadTop200();
+	  		
+	  		
+  			}else{
+		  		
+		  		userSpecial();
+		
+ 			 }
+		});
+
+	  	function userSpecial(){
+	  		 let id = $("#usersID").val();
+	  		$.ajax({
+	  			url : ("extraFactor"),
+	  			type : "post",
+	  			data : {"id":id},
+	  			success : itView, 
+	  			error : function(){alert("error");}
+	  		}); 
+	  	} */
 	    function loadTop200(){
 	  		
 	  		$.ajax({
