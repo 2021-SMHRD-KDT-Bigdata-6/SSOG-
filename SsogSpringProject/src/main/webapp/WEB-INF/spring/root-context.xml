@@ -13,7 +13,7 @@
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/> 
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@project-db-stu.ddns.net:1524:xe"/>
 		<property name="username" value="ssog"/>
-		<property name="password" value="apfhd"/>
+		<property name="password" value="ssog"/>
 	</bean>
 	
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">

@@ -7,7 +7,6 @@
     <title>물가의 고수</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
     <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,700;0,800;1,200;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -17,6 +16,13 @@
     <link rel="stylesheet" href="resources/css/magnific-popup.css">
     <link rel="stylesheet" href="resources/css/flaticon.css">
     <link rel="stylesheet" href="resources/css/style.css">
+    
+    <script language="JavaScript">
+        var audio = null;
+    	function na_call(str){
+    		eval(str);
+    	}
+    </script>
     
     <style type="text/css">
     #firstTitle{
@@ -144,12 +150,14 @@
                 	
                 	 -->
              
-               <div class="col-md-3 d-flex" th:each="num: ${#numbers.sequence(1,4)}">
+               <div class="col-md-3 d-flex" th:each="imgs: ${imgs}">
+               <th:block th:each="foodList: ${foodList}" th:if="${foodListStat.index == imgsStat.index && foodListStat.index < 4}">
+                  <a th:href="@{r_recipe.do(fdName=${foodList.fdName})}">
                   <div class="product ftco-animate">
                    	
                   
                      <div class="img d-flex align-items-center justify-content">
-                     	<img th:src="@{resources/images/}+'prod-'+${num}+'.jpg'" style="width:255px; height: 350px;">
+                     	<img th:src="@{${imgs}}" style="width:255px; height: 350px;">
                      		<div class="desc">
                      			<p class="meta-prod d-flex" style="text-align:center;" >
                     				<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
@@ -160,17 +168,18 @@
                      </div>
                      		<div class="text text-center">
                         		<span class="seller">추천상품!</span>
-                        		<span class="category">category</span>
-                        		<h2>name</h2>
+                        		<span class="category" th:text="${foodList.fdCategori}">category</span>
+                        		<h2 th:text="${foodList.fdName}">name</h2>
                      		</div>
                   	</div>
+                  </a>
               	 </div>
 					</div>
 				</div>
 			
 		</section>
 		
-		<section class="ftco-section" style="padding-top: 144px; padding-bottom: 48px;">
+		<!-- <section class="ftco-section" style="padding-top: 144px; padding-bottom: 48px;">
 			<div class="container">
 				<div class="row justify-content-center pb-5">
           <div class="col-md-7 heading-section text-center ftco-animate">
@@ -201,14 +210,15 @@
                 	th:src="${변수}" : 태그의 src 속성을 변경
                 	th:속성명="${변수}" : 속성값을 변수값으로 변경
                 	
-                	 -->
+                	 
              
-               <div class="col-md-3 d-flex" th:each="num: ${#numbers.sequence(1,4)}">
+               <div class="col-md-3 d-flex" th:each="imgs: ${imgs}">
+               <th:block th:each="foodList: ${foodList}" th:if="${foodListStat.index == imgsStat.index && foodListStat.index < 4}">
                   <div class="product ftco-animate">
                    	
                   
                      <div class="img d-flex align-items-center justify-content">
-                     	<img th:src="@{resources/images/}+'prod-'+${num}+'.jpg'" style="width:255px; height: 350px;">
+                     	<img th:src="@{${imgs}}" style="width:255px; height: 350px;">
                      		<div class="desc">
                      			<p class="meta-prod d-flex" style="text-align:center;" >
                     				<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
@@ -219,15 +229,15 @@
                      </div>
                      		<div class="text text-center">
                         		<span class="seller">추천식재료!</span>
-                        		<span class="category">category</span>
-                        		<h2>name</h2>
+                        		<span class="category" th:text="${foodList.fdCategori}">category</span>
+                        		<h2 th:text = "${foodList.fdName}">name</h2>
                      		</div>
                   	</div>
               	 </div>
 					</div>
 				</div>
 			
-		</section>
+		</section> -->
 
 				<div class="row justify-content-center pb-5" style="padding-top: 96px;">
           			<div class="col-md-7 heading-section text-center ftco-animate">
@@ -248,45 +258,53 @@
   <section class="ftco-section ftco-no-pb" id="padding" style="padding-bottom: 48px; padding-top: 0px">
 
 			<div class="container">
-				<div class="row">
+			<a th:href="@{r_theme.do}">
+				<div class="row" >
 					<div class="col-lg-2 col-md-4 ">
 						<div class="sort w-100 text-center ftco-animate">
-							<div class="img" style="background-image: url(resources/images/kind-1.jpg);"></div>
+							<div class="img" style="background-image: url(resources/images/kind1-1.png);" OnMouseOver="if(audio==null || audio.paused) {audio = new Audio('resources/sound/264981__renatalmar__sfx-magic.wav');audio.play();}"
+									onmouseout="if(audio!=null && !audio.paused){audio.pause();}"></div>
 							<h3 id="bigData">AI 맞춤 추천</h3>
 						</div>
 					</div>
 					<div class="col-lg-2 col-md-4 ">
 						<div class="sort w-100 text-center ftco-animate">
-							<div class="img" style="background-image: url(resources/images/kind-2.jpg);"></div>
+							<div class="img" style="background-image: url(resources/images/kind-7.jpg);" OnMouseOver="if(audio==null || audio.paused) {audio = new Audio('resources/sound/610051__wearefreesfx__magic-zing.wav');audio.play();}"
+									onmouseout="if(audio!=null && !audio.paused){audio.pause();}"></div>
 							<h3>이달의 제철상품</h3>
 						</div>
 					</div>
-					<div class="col-lg-2 col-md-4 ">
+					<div class="col-lg-2 col-md-4">
 						<div class="sort w-100 text-center ftco-animate">
-							<div class="img" style="background-image: url(resources/images/kind-3.jpg);"></div>
+							<div class="img" style="background-image: url(resources/images/kind-2.jpg);" OnMouseOver="if(audio==null || audio.paused) {audio = new Audio('resources/sound/rain-07.mp3');audio.play();}"
+									onmouseout="if(audio!=null && !audio.paused){audio.pause();}"></div>
 							<h3>비오는 날엔</h3>
 						</div>
 					</div>
 					<div class="col-lg-2 col-md-4 ">
 						<div class="sort w-100 text-center ftco-animate">
-							<div class="img" style="background-image: url(resources/images/kind-4.jpg);"></div>
+							<div class="img" style="background-image: url(resources/images/kind-4.jpg);" OnMouseOver="if(audio==null || audio.paused) {audio = new Audio('resources/sound/street-alley-ambience-1.mp3');audio.play();}"
+					onmouseout="if(audio!=null && !audio.paused){audio.pause();}"></div>
 							<h3>월요일 저녁엔</h3>
 						</div>
 					</div>
 					<div class="col-lg-2 col-md-4 ">
 						<div class="sort w-100 text-center ftco-animate">
-							<div class="img" style="background-image: url(resources/images/kind-5.jpg);"></div>
+							<div class="img" style="background-image: url(resources/images/kind-5.jpg);" OnMouseOver="if(audio==null || audio.paused) {audio = new Audio('resources/sound/pouring-liquid-2.mp3');audio.play();}"
+					onmouseout="if(audio!=null && !audio.paused){audio.pause();}"></div>
 							<h3>스트레스 받을땐</h3>
 						</div>
 					</div>
 					<div class="col-lg-2 col-md-4 ">
 						<div class="sort w-100 text-center ftco-animate">
-							<div class="img" style="background-image: url(resources/images/kind-6.jpg);"></div>
+							<div class="img" style="background-image: url(resources/images/kind-6.jpg);" OnMouseOver="if(audio==null || audio.paused) {audio = new Audio('resources/sound/613763__common-hamster__glasimpt-cheers-clink-glass-of-wine-zoom-h6-xyh6.wav');audio.play();}"
+					onmouseout="if(audio!=null && !audio.paused){audio.pause();}"></div>
 							<h3>우울할 땐</h3>
 						</div>
 					</div>
 
 				</div>
+			  </a>
 			</div>
 		</section>
     <section class="ftco-section testimony-section img bg2" id="cmPadding">
@@ -313,7 +331,7 @@
           <div class="col-md-12">
             <div class="carousel-testimony owl-carousel ftco-owl">
   
-              <div class="item" th:each="list : ${happyList}">
+              <div class="item" th:each="list : ${happyList}" th:if = "${listStat.index < 6}">
                 <div class="testimony-wrap py-4" id="bordercolor" style="text-align: center">
                 		<div style="width: 100%; height:203px;">
                 			<a th:href="@{boardContents(num=${list.num})}"><img th:src="@{${list.filePath}}" style="width:100%; height:100%;"/></a>
@@ -322,7 +340,7 @@
                  		 <div class="text text2">
                    		 <p class="mb-4"></p>
                    		 <div class="d-flex align-items-center">
-                    		<div class="user-img" th:style="'background-image: url('+@{${list.filePath}}+');'"></div>
+                    		<div class="user-img" th:style="'background-image: url('+@{resources/images/person_1.png}+');'"></div>
                     		<div class="pl-3 text2">
 		                   	 	<p class="name" th:text="${list.writer}">작성자이름</p>
 		                    	<span class="position">새싹회원</span>
@@ -360,7 +378,7 @@
         <div class="row ftco-animate">
           <div class="col-md-12">
             <div class="carousel-testimony owl-carousel ftco-owl">           
-              <div class="item" th:each="list:${poisonList}">
+              <div class="item" th:each="list:${poisonList}" th:if = "${listStat.index < 6}">
                 <div class="testimony-wrap py-4" id="bordercolor" style="text-align:center">
                 		<div style="width: 100%; height:203px;">
                 			<a href="b_poisonCook.do"><img th:src="@{${list.filePath}}" style="width:100%; height:100%;"/></a>
@@ -369,7 +387,7 @@
                   <div class="text text2">
                     <p class="mb-4"></p>
                     <div class="d-flex align-items-center">
-                    	<div class="user-img" th:style="'background-image: url('+@{${list.filePath}}+');'"></div>
+                    	<div class="user-img" th:style="'background-image: url('+@{resources/images/person_1.png}+');'"></div>
                     	<div class="pl-3 text2">
 		                    <p class="name" th:text="${list.writer}">작성자이름</p>
 		                    <span class="position">새싹회원</span>

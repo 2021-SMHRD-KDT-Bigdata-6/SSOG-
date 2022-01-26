@@ -30,40 +30,45 @@
 <style>
 
 .button {
-	border-right: 1px solid #b7472a !important;
-	border-bottom: 1px solid #b7472a !important;
+	border-right: 1px solid rgb(183, 71, 41, 0.3) !important;
+	border-bottom: 1px solid rgb(183, 71, 41, 0.3) !important;
 	box-sizing:border-box;
+	margin-left: -1px;
 }
 
 .button-bottom-none {
-	border-right: 1px solid #b7472a !important;
+	border-right: 1px solid rgb(183, 71, 41, 0.3) !important;
 	box-sizing:border-box;
+	margin-left: -1px;
 }
 
 .button-right-none {
-	border-bottom: 1px solid #b7472a !important;
+	border-bottom: 1px solid rgb(183, 71, 41, 0.3) !important;
 	box-sizing: border-box;
 	box-sizing:border-box;
+	margin-left: -1px;
+}
+
+.button-bottom-right-none {
+	margin-left: -1px;
 }
 
 #btn-group button {
 	background-color: rgba(0,0,0,0);
 	color: #b7472a; 
 	padding: 5px;
-	width: 19.75%;
+	width: 19.83%;
 	border: 0;
 	outline: none;
   	box-shadow: none;
 }
 
 #btn-group {
-	border: 1px solid #b7472a;
+	border: 1px solid rgb(183, 71, 41);
 	border-radius: 4px;
+	margin-bottom: 64px;
 }
 
-button:active {
-	outline: none;
-  	box-shadow: none;}
 
 #btn-group button:hover{
 	color: white;
@@ -81,6 +86,18 @@ button:active {
 #center2{
 	margin-left:280px;
 }
+
+img {
+	width: 100%;
+	height: 100%;
+}
+
+table, td {
+	margin: 0px;
+	padding: 0px;
+	border-collapse:collapse;
+}
+
 </style>
 
 </head>
@@ -108,8 +125,7 @@ button:active {
 				<div class="col-md-9 ftco-animate mb-5 text-center">
 					<p class="breadcrumbs mb-0">
 						<span class="mr-2"><a href="index.do">Home <i
-								class="fa fa-chevron-right"></i></a></span> <span>물가 정보 <i
-							class="fa fa-chevron-right"></i></span>
+							  class="fa fa-chevron-right"></i></a></span> <span>물가 정보</span>
 					</p>
 					<h2 class="mb-0 bread">물가 정보</h2>
 				</div>
@@ -174,31 +190,24 @@ button:active {
 								<i class="fas fa-table me-1"></i> DataTable Example
 							</div>
 							<div class="card-body">
-								<table id="datatablesSimple">
+								<table id="datatablesSimple" class="table-expandable">
 									<thead>
 										<tr>
-											<th style="width: 25%;">품목</th>
+											<th style="width:6%;">순위</th>
 											<!--<th>분류</th>-->
-											<th style="width: 25%;">지역</th>
-											<th style="width: 25%;">오늘날짜</th>
-											<th style="width: 25%;">가격</th>
+											<th>품목</th>
+											<th>가격</th>
+											<th>품질</th>
 										</tr>
 									</thead>
-									<tfoot>
-										<tr>
-											<th>Name</th>
-											<th>Office</th>
-											<th>Start date</th>
-											<th>Salary</th>
-										</tr>
-									</tfoot>
-									<tbody>
-										<tr th:each="num: ${#numbers.sequence(1,60)}">
-											<td>쌀</td>
-											<td>고흥</td>
-											<td>2021/11/26</td>
-											<td>54800원</td>
-										</tr>
+									
+									<tbody id="priceInfo">
+										<!-- <tr th:each="num: ${#numbers.sequence(1,60)}">
+											<td>2</td>
+											<td>닭고기</td>
+											<td>1000~10000</td>
+											<td>1.5</td>
+										</tr> -->
 										
 									</tbody>
 								</table>
@@ -240,24 +249,73 @@ button:active {
   <script src="resources/js/jquery.animateNumber.min.js"></script>
   <script src="resources/js/scrollax.min.js"></script>
   <script src="resources/js/main.js"></script>
-  <script>
-    function loadList(str){
-    	alert(str);
-    	console.log(str)
-    	// Controller에게 데이터 리스트를 요청하기(boardAjaxList.do)
+  <script type="text/javascript" th:inline="javascript">
+	$(document).ready(()=>{
+		loadList(ingre);
+		
+	})
+	 
+	function expend_table() {
+	        $('.table-expandable').each(function () {
+	            var table = $(this);
+	            //table.children('thead').children('tr').append('<th></th>');
+	            table.children('tbody').children('tr').filter(':odd').hide();
+	            table.children('tbody').children('tr').filter(':even').click(function () {
+	                var element = $(this);
+	                element.next('tr').toggle("fast");
+	                
+	            });
+	        });
+	        $('th').css({width: ""})
+	        //$('th') 4가지 요소 가져옴. 단 [0]이나 .get(0)을 할경우 html element요소로 분류가 되어 jquery문법이 더 이상 적용되지 않음
+	        // jqeury문법을 계속 사용하기 위해 인덱싱 방법을 .eq(index)를 통해 사용
+	        $('th').eq(0).css({width:'10%'});
+	        $('th').eq(1).css({width:'30%'});
+	        $('th').eq(2).css({width:'30%'});
+	        $('th').eq(3).css({width:'30%'});
+	}
+    function loadList(ingre){
+    	// Controller에게 데이터 리스트를 요청하기
     	$.ajax({
-    		url : "priceInfoAjaxTEST", //>>요청>>받는 데이터는(json)
+    		url : "categori", //>>요청>>받는 데이터는(json)
     		type : "get",
-    		data : {"ingre":str},
+    		data : {"ingre":ingre},
     		dataType : "json", // [{  },{  },{  }]
     		success :resultHtml, 
     		error : function(){ alert("error"); }
     	});
-    }   
-    function resultHtml(data){
-    	console.log(data);
     }
-    loadList("");
+loadList("");
+    function resultHtml(ingrelist){
+    	let view = "";
+    	
+    	$.each(ingrelist, function(index, obj){
+    		if(index){
+    			view += "<tr>";
+    			view += `<td>${obj[""]}</td>`;
+    			view += "<td></td>";
+    			view += "<td></td>";
+    			view += "<td></td>";
+    			view += "</tr>";
+    			view += `<tr>
+    		        <td></td>
+    		        <td id = "td-img">
+    		        	<img src=${obj["imgs"]}/>
+    		        </td>
+    		        <td colspan="2">
+    		            <a href=${obj["fdURL"]}>쿠팡</a><br>
+    		            <a href=${obj["fdURL"]}>마켓컬리</a><br>
+		                
+    		        </td>
+    		      </tr>`;
+    		};
+    	});
+    	
+    	$("#priceInfo").html(view);
+    	expend_table();
+    	
+    }
+    
     </script>
 
 

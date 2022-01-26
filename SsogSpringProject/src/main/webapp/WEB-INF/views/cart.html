@@ -20,7 +20,6 @@
     <!-- 추가 css -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="resources/css/cart.css">
-    
   </head>
   <body>
 
@@ -39,8 +38,48 @@
     </section>
     <section class="ftco-section">
     <div class="container">
-    <form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
+    <div class='row ingreCon'>
+    	<div id="ingreName">
+	    	<div>
+	    		<select>
+		    		<option>판매순</option>
+		    		<option>낮은 가격순</option>
+	    		</select>
+	    		
+	    	</div>
+	    	<div th:each="ingre : ${ingre}"> 
+	    		<button th:text="${ingre}" class="btn py-3 px-4"></button>
+	    	</div> 
+    	</div>
+    	<div id="ingreList">
+    		<div class="ingreContents" id="ingreHead">
+    			<div>&nbsp;</div>
+    			<div>상품</div>
+    			<div>가격</div>
+    			<div>판매처</div>
+    			<div>&nbsp;</div>
+    		</div>
+    		<div id="ingreContents">
+	    		<!-- <div class="ingreContents" id="ingreCon" th:each="num : ${#numbers.sequence(1,5)}">
+	    			<div><img src="resources/img/10.jpg"></div>
+	    			<div>광어</div>
+	    			<div>20000원</div>
+	    			<div>쿠팡</div>
+	    			<div><button class="btn py-3 px-4">장바구니 추가</button></div>
+	    		</div> -->
+	    	</div>
+    		<div class="ingreContents ingreOC" id="ingreClose">
+    			<div onclick="closeIngre()">닫기</div>
+    		</div>
+	   		<div class="ingreContents ingreOC" id="ingreOpen">
+	   			<div onclick="openIngre()">상품보기</div>
+	   		</div>
+    	</div>
+    	
+    </div>
     
+    <form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
+    	
             <input type="hidden" name="cmd" value="order">
             <div class="basketdiv table-wrap" id="basket">
                <!-- <table class="table" id="table01">
@@ -183,19 +222,33 @@
   <script src="resources/js/jquery.magnific-popup.min.js"></script>
   <script src="resources/js/jquery.animateNumber.min.js"></script>
   <script src="resources/js/scrollax.min.js"></script>
-  <script src="resources/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="resources/js/google-map.js"></script>
   <script src="resources/js/main.js"></script>
   <!-- 추가 js -->
   <script src="resources/js/cartEvent.js"></script>
   
   <!-- view -->
-  <script type="text/javascript">
+  <script>
+  
+  let ingreContents = document.getElementById('ingreContents');
+  let ingreOpen = document.getElementById('ingreOpen');
+  let ingreClose = document.getElementById('ingreClose');
+  function openIngre(){
+	  ingreOpen.style.display="none";
+	  ingreContents.style.display="block";
+	  ingreClose.style.display="block";
+	  
+  }
+  function closeIngre(){
+	  ingreClose.style.display="none";
+	  ingreContents.style.display="none";
+	  ingreOpen.style.display="block";
+  }
     $(document).ready(()=>{
   		loadList();
   	});
+    
     function loadList(){
-  		
+    	
   		$.ajax({
   			url : "cartAjaxList.do", 
   			type : "get",
@@ -205,10 +258,35 @@
   		});
   	}
     function cartHtml(cartList){
-    	let view="";
     	
+    	let view2="";
+      	for(var i = 0; i <5; i++){
+      		view2+=`<div class="ingreContents" id="ingreCon">
+    			<div><img src="resources/img/10.jpg" id="img${i}"></div>
+    				<div id="name${i}">광어${i}</div>
+    				<div id="price${i}">2000${i}원</div>
+    				<div>쿠팡</div>
+    				<div><button class="btn py-3 px-4" onclick="addCart(${i}); closeIngre();">장바구니 추가</button></div>
+    			</div>`;
+      	}
+      	
+      	$("#ingreContents").html(view2);
+      	
+      	loadCart();
     	
-    	view+="<table class='table' id='table01'>";
+    }
+    function loadCart(){
+    	$.ajax({
+  			url : "cartAjaxList.do", 
+  			type : "get",
+  			dataType : "json", 
+  			success : addCartHtml, 
+  			error : function(){alert("error");}
+  		});
+    }
+   	function addCartHtml(addCartList){
+   		let view="";
+   		view+="<table class='table' id='table01'>";
 		view+="<thead class='thead-primary'>";
 		view+="<tr>";
 		view+="<th>&nbsp;</th>";
@@ -221,7 +299,8 @@
 		view+="</tr>";
 		view+="</thead>";
 		view+="</table>";
-		$.each(cartList, function(index, obj){
+		view+="<div id='cartDiv'>";
+		/* $.each(addCartList, function(index, obj){
 			view+="<div class='row data'>";
 			view+="<div class='subdiv'>";
 			view+="<div class='check'><input type='checkbox' name='buy' value='260' onclick='javascript:basket.checkItem();'>&nbsp;</div>";
@@ -246,15 +325,123 @@
 			view+="<div class='basketcmd'><a href='javascript:void(0)' class='abutton' onclick='javascript:basket.delItem();'>삭&nbsp;제</a></div>";
 			view+="</div>";
 			view+="</div>";
-		});
+		}); */
+		view+="</div>";
 
     	$("#basket").html(view);
+   	}
+   	/* let num = 0;
+   	function addCart(id){
+   		let price = $("#price"+id).text();
+  		let name = $("#name"+id).text();
+  		let img = $("#img"+id).attr("src");
+  		
+   		let view3 = "";
+   		
+   		view3+="<div class='row data'>";
+		view3+="<div class='subdiv'>";
+		view3+="<div class='check'><input type='checkbox' name='buy' value='260' onclick='javascript:basket.checkItem();'>&nbsp;</div>";
+		view3+="<div class='img'><img src='"+img+"' width='70px' height='90px'></div>";
+		view3+="<div class='pname'>";
+		view3+="<span id='pName2'>"+name+"</span>";
+		view3+="<a id='btn_open' type='button' style='text-align:center' onclick='btnOpen()'>상품 더보기</a>";
+		view3+="</div>";
+		view3+="</div>";
+		view3+="<div class='subdiv'>";
+		view3+="<div class='basketprice'><input type='hidden' name='p_price' id='p_price"+num+"' class='p_price' value='"+price+"'>"+price+"원</div>";
+		view3+="<div class='num'>";
+		view3+="<div class='updown'>";
+		view3+="<input type='text' name='p_num"+num+"' id='p_num"+num+"' size='2' maxlength='4' class='p_num' value='1' onkeyup='javascript:basket.changePNum("+num+");'>";
+		view3+="<span onclick='javascript:basket.changePNum("+num+");' style='margin-right:0.3rem; margin-left:0.3rem;'><i class='fas fa-caret-up up'></i></span>";
+		view3+="<span onclick='javascript:basket.changePNum("+num+");'><i class='fas fa-caret-down down'></i></span>";
+		view3+="</div>";
+		view3+="</div>";
+		view3+="<div class='sum'>"+price+"원</div>";
+		view3+="</div>";
+		view3+="<div class='subdiv'>";
+		view3+="<div class='basketcmd'><a href='javascript:void(0)' class='abutton' onclick='javascript:basket.delItem();'>삭&nbsp;제</a></div>";
+		view3+="</div>";
+		view3+="</div>";
+		
+		$("#cartDiv").append(view3);
+		num++;
+   	} */
+    	let num = 0;
+    function addCart(id){
+    	let view = "";
+  		let price = $("#price"+id).text();
+  		let name = $("#name"+id).text();
+  		let img = $("#img"+id).attr("src");
+  		 view += `<div class="row data">
+            <div class="subdiv">
+                <div class="check"><input id="checkbox${num}" type="checkbox" name="buy" value="260" onclick="javascript:basket.checkItem(); updatePrice(${num});">&nbsp;</div>
+                <div class="img"><img src="${img}" width="70px" height="90px"></div>
+                <div class="pname">
+                    <span id="pName2">${name}</span>
+                </div>
+            </div>
+            <div class="subdiv">
+                <div class="basketprice"><input type="hidden" name="p_price" id="p_price${num}" class="p_price">${price}</div>
+                <div class="num">
+                    <div class="updown">
+                        <input type="text" name="p_num${num}" id="p_num${num}" size="2" maxlength="4" class="p_num" value="1" onkeyup="javascript:basket.changePNum(${num});">
+                        <span onclick="javascript:basket.changePNum(${num}); upPrice(${num});" style="margin-right:0.3rem; margin-left:0.3rem;"><i class="fas fa-arrow-alt-circle-up up"></i></span>
+                        <span onclick="javascript:basket.changePNum(${num}); downPrice(${num});"><i class="fas fa-arrow-alt-circle-down down"></i></span>
+                    </div>
+                </div>
+                <div class="sum${num}">${price}</div>
+                <input id="sum${num}" type="hidden" value=${price}>
+            </div>
+            <div class="subdiv">
+                <div class="basketcmd"><a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delItem();">삭&nbsp;제</a></div>
+            </div>
+        </div>`;
+  		
+        $("#cartDiv").append(view);
+        num++;
+  	} 
+    function upPrice(num){
+    	let p_num = $("#p_num"+num).val()
+    	let sum = $("#sum"+num).val();
+    	let result = sum.slice(0,-1);
+    	let resultSum = result * p_num;
+    	//let total = $("#sum_p_price").text();
+    	
+    	$(".sum"+num).text(resultSum+"원");
+    	
+    	//let check = "checkbox" + num;
+    	//let upDown = "+";
+    	
+    	//updatePrice(check,resultSum)
     }
-	
+    function downPrice(num){
+    	let p_num = $("#p_num"+num).val()
+    	let sum = $("#sum"+num).val();
+    	let result = sum.slice(0,-1);
+    	let resultSum = result * p_num;
+    	//let total = $("#sum_p_price").text();
+    	
+    	$(".sum"+num).text(resultSum+"원");
+    	
+    	//let check = "checkbox" + num;
+    	//let upDown = "-";
+    	
+    	//updatePrice(check,resultSum)
+    }
+    function updatePrice(num){
+    	let total = $("#sum_p_price")
+    	let checkTF = $("#checkbox"+num).prop("checked");
+    	let sum = $(".sum"+num).text();
+    	let result = sum.slice(0,-1);
+    	if(checkTF == true){
+    		total.text("합계금액 : "+ result + "원");
+    		alert("합계금액 : "+ result + "원");
+    	}
+    }
     </script>
   
   <!-- 모달창 js -->
-  <script>
+<!-- <script>
     var outer = document.getElementById('outer');
     var btn_open = document.getElementById("btn_open");
     var btn_close = document.getElementsByClassName("btn_close")[0];
@@ -346,6 +533,6 @@
     	})
     	
     }
-	</script>
+	</script> -->  
   </body>
 </html>

@@ -18,6 +18,10 @@ public class Cart {
 		this.img = img;
 	}
 
+	public Cart(String name) {
+		this.name = name;
+	}
+
 	
 	
 }

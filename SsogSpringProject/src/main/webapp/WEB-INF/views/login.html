@@ -75,6 +75,8 @@
 		            	<div class="form-group">
 	                	<label for="mb_pwd">비밀번호</label>
 	                  <input name="mb_pwd" type="password" class="form-control" placeholder="비밀번호를 입력해주세요.">
+	                  <!-- 로그인 실패시 출력 메세지 -->
+	                  <p th:if="${msg == false}" style="color:#f00; font-falmily:Noto sans; font-weight:100;">아이디와 비밀번호를 확인해 주세요</p>
 	                </div>
 		            </div>
 		            

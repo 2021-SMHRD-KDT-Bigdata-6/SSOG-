@@ -2,7 +2,10 @@ create table test (
 	num number(10)
 );
 
-drop table test;
+select * from FoodReview;
+
+select * from cmt;
+delete from cmt where writer = 'test';
 
 insert into BOARD values(BOARD_SEQ.nextval,'HappyCook','test','test','1.jpg','resources/img/1.jpg','내용',sysdate);
 
@@ -60,6 +63,7 @@ select fdName,fdcategori from food where fdcategori like '%면류%';
 
 select ingreName from FoodIngredient where mainSub = 'main' and fdName = '잔치국수';
 select ingreName,mainsub from FoodIngredient where fdName ='잔치국수';
+select count(mainsub) from FoodIngredient where mainsub = 'main' group by fdName;
 
 select * from foodingredient where fdName = '잔치국수' and mainSub = 'main';
 
@@ -71,3 +75,4 @@ select * from foodrecipe where fdName = '생선초밥' order by recipeOrder;
 
 select recipeimg from foodrecipe;
 
+select * from cmt where bno=79 order by comment_time desc
