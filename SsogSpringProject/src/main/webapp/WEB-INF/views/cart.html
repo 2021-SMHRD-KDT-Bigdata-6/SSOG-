@@ -136,6 +136,7 @@
     				<div class="cart-total mb-3">
     					<div class="bigtext right-align sumcount" id="sum_p_num">상품갯수: 0개</div>
             <div class="bigtext right-align box summoney" id="sum_p_price">합계금액: 0원</div>
+            <input type="hidden" id="sum_hidden" value="0">
     
             <!-- <div id="goorder" class="">
                 <div class="clear"></div>
@@ -330,42 +331,7 @@
 
     	$("#basket").html(view);
    	}
-   	/* let num = 0;
-   	function addCart(id){
-   		let price = $("#price"+id).text();
-  		let name = $("#name"+id).text();
-  		let img = $("#img"+id).attr("src");
-  		
-   		let view3 = "";
-   		
-   		view3+="<div class='row data'>";
-		view3+="<div class='subdiv'>";
-		view3+="<div class='check'><input type='checkbox' name='buy' value='260' onclick='javascript:basket.checkItem();'>&nbsp;</div>";
-		view3+="<div class='img'><img src='"+img+"' width='70px' height='90px'></div>";
-		view3+="<div class='pname'>";
-		view3+="<span id='pName2'>"+name+"</span>";
-		view3+="<a id='btn_open' type='button' style='text-align:center' onclick='btnOpen()'>상품 더보기</a>";
-		view3+="</div>";
-		view3+="</div>";
-		view3+="<div class='subdiv'>";
-		view3+="<div class='basketprice'><input type='hidden' name='p_price' id='p_price"+num+"' class='p_price' value='"+price+"'>"+price+"원</div>";
-		view3+="<div class='num'>";
-		view3+="<div class='updown'>";
-		view3+="<input type='text' name='p_num"+num+"' id='p_num"+num+"' size='2' maxlength='4' class='p_num' value='1' onkeyup='javascript:basket.changePNum("+num+");'>";
-		view3+="<span onclick='javascript:basket.changePNum("+num+");' style='margin-right:0.3rem; margin-left:0.3rem;'><i class='fas fa-caret-up up'></i></span>";
-		view3+="<span onclick='javascript:basket.changePNum("+num+");'><i class='fas fa-caret-down down'></i></span>";
-		view3+="</div>";
-		view3+="</div>";
-		view3+="<div class='sum'>"+price+"원</div>";
-		view3+="</div>";
-		view3+="<div class='subdiv'>";
-		view3+="<div class='basketcmd'><a href='javascript:void(0)' class='abutton' onclick='javascript:basket.delItem();'>삭&nbsp;제</a></div>";
-		view3+="</div>";
-		view3+="</div>";
-		
-		$("#cartDiv").append(view3);
-		num++;
-   	} */
+
     	let num = 0;
     function addCart(id){
     	let view = "";
@@ -409,10 +375,20 @@
     	
     	$(".sum"+num).text(resultSum+"원");
     	
-    	//let check = "checkbox" + num;
-    	//let upDown = "+";
+    	let total = $("#sum_p_price")
+    	//let totalVal = total.text().slice(5,-1);
     	
-    	//updatePrice(check,resultSum)
+    	let sumHidden = $("#sum_hidden").val();
+    	let checkTF = $("#checkbox"+num).prop("checked");
+    	if(checkTF == true){
+	    	let totalSum = (Number(sumHidden) + Number(result));
+    		total.text("합계금액 : "+ totalSum + "원");
+    		$("#sum_hidden").val(totalSum);
+    	}
+    	if(checkTF == false){
+    		total.text("합계금액 : "+ sumHidden + "원");
+    	}
+    	
     }
     function downPrice(num){
     	let p_num = $("#p_num"+num).val()
@@ -423,19 +399,46 @@
     	
     	$(".sum"+num).text(resultSum+"원");
     	
-    	//let check = "checkbox" + num;
-    	//let upDown = "-";
+    	let total = $("#sum_p_price")
+    	//let totalVal = total.text().slice(5,-1);
     	
-    	//updatePrice(check,resultSum)
+    	let sumHidden = $("#sum_hidden").val();
+    	let checkTF = $("#checkbox"+num).prop("checked");
+    	if(checkTF == true){
+    		if(p_num == 1){
+    			
+    			
+    			total.text("합계금액 : "+ sumHidden + "원");
+    		}else{
+		    	let totalSum = (Number(sumHidden) - Number(result));
+	    		total.text("합계금액 : "+ totalSum + "원");
+	    		$("#sum_hidden").val(totalSum);
+	    		
+    		}
+    	}
+    	if(checkTF == false){
+    		total.text("합계금액 : "+ sumHidden + "원");
+    	}
     }
     function updatePrice(num){
-    	let total = $("#sum_p_price")
-    	let checkTF = $("#checkbox"+num).prop("checked");
     	let sum = $(".sum"+num).text();
     	let result = sum.slice(0,-1);
+    	
+    	let total = $("#sum_p_price")
+    	//let totalVal = total.text().slice(5,-1);
+    	
+    	let sumHidden = $("#sum_hidden").val();
+    	let checkTF = $("#checkbox"+num).prop("checked");
     	if(checkTF == true){
-    		total.text("합계금액 : "+ result + "원");
-    		alert("합계금액 : "+ result + "원");
+	    	let totalSum = (Number(sumHidden) + Number(result));
+    		total.text("합계금액 : "+ totalSum + "원");
+    		$("#sum_hidden").val(totalSum);
+    	}
+    	if(checkTF == false){
+    		
+	    	let totalSum = (Number(sumHidden) - Number(result));
+    			total.text("합계금액 : "+ totalSum + "원");
+    			$("#sum_hidden").val(totalSum);
     	}
     }
     </script>

@@ -10,12 +10,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.ssog.domain.Food;
 import kr.ssog.domain.FoodAndImage;
 import kr.ssog.domain.FoodRecipe;
+import kr.ssog.domain.IngredientReview;
 import kr.ssog.domain.t_member;
 import kr.ssog.service.FoodService;
+import kr.ssog.service.IngreReviewService;
 import kr.ssog.service.UserService;
 
 @Controller
@@ -25,6 +28,8 @@ public class FoodController {
 	FoodService FoodService;
 	@Autowired
 	UserService userService;
+	@Autowired
+	IngreReviewService IngreReviewService;
 	
 	@RequestMapping("/r_it")
 	public String it(Model model) {
@@ -71,8 +76,18 @@ public class FoodController {
 		String recipeEtc = recipe.get(0).getRecipeETC();
 		model.addAttribute("recipeEtc", recipeEtc);
 		
+//		List<Double> totalNutritionQuan = FoodService.getFoodNutrition(fdName);
+//		System.out.println(totalNutritionQuan.get(1));
+		
 		return "r_recipe";
 	}
+	
+    @RequestMapping("/IngreRevInsert")
+    public String IngreRevInsert(IngredientReview IngredRv,RedirectAttributes re, String fdName) {
+    	IngreReviewService.IngreRevInsert(IngredRv);
+    	re.addAttribute("fdName",fdName);
+    	return "redirect:/r_recipe";
+    }
 	
 	@RequestMapping("/itAjaxTest")
 	public String itAjaxTest() {
