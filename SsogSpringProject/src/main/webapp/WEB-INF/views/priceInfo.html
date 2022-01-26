@@ -251,7 +251,7 @@ table, td {
   <script src="resources/js/main.js"></script>
   <script type="text/javascript" th:inline="javascript">
 	$(document).ready(()=>{
-		loadTop200();
+		loadList(ingre);
 		
 	})
 	 
@@ -274,24 +274,25 @@ table, td {
 	        $('th').eq(2).css({width:'30%'});
 	        $('th').eq(3).css({width:'30%'});
 	}
-    function loadTop200(){
-		
+    function loadList(ingre){
     	// Controller에게 데이터 리스트를 요청하기
     	$.ajax({
-    		url : "testTop200List.do", //>>요청>>받는 데이터는(json)
+    		url : "categori", //>>요청>>받는 데이터는(json)
     		type : "get",
+    		data : {"ingre":ingre},
     		dataType : "json", // [{  },{  },{  }]
     		success :resultHtml, 
     		error : function(){ alert("error"); }
     	});
-    }   
-    function resultHtml(foodlist){
+    }
+loadList("");
+    function resultHtml(ingrelist){
     	let view = "";
     	
-    	$.each(foodlist, function(index, obj){
+    	$.each(ingrelist, function(index, obj){
     		if(index){
     			view += "<tr>";
-    			view += `<td>${obj["fdSeq"]}</td>`;
+    			view += `<td>${obj[""]}</td>`;
     			view += "<td></td>";
     			view += "<td></td>";
     			view += "<td></td>";
