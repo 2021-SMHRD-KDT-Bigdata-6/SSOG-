@@ -3,6 +3,84 @@ Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSyste
 Chart.defaults.global.defaultFontColor = '#292b2c';
 
 // Area Chart Example
+
+function area_data(date_price){
+    	$.ajax({
+    		url : "ingre_Name", //>>요청>>받는 데이터는(json)
+    		type : "get",
+    		data : {"date_price":date_price},
+    		dataType : "json", // [{  },{  },{  }]
+    		success :area_dataShow, 
+    		error : function(){ alert("error"); }
+    	});
+ }
+ 
+ function area_dataShow(data_price){
+ 		console.log(data_price)
+ 		var label_data = [];
+ 		var value = [];
+ 		for(var i=0; i<data_price.length;i++){
+ 			label_data.push(data_price[i]['priceDate']);
+ 			//data_price[i]['price'] 배열에서 대표값 가져와서 value 배열에 넣기
+ 			//var mean=0;
+ 			//for(){
+ 			//평균을 구하기 위한 로직
+ 			//}
+ 			
+ 			//mean = 평균
+ 			value.push(mean);
+ 		}
+ 		var ctx = document.getElementById("myAreaChart");
+var myLineChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: label_data,
+    datasets: [{
+      label: "Sessions",
+      lineTension: 0.3,
+      backgroundColor: "rgba(255,204,153,0.2)",
+      borderColor: "rgba(153,51,0,1)",
+      pointRadius: 5,
+      pointBackgroundColor: "rgba(153,51,0,1)",
+      pointBorderColor: "rgba(255,255,255,0.8)",
+      pointHoverRadius: 5,
+      pointHoverBackgroundColor: "rgba(2,117,216,1)",
+      pointHitRadius: 50,
+      pointBorderWidth: 2,
+      data: value,
+    }],
+  },
+  options: {
+    scales: {
+      xAxes: [{
+        time: {
+          unit: 'date'
+        },
+        gridLines: {
+          display: false
+        },
+        ticks: {
+          maxTicksLimit: 7
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          min: 0,
+          max: 40000,
+          maxTicksLimit: 5
+        },
+        gridLines: {
+          color: "rgba(0, 0, 0, 0)",
+        }
+      }],
+    },
+    legend: {
+      display: false
+    }
+  }
+});
+ } 
+    	
 var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',

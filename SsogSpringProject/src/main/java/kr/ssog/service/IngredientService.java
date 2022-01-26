@@ -98,7 +98,10 @@ public class IngredientService {
 		Date date = new Date();
 		SimpleDateFormat formatChanger = new SimpleDateFormat("yy/MM/dd");
 		String day = formatChanger.format(date);
-		
+		String today=day.substring(6,8);
+		int today2 = Integer.parseInt(today);
+		today2 = today2-1;
+		day = day.substring(0, 6) + Integer.toString(today2);
 		return priceMapper.getPrice(ingre_Name, day);
 	}
 	
@@ -111,8 +114,8 @@ public class IngredientService {
 			for (int j =0; j<pricess.size(); j++) {
 				double quan =Integer.parseInt(pricess.get(j).getPriceQuantity())/(double)100;
 				double price_100 = pricess.get(j).getPrice()/quan;
-				if (min > price_100) {min = price_100;}
-				if (max < price_100) {max = price_100;}
+				if (min > price_100) {min = (int)price_100;}
+				if (max < price_100) {max = (int)price_100;}
 			}
 			
 			String price = min + " ~ " +max;
@@ -125,17 +128,18 @@ public class IngredientService {
 
 	//모든 시간대 가격 분포 가져오기 ex) 20210113 1000~2000	
 	
-	public void getHistoryPrice(String ingre_Name){
+	public List<PriceUnit> getHistoryPrice(String ingre_Name){
 		List<PriceUnit> result = new ArrayList<PriceUnit>();
+		System.out.println(ingre_Name);
 		List<String> dates = priceMapper.getPriceDate(ingre_Name);
 		int length = dates.size();
 		for (int i =0; i<length; i++) {
-			//String date = dates.get(i);
-			//List<Integer> prices =  priceMapper.getPrice(ingre_Name, date);
-			//result.add(new PriceUnit(date, prices));
+			String date = dates.get(i);
+			List<Integer> prices =  priceMapper.getInteger(ingre_Name, date);
+			result.add(new PriceUnit(date, prices));
 		}
 		
-
+		return result;
 		
 	}
 	

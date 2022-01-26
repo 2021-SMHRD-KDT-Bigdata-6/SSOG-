@@ -31,7 +31,7 @@ public class FoodController {
 	@Autowired
 	IngreReviewService IngreReviewService;
 	
-	@RequestMapping("/r_it")
+	@RequestMapping("/r_it") 
 	public String it(Model model) {
 		List<Food> top200 = FoodService.Top200();
 		model.addAttribute("foodList", top200);
@@ -40,6 +40,11 @@ public class FoodController {
 	    model.addAttribute("imgs", imgs);
 		return "r_it";
 	}
+	
+//	@RequestMapping("/ingre_it")
+//	public String ingre_it(Model model) {
+//		List<Ingredient> top100 =  
+//	}
 	
 	@RequestMapping("/r_recipe")
 	public String r_recipe(String fdName, Model model, HttpSession session) {
