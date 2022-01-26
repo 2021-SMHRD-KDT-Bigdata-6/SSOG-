@@ -20,8 +20,12 @@
 	    select * from Price where ingreName = #{ingre_name} and to_char(priceDate, 'YY/MM/DD') = #{date} order by price desc
 	</select>
 	
-	<select id = "getPriceDate" resultType = "String" parameterType = "String">
-	    select priceDate from Price group by priceDate where ingreName = #{ingre_name}
+	<select id = "getInteger" resultType = "Integer" parameterType ="String">
+	    select price from Price where ingreName = #{ingre_name} and to_char(priceDate, 'YY/MM/DD') = #{date} order by price desc
+	</select>
+	
+	<select id = "getPriceDate" resultType = "String" parameterType="String">
+	    select to_char(priceDate, 'YY/MM/DD') from Price where ingreName=#{ingre_name} group by priceDate order by priceDate
 	</select>
 	
 

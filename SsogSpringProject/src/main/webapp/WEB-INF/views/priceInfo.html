@@ -143,21 +143,21 @@ table, td {
 
 
 						<div id="btn-group">
-								<button class="button" onclick="loadList('유기농/친환경 전문관')">유기농/친환경 전문관</button>
+								<button class="button" onclick="loadList('유기농')">유기농/친환경 전문관</button>
 								<button class="button" onclick="loadList('과일')">과일</button>
-								<button class="button" onclick="loadList('견과/건과')">견과/건과</button>
+								<button class="button" onclick="loadList('견과')">견과/건과</button>
 								<button class="button" onclick="loadList('채소')">채소</button>
-								<button class="button-right-none" onclick="loadList('쌀/잡곡')">쌀/잡곡</button>
-								<button class="button" onclick="loadList('축산/계란')">축산/계란</button>
-								<button class="button" onclick="loadList('수산물/건어물')">수산물/건어물</button>
-								<button class="button" onclick="loadList('생수/음료')">생수/음료</button>
-								<button class="button" onclick="loadList('커피/원두/차')">커피/원두/차</button>
-								<button class="button-right-none" onclick="loadList('과자/초콜릿/시리얼')">과자/초콜릿/시리얼</button>
-								<button class="button-bottom-none" onclick="loadList('면/통조림/가공식품')">면/통조림/가공식품</button>								
-								<button class="button-bottom-none" onclick="loadList('가루/조미료/오일')">가루/조미료/오일</button>								
-								<button class="button-bottom-none" onclick="loadList('장/소스/드레싱/식초')">장/소스/드레싱/식초</button>								
-								<button class="button-bottom-none" onclick="loadList('유제품/아이스크림')">유제품/아이스크림</button>								
-								<button class="button-bottom-right-none" onclick="loadList('냉장/냉동/간편요리')">냉장/냉동/간편요리</button>								
+								<button class="button-right-none" onclick="loadList('쌀')">쌀/잡곡</button>
+								<button class="button" onclick="loadList('축산')">축산/계란</button>
+								<button class="button" onclick="loadList('수산물')">수산물/건어물</button>
+								<button class="button" onclick="loadList('생수')">생수/음료</button>
+								<button class="button" onclick="loadList('커피')">커피/원두/차</button>
+								<button class="button-right-none" onclick="loadList('과자')">과자/초콜릿/시리얼</button>
+								<button class="button-bottom-none" onclick="loadList('면')">면/통조림/가공식품</button>								
+								<button class="button-bottom-none" onclick="loadList('가루')">가루/조미료/오일</button>								
+								<button class="button-bottom-none" onclick="loadList('장')">장/소스/드레싱/식초</button>								
+								<button class="button-bottom-none" onclick="loadList('유제품')">유제품/아이스크림</button>								
+								<button class="button-bottom-right-none" onclick="loadList('냉장')">냉장/냉동/간편요리</button>								
 						</div>
 
 
@@ -251,7 +251,7 @@ table, td {
   <script src="resources/js/main.js"></script>
   <script type="text/javascript" th:inline="javascript">
 	$(document).ready(()=>{
-		loadList(ingre);
+		loadList('수산물');
 		
 	})
 	 
@@ -288,28 +288,26 @@ table, td {
 loadList("");
     function resultHtml(ingrelist){
     	let view = "";
-    	
-    	$.each(ingrelist, function(index, obj){
-    		if(index){
+    		for(let i = 0; i < ingrelist['categori'].length; i++){
     			view += "<tr>";
-    			view += `<td>${obj[""]}</td>`;
-    			view += "<td></td>";
-    			view += "<td></td>";
-    			view += "<td></td>";
+    			view += `<td>${ingrelist['categori'][i]["ingreSeq"]}</td>`;
+    			view += `<td onclick="area_data('${ingrelist['categori'][i]["ingreName"]}')">${ingrelist['categori'][i]["ingreName"]}</td>`;
+    			view += `<td>${ingrelist['list'][i]}</td>`;
+    			view += `<td>${ingrelist['categori'][i]["ingreQualityInd"]}</td>`;
     			view += "</tr>";
     			view += `<tr>
     		        <td></td>
     		        <td id = "td-img">
-    		        	<img src=${obj["imgs"]}/>
+    		        	<img src=${ingrelist['categori'][i]["ingreImg"]}/>
     		        </td>
     		        <td colspan="2">
-    		            <a href=${obj["fdURL"]}>쿠팡</a><br>
-    		            <a href=${obj["fdURL"]}>마켓컬리</a><br>
+    		            <a href=${ingrelist['categori'][i]["fdURL"]}>쿠팡</a><br>
+    		            <a href=${ingrelist['categori'][i]["fdURL"]}>마켓컬리</a><br>
 		                
     		        </td>
     		      </tr>`;
-    		};
-    	});
+    		}
+    		
     	
     	$("#priceInfo").html(view);
     	expend_table();

@@ -21,7 +21,7 @@
 
 	
 	<select id = "CategoriPriceTop" parameterType = "String" resultType = "kr.ssog.domain.Ingredient">
-	    select * from ingredient where ingreCategori = #{categori} order by ingrePriceInd desc
+	    select* from ingredient where ingrecategori LIKE '%'||#{categori}||'%' ORDER by ingrePriceInd desc
 	</select>
 	
 	<select id = "CategoriQualityTop"  parameterType = "String" resultType = "kr.ssog.domain.Ingredient">
