@@ -176,34 +176,33 @@ public class FoodService {
 						// g , ml 전처리하기
 						int index = quantity.indexOf('g');
 						if(index !=-1) {
-							int j = 0;
+							int j = 1;
 							while(true) {
-						
-								char a = quantity.charAt(index-j-1);
+								if((index -j) <0) {break;}
+								char a = quantity.charAt(index-j);
 								
 								System.out.println(a);
 								if(47<(byte)a&& (byte)a <58) {
 									j++;
-									if(quantity.charAt(index-j-1) == -1) {
-										j--;
-										break;
-									}
+
+						
 								}
 								else break;
 							}
-							
-							quantity= quantity.substring(index-j-1, index);
+							System.out.println(j);
+							quantity= quantity.substring(index-j+1, index);
 							System.out.println(quantity);
 							
 						}else {
 							index = quantity.indexOf("ml");
 							if(index != -1) {
-								int j = 0;
+								int j = 1;
 								while(true) {
+									if((index -j) <0) {break;}
 									if(47<(byte)quantity.charAt(index-j) && (byte)quantity.charAt(index-j)<58) j++;
 									else break;
 								}
-								quantity= quantity.substring(index-j, index);
+								quantity= quantity.substring(index-j+1, index);
 								
 							}else {
 								quantity= "0";
