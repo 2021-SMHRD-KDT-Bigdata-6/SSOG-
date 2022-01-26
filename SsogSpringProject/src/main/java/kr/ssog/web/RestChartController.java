@@ -2,6 +2,7 @@ package kr.ssog.web;
 import kr.ssog.domain.Food;
 import kr.ssog.domain.FoodAndImage;
 import kr.ssog.domain.Ingredient;
+import kr.ssog.domain.PriceUnit;
 import kr.ssog.domain.ingre_price;
 import kr.ssog.service.FoodService;
 import kr.ssog.service.IngredientService;
@@ -32,10 +33,19 @@ public class RestChartController{
 		List<String> list = service.getAllTodayPrice(categori);
 		
 		ingre_price price = new ingre_price(categori, list);
-		
+		System.out.println(price.toString());
 		
 		
 		return price;
+	}
+	
+	// 재료 하나를 선택했을 때
+	@GetMapping("/ingre_Name")
+	public @ResponseBody List<PriceUnit> getHistoryPrice(HttpServletRequest request){
+		String ingre_Name = request.getParameter("date_price");
+		List<PriceUnit> priceUnit = service.getHistoryPrice(ingre_Name);
+		
+		return  priceUnit;
 	}
 	
 	@GetMapping("/testTop200List.do")

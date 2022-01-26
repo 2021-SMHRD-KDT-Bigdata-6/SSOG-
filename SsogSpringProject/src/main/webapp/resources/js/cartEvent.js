@@ -61,6 +61,7 @@ let basket = {
         //전송 처리 결과가 성공이면    
         this.reCalc();
         this.updateUI();
+        return true;
     },
     checkItem: function () {
         this.reCalc();
