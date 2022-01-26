@@ -234,18 +234,26 @@ public class FoodService {
 	
 	
 	// 영양정보 그래프 처럼가져오기!
-	public void getNutritionGraph(String food_name){
+	public List<Double> getNutritionGraph(String food_name){
+		List<Double> nutri = getFoodNutrition(food_name);
+		double tan = nutri.get(19)/325;//탄수화물
+		double jijil = nutri.get(16)/57; //지질
+		double dan = nutri.get(21)/84; //단백질
 		
-		//String data = getFoodNutrition(food_name);
-		//에너지 2301, 단백질 84, 지방 57, 탄수화물 325, 식이섬유 24, 칼슘, 572, 인 1200, 나트륨 3800,
-		// 칼륨 2863, 철 13, 비타민 408, 티아민 1562, 리보플라빈 1857, 나이아신 15, 비타민 65
-		//탄수화물(g). 지질(g). 단백질(g). 당류(g). 지방(g)
-		//비타민D,비타민E,비타민K,비타민B12 (나노그램)
-		//비타민B2,비타민B5,비타민B6,비타민C,비타민1
-		//칼륨, 식이섬유,아연,마그네슘,철,나트륨,칼슘,인,에너지
-		//어떤걸 보여줄 것인가?
-		// 전반적인 칼로리/ 탄단지/ 무기류/ 비타민
-		// 하루권장량을 기준으로 보여줄건데, 무기류 비타민, 하루권장량이
+		double cal = 4*(nutri.get(19)+nutri.get(21))+9*nutri.get(16);
+		
+		double mugi = (nutri.get(10)/3800)+(nutri.get(11)/2836)+(nutri.get(12)/1200)+(nutri.get(14)/13)+(nutri.get(15)/572)+(nutri.get(17)/24);
+		mugi = mugi/5;
+		
+		double vita = nutri.get(0)/65;
+		List<Double> result = new ArrayList<Double>();
+		result.add(tan);
+		result.add(dan);
+		result.add(jijil);
+		result.add(mugi);
+		result.add(vita);
+		result.add(cal);
+		return result;
 		
 	}
 	

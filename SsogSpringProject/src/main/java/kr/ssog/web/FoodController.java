@@ -77,7 +77,7 @@ public class FoodController {
 		model.addAttribute("recipeEtc", recipeEtc);
 		
 		List<Double> totalNutritionQuan = FoodService.getFoodNutrition(fdName);
-		System.out.println(totalNutritionQuan.get(1));
+		System.out.println(totalNutritionQuan);
 		
 		return "r_recipe";
 	}
