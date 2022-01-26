@@ -158,57 +158,77 @@ public class FoodService {
 	
 		for (int i =0; i<length; i++) {
 			FoodIngredient ingredient = mainIngredients.get(i);
+			
+			
 			nutritions = nutritionMapper.getInfoNutrition(ingredient.getIngreName());
-	
-			//탄수화물(g). 지질(g). 단백질(g). 당류(g). 지방(g)
-			//비타민D,비타민E,비타민K,비타민B12 (나노그램)
-			//비타민B2,비타민B5,비타민B6,비타민C,비타민1
-			//칼륨, 식이섬유,아연,마그네슘,철,나트륨,칼슘,인,에너지
 			
-			String quantity =ingredient.getIngreQuantity();
 			
-			// g , ml 전처리하기
-			int index = quantity.indexOf('g');
-			if(index !=-1) {
-				int j = 0;
-				while(true) {
-					if(47<(byte)quantity.charAt(index-j) && (byte)quantity.charAt(index-j)<58) j++;
-					else break;
-				}
-				
-				quantity= quantity.substring(index-j, index);
-				
-			}else {
-				index = quantity.indexOf("ml");
-				if(index != -1) {
-					int j = 0;
-					while(true) {
-						if(47<(byte)quantity.charAt(index-j) && (byte)quantity.charAt(index-j)<58) j++;
-						else break;
-					}
-					quantity= quantity.substring(index-j, index);
+			if(nutritions != null) {
 					
-				}else {
-					quantity= "0";
-				}	
+					//탄수화물(g). 지질(g). 단백질(g). 당류(g). 지방(g)
+					//비타민D,비타민E,비타민K,비타민B12 (나노그램)
+					//비타민B2,비타민B5,비타민B6,비타민C,비타민1
+					//칼륨, 식이섬유,아연,마그네슘,철,나트륨,칼슘,인,에너지
+					
+					String quantity =ingredient.getIngreQuantity();
+				
+					if(quantity != null) {
+						// g , ml 전처리하기
+						int index = quantity.indexOf('g');
+						if(index !=-1) {
+							int j = 0;
+							while(true) {
+						
+								char a = quantity.charAt(index-j-1);
+								
+								System.out.println(a);
+								if(47<(byte)a&& (byte)a <58) {
+									j++;
+									if(quantity.charAt(index-j-1) == -1) {
+										j--;
+										break;
+									}
+								}
+								else break;
+							}
+							
+							quantity= quantity.substring(index-j-1, index);
+							System.out.println(quantity);
+							
+						}else {
+							index = quantity.indexOf("ml");
+							if(index != -1) {
+								int j = 0;
+								while(true) {
+									if(47<(byte)quantity.charAt(index-j) && (byte)quantity.charAt(index-j)<58) j++;
+									else break;
+								}
+								quantity= quantity.substring(index-j, index);
+								
+							}else {
+								quantity= "0";
+							}	
+							System.out.println(quantity);
+						}
+						System.out.println(quantity);
+						double preproQuantity =Double.parseDouble(quantity);
+						
+						
+			
+						
+						
+						
+						//재료 -->다양한 영양정보 --> 추출하기
+						for (int j = 0; j < nutritions.size(); j++) {
+							Nutrition nutrition =nutritions.get(j);
+							totalNutritionQuan.set(j, totalNutritionQuan.get(j) + nutrition.getNutritionQuantity()*(preproQuantity/nutrition.getNutritionStandard()));			
+						}///--> 이름이랑 영양정보 담기!
+						
+						
+						System.out.println(nutritionNames);
+						System.err.println(totalNutritionQuan);
+					}
 			}
-			double preproQuantity =Double.parseDouble(quantity);
-			
-			
-
-			
-			
-			
-			//재료 -->다양한 영양정보 --> 추출하기
-			for (int j = 0; j < nutritions.size(); j++) {
-				Nutrition nutrition =nutritions.get(j);
-				totalNutritionQuan.set(j, totalNutritionQuan.get(j) + nutrition.getNutritionQuantity()*(preproQuantity/nutrition.getNutritionStandard()));			
-			}///--> 이름이랑 영양정보 담기!
-			
-			
-			System.out.println(nutritionNames);
-			System.err.println(totalNutritionQuan);
-			
 		}
 		return totalNutritionQuan;
 	}
