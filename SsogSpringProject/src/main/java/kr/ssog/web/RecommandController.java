@@ -168,8 +168,10 @@ public class RecommandController {
 	        BufferedReader bReader=new BufferedReader(new InputStreamReader(connection.getInputStream(),"UTF-8"));
 	        System.out.println("ㅠㅠㅠㅠㅠㅠㅠㅠ");
 	        inputLine=bReader.readLine();
+	        System.out.println(inputLine);
 	        while(inputLine!=null){
 	            stringBuffer.append(inputLine);
+	            inputLine=bReader.readLine();
 	        }
 	        System.out.println("44444");
 	        System.out.println("야받아지냐");
@@ -197,7 +199,8 @@ public class RecommandController {
 		for(int i = 0; i<temp.length; i++) {
 			rist.add(temp[i]);
 		}
-
+		
+		
 		return rist;
 	}
 	
