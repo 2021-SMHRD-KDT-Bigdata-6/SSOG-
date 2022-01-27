@@ -63,4 +63,11 @@ public class RestFoodController {
 		List<FoodAndImage> categoriFood = FoodService.getAllImgUrlOb(categoriFdName);
 		return categoriFood;
 	}
+	
+	@GetMapping("/showNutri")
+	public @ResponseBody List<Double> showNutri(String fdName){
+		List<Double> nutriList = FoodService.getNutritionGraph(fdName);
+		return nutriList;
+	}
+	
 }

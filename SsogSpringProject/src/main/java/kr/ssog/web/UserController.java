@@ -106,7 +106,7 @@ public class UserController {
 		
 		// 로그인 성공 시 이전 창으로 redirect(boardContents만 적용됨)
 		Object referer = session.getAttribute("referer");
-		System.out.println("로그인 입니다." + referer);
+		//System.out.println("로그인 입니다." + referer);
 		if(referer != null) {
 			return "redirect:" + referer;
 		}else {

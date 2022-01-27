@@ -81,8 +81,9 @@ public class FoodController {
 		String recipeEtc = recipe.get(0).getRecipeETC();
 		model.addAttribute("recipeEtc", recipeEtc);
 		
-		List<Double> totalNutritionQuan = FoodService.getFoodNutrition(fdName);
-		System.out.println(totalNutritionQuan.get(1));
+		List<Double> nutriList = FoodService.getNutritionGraph(fdName);
+		Double cal = nutriList.get(5);
+		model.addAttribute("cal", cal);
 		
 		return "r_recipe";
 	}

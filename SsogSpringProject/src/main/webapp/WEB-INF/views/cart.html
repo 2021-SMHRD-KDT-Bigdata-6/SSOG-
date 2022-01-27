@@ -78,7 +78,7 @@
     	
     </div>
     
-    <form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
+    <form name="orderform" id="orderform" method="post" class="orderform" action="checkout" onsubmit="return false;">
     	
             <input type="hidden" name="cmd" value="order">
             <div class="basketdiv table-wrap" id="basket">
@@ -135,8 +135,8 @@
     			<div class="col col-lg-5 col-md-6 mt-5 cart-wrap ftco-animate">
     				<div class="cart-total mb-3">
     					<div class="bigtext right-align sumcount" id="sum_p_num">상품갯수 : 0개</div>
-            <div class="bigtext right-align box summoney" id="sum_p_price">합계금액 : 0원</div>
-            <input type="hidden" id="sum_hidden" value="0">
+			            <div class="bigtext right-align box summoney" id="sum_p_price">합계금액 : 0원</div>
+			            <input type="hidden" id="sum_hidden" value="0" name="price">
     
             <!-- <div id="goorder" class="">
                 <div class="clear"></div>
@@ -145,7 +145,7 @@
                 </div>
             </div> -->
     				</div>
-    				<p class="text-center"><a href="checkout.do" class="btn btn-primary py-3 px-4">결&nbsp;제&nbsp;하&nbsp;기</a></p>
+    				<p class="text-center"><a href="index" class="btn btn-primary py-3 px-4">결&nbsp;제&nbsp;하&nbsp;기</a></p>
     			</div>
     		</div>
             
@@ -352,7 +352,7 @@
                     <div class="updown">
                         <input type="text" name="p_num${num}" id="p_num${num}" size="2" maxlength="4" class="p_num" value="1" onkeyup="javascript:basket.changePNum(${num});">
                         <span onclick="javascript:basket.changePNum(${num}); upPrice(${num});" style="margin-right:0.3rem; margin-left:0.3rem;"><i class="fas fa-arrow-alt-circle-up up"></i></span>
-                        <span onclick="javascript:basket.changePNum(${num}); downPrice(${num});"><i class="fas fa-arrow-alt-circle-down down"></i></span>
+                        <span onclick="javascript: downPrice(${num}, basket.changePNum(${num}));"><i class="fas fa-arrow-alt-circle-down down"></i></span>
                     </div>
                 </div>
                 <div class="sum${num}">${price}</div>
@@ -390,7 +390,7 @@
     	}
     	
     }
-    function downPrice(num){
+    function downPrice(num, is_down){
     	let p_num = $("#p_num"+num).val()
     	let sum = $("#sum"+num).val();
     	let result = sum.slice(0,-1);
@@ -404,16 +404,16 @@
     	
     	let sumHidden = $("#sum_hidden").val();
     	let checkTF = $("#checkbox"+num).prop("checked");
+    	
     	if(checkTF == true){
-    		if(p_num == 1){
-    			
-    			
-    			total.text("합계금액 : "+ sumHidden + "원");
-    		}else{
-		    	let totalSum = (Number(sumHidden) - Number(result));
+    		if(is_down){
+    			let totalSum = (Number(sumHidden) - Number(result));
 	    		total.text("합계금액 : "+ totalSum + "원");
 	    		$("#sum_hidden").val(totalSum);
-	    		
+    			
+    			
+    		}else{
+    			total.text("합계금액 : "+ sumHidden + "원");
     		}
     	}
     	if(checkTF == false){
