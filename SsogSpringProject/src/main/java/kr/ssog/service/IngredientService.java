@@ -109,7 +109,7 @@ public class IngredientService {
 		List<String> priceRange = new ArrayList<String>();
 		for (int i  = 0;  i<categori.size(); i++) {
 			List<Price> pricess =getTodayPrice(categori.get(i).getIngreName());
-			double min = 0;
+			double min = 1000000;
 			double max = 0;
 			for (int j =0; j<pricess.size(); j++) {
 				double quan =Integer.parseInt(pricess.get(j).getPriceQuantity())/(double)100;
@@ -117,7 +117,8 @@ public class IngredientService {
 				if (min > price_100) {min = (int)price_100;}
 				if (max < price_100) {max = (int)price_100;}
 			}
-			
+			if (min == 1000000) {min = -1;}
+			if (max == 0) {max =-1;}
 			String price = min + " ~ " +max;
 			priceRange.add(price);
 		}
