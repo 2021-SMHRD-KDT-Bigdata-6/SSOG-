@@ -45,7 +45,7 @@ insert into BOARD values(BOARD_SEQ.nextval,'PoisonCook','고구마 맛탕이 있
 
 select * from board where boardCate='PoisonCook' order by w_day desc;
 
-select * from member;
+select * from t_member;
 
 select * from board;
 

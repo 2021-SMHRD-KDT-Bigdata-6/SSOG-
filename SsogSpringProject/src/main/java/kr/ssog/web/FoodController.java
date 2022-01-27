@@ -100,4 +100,9 @@ public class FoodController {
 		return "itAjaxTest";
 	}
 	
+	@RequestMapping("/r_AI_LoginPage")
+	public String r_AI_LoginPage() {
+		return "r_AI_LoginPage";
+	}
+	
 }

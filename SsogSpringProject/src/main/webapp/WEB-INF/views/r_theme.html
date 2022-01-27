@@ -107,10 +107,21 @@
 			<a th:href="@{r_theme.do}">
 				<div class="row">
 					<div class="col-lg-2 col-md-4 ">
-						<div class="sort w-100 text-center ftco-animate">
-							<div class="img" th:style="'background-image: url('+@{resources/images/}+'kind1-1'+'.png);'"></div>
-							<h3 style="color: #b7472a;">AI 맞춤 추천</h3>
-						</div>
+						<th:block th:if="${session.users==null}">
+							<div class="sort w-100 text-center ftco-animate">
+								<div class="img" th:style="'background-image: url('+@{resources/images/}+'kind1-1'+'.png);'"></div>
+								<h3 style="color: #b7472a;">AI 맞춤 추천</h3>
+							</div>
+						</th:block>
+						<th:block th:if="${session.users!=null}">
+							<div class="sort w-100 text-center ftco-animate">
+								<a href="r_AI_LoginPage">
+									<div class="img" th:style="'background-image: url('+@{resources/images/}+'kind1-1'+'.png);'"></div>
+									<h3 style="color: #b7472a;">AI 맞춤 추천</h3>
+								</a>
+							</div>
+						</th:block>
+							
 					</div>
 					<div class="col-lg-2 col-md-4 ">
 						<div class="sort w-100 text-center ftco-animate">

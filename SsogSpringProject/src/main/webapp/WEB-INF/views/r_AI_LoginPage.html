@@ -118,21 +118,22 @@
   
   <!-- FoodTop200 보여주는 코드 -->
   <script type="text/javascript" th:inline="javascript">
-  let users = $("#users").val();
 	  $(document).ready(()=>{
-	    		loadTop200();
-	  });
-		  
-	    function loadTop200(){
-	  		
+		 
+		  	userSpecial();
+		
+		});
+
+	  	function userSpecial(){
+	  		 let id = $("#usersID").val();
 	  		$.ajax({
-	  			url : "top200List.do", 
-	  			type : "get",
-	  			dataType : "json", 
+	  			url : "extraFactor",
+	  			type : "post",
+	  			data : {"id":id},
 	  			success : itView, 
 	  			error : function(){alert("error");}
-	  		});
-	  	}
+	  		}); 
+	  	} 
     
     	function itView(foodList){
     		let view="";
