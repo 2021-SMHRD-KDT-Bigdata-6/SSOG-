@@ -35,12 +35,13 @@ select * from board where boardCate='HappyCook' order by w_day desc;
 delete from board where writer = 'test';
 delete from board where filename = '6db8dc03-f4a0-49eb-99f1-78ccdee00680_pich.png';
 
-insert into BOARD values(BOARD_SEQ.nextval,'PoisonCook','불맛나는 스파게티 ㅎㅎ','금손레시피','image_1_1.jpg','resources/files/image_1_1.jpg','오늘 저녁 만들어봄 ',sysdate);
-insert into BOARD values(BOARD_SEQ.nextval,'PoisonCook','오늘은 뭘 먹지..','금손레시피','image_2_2.jpg','resources/files/image_2_2.jpg','오늘 저녁 만들어봄 ',sysdate);
-insert into BOARD values(BOARD_SEQ.nextval,'PoisonCook','곰돌아.. 죽지마..','금손레시피','image_3_3.jpg','resources/files/image_3_3.jpg','오늘 저녁 만들어봄 ',sysdate);
-insert into BOARD values(BOARD_SEQ.nextval,'PoisonCook','계란 후라이는 쉽다며','금손레시피','image_4_4.jpg','resources/files/image_4_4.jpg','오늘 저녁 만들어봄 ',sysdate);
-insert into BOARD values(BOARD_SEQ.nextval,'PoisonCook','카스테라 만들어봄','금손레시피','image_5_5.jpg','resources/files/image_5_5.jpg','오늘 저녁 만들어봄 ',sysdate);
-insert into BOARD values(BOARD_SEQ.nextval,'PoisonCook','고구마 맛탕이 있었는데요.. 없습니다','금손레시피','image_6_6.jpg','resources/files/image_6_6.jpg','오늘 저녁 만들어봄 ',sysdate);
+delete from board where boardcate = 'PoisonCook';
+insert into BOARD values(BOARD_SEQ.nextval,'PoisonCook','고구마 맛탕이 있었는데요.. 없습니다','woong','image_6_6.jpg','resources/files/image_6_6.jpg','오늘 저녁 만들어봄 ',sysdate);
+insert into BOARD values(BOARD_SEQ.nextval,'PoisonCook','카스테라 만들어봄','dan','image_5_5.jpg','resources/files/image_5_5.jpg','엄마한테 혼날 듯..ㅎㅎ ',sysdate);
+insert into BOARD values(BOARD_SEQ.nextval,'PoisonCook','계란 후라이는 쉽다며','치킨러버','image_4_4.jpg','resources/files/image_4_4.jpg','... ',sysdate);
+insert into BOARD values(BOARD_SEQ.nextval,'PoisonCook','곰돌아.. 죽지마..','요리왕','image_3_3.jpg','resources/files/image_3_3.jpg','곰돌아.. 미안해.. ',sysdate);
+insert into BOARD values(BOARD_SEQ.nextval,'PoisonCook','오늘은 뭘 먹지..','sleep','image_2_2.jpg','resources/files/image_2_2.jpg','깜빡 졸았나.. ',sysdate);
+insert into BOARD values(BOARD_SEQ.nextval,'PoisonCook','불맛나는 스파게티 ㅎㅎ','쿠쿠르핑퐁','image_1_1.jpg','resources/files/image_1_1.jpg','오늘 저녁도 굶어야되나요 ㅠㅠ ',sysdate);
 
 
 select * from board where boardCate='PoisonCook' order by w_day desc;
@@ -86,3 +87,4 @@ select * from foodrecipe where fdName = '생선초밥' order by recipeOrder;
 select recipeimg from foodrecipe;
 
 select * from cmt where bno=79 order by comment_time desc
+delete from cmt where writer = 'test';
