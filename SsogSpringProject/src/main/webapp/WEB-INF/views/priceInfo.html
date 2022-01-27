@@ -288,6 +288,7 @@ table, td {
 loadList("");
     function resultHtml(ingrelist){
     	let view = "";
+    	console.log(ingrelist)
     		for(let i = 0; i < ingrelist['categori'].length; i++){
     			view += "<tr>";
     			view += `<td>${ingrelist['categori'][i]["ingreSeq"]}</td>`;
