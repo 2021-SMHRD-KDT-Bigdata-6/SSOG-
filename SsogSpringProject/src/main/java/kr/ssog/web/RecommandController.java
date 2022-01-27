@@ -5,6 +5,8 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -115,6 +117,9 @@ public class RecommandController {
 			}
 		}
 		
+		
+		
+		
 		return result;
 
 	
@@ -125,7 +130,7 @@ public class RecommandController {
 	
 	
 	@GetMapping("/logHistroy")
-	public String logHistroy(String id) {
+	public List<String> logHistroy(String id) {
 		String inputLine=null;
 		StringBuffer stringBuffer=new StringBuffer();
 		System.out.println("들어오니?");
@@ -133,13 +138,11 @@ public class RecommandController {
 		
 		Gson gson = new Gson();
 		JsonObject obj = new JsonObject();
+		id ="0125";
 		obj.addProperty("id", id);
 		String send = gson.toJson(obj);
 		
 
-		
-		
-		
 		String result = null;
 		HttpURLConnection connection = null;
 		try {
@@ -163,9 +166,13 @@ public class RecommandController {
 	        
 	        //전송된 결과를 읽어옴
 	        BufferedReader bReader=new BufferedReader(new InputStreamReader(connection.getInputStream(),"UTF-8"));
-	        while((inputLine=bReader.readLine())!=null){
+	        System.out.println("ㅠㅠㅠㅠㅠㅠㅠㅠ");
+	        inputLine=bReader.readLine();
+	        while(inputLine!=null){
 	            stringBuffer.append(inputLine);
 	        }
+	        System.out.println("44444");
+	        System.out.println("야받아지냐");
 	        result = stringBuffer.toString();
 	        System.out.println("들어온 값 : "+ result);
 	        //bWriter.close();
@@ -181,8 +188,17 @@ public class RecommandController {
 				connection.disconnect();
 			}
 		}
+		// 스트링 타입의 음식이름
+		// 음식이름에대한 ingredient객체를 
 		
-		return result;
+		System.out.println(result);
+		List<String> rist =  new ArrayList<String>();
+		String[] temp = result.split(" ");
+		for(int i = 0; i<temp.length; i++) {
+			rist.add(temp[i]);
+		}
+
+		return rist;
 	}
 	
 	
