@@ -82,7 +82,8 @@ public class FoodController {
 		model.addAttribute("recipeEtc", recipeEtc);
 		
 		List<Double> nutriList = FoodService.getNutritionGraph(fdName);
-		Double cal = nutriList.get(5);
+		Double cal2 = nutriList.get(5);
+		Double cal = (double) Math.round(cal2*100/100.0);
 		model.addAttribute("cal", cal);
 		
 		return "r_recipe";

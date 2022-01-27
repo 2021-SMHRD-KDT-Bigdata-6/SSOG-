@@ -15,12 +15,15 @@ select * from IngredientReview where crawlfoodname = '갈비';
 select * from nutrition where ingrename = (select * from (select ingrename from nutrition where ingrename like '%계란%' group by ingrename ORDER BY DBMS_RANDOM.RANDOM) where rownum  < 2 );
 
 select * from cmt;
-delete from cmt where writer = 'test';
+delete from cmt where writer = '금손레시피';
+delete from cmt where writer = '찐천재';
+delete from BOARD where title = '토스트';
 
 insert into BOARD values(BOARD_SEQ.nextval,'HappyCook','test','test','1.jpg','resources/img/1.jpg','내용',sysdate);
 
 insert into BOARD values(BOARD_SEQ.nextval,'HappyCook','test','test','47031c4b-7780-4278-ab1b-cd002bcd7064_pich.png','resources/files/47031c4b-7780-4278-ab1b-cd002bcd7064_pich.png','내용',sysdate);
 
+delete from board where boardcate = 'HappyCook';
 insert into BOARD values(BOARD_SEQ.nextval,'HappyCook','오늘의 요리','요리왕','image_1.jpg','resources/files/image_1.jpg','오늘 저녁 만들어봄 ',sysdate);
 insert into BOARD values(BOARD_SEQ.nextval,'HappyCook','단호박으로 만든 요리','찐천재','image_2.jpg','resources/files/image_2.jpg','달달한 단호박으로 만든 스프!',sysdate);
 insert into BOARD values(BOARD_SEQ.nextval,'HappyCook','구운닭!!','치킨러버','image_3.jpg','resources/files/image_3.jpg','오늘 저녁 만들어봄 ',sysdate);
@@ -30,6 +33,11 @@ insert into BOARD values(BOARD_SEQ.nextval,'HappyCook','오늘 저녁은 미트�
 
 
 select * from board where boardCate='HappyCook' order by w_day desc;
+
+select * from cmt;
+insert into cmt values(comment_seq.nextval,'134','저도 고기먹고싶어요 ㅠㅠ','woong',sysdate);
+insert into cmt values(comment_seq.nextval,'134','너무 맛있어보여요','쿠쿠르핑퐁',sysdate);
+insert into cmt values(comment_seq.nextval,'134','플레이팅이 너무 예뻐요!','sleep',sysdate);
 
 
 delete from board where writer = 'test';
