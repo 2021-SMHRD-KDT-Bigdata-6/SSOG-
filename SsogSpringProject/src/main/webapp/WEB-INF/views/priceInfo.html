@@ -288,6 +288,7 @@ table, td {
 loadList("");
     function resultHtml(ingrelist){
     	let view = "";
+    	console.log(ingrelist)
     		for(let i = 0; i < ingrelist['categori'].length; i++){
     			view += "<tr>";
     			view += `<td>${ingrelist['categori'][i]["ingreSeq"]}</td>`;
@@ -298,11 +299,11 @@ loadList("");
     			view += `<tr>
     		        <td></td>
     		        <td id = "td-img">
-    		        	<img src=${ingrelist['categori'][i]["ingreImg"]}/>
+    		        	<img src=${ingrelist['categori'][i]["ingreImg"]}.jpg>
     		        </td>
     		        <td colspan="2">
-    		            <a href=${ingrelist['categori'][i]["fdURL"]}>쿠팡</a><br>
-    		            <a href=${ingrelist['categori'][i]["fdURL"]}>마켓컬리</a><br>
+    		            <!-- <a href=${ingrelist['categori'][i]["fdURL"]}>쿠팡</a><br> -->
+    		            <!-- <a href=${ingrelist['categori'][i]["fdURL"]}>마켓컬리</a><br> -->
 		                
     		        </td>
     		      </tr>`;

@@ -166,7 +166,7 @@
 											<th style="width: 25%;">품목</th>
 											<!--<th>분류</th>-->
 											<th style="width: 25%;">지역</th>
-											<th style="width: 25%;">오눌날짜</th>
+											<th style="width: 25%;">오늘날짜</th>
 											<th style="width: 25%;">가격</th>
 										</tr>
 									</thead>
