@@ -151,7 +151,8 @@
                 	 -->
              
                <div class="col-md-3 d-flex" th:each="imgs: ${imgs}">
-               <th:block th:each="foodList: ${foodList}" th:if="${foodListStat.index == imgsStat.index && foodListStat.index < 4}">
+               <th:block th:each="foodList: ${foodList}" 
+               			th:if="${foodListStat.index == imgsStat.index && foodListStat.index < 4}">
                   <a th:href="@{r_recipe.do(fdName=${foodList.fdName})}">
                   <div class="product ftco-animate">
                    	
